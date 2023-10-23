@@ -59,9 +59,21 @@ bool Player::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		vel = b2Vec2(speed*dt, -GRAVITY_Y);
 	}
+	
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		//Espacio para hacer el salto de la ostia
+		//if (dt < 50)
+		//{//Espacio para hacer el salto de la ostia
+		//	
+		//}
+		//else
+		//{
+		//	pbody->body->ApplyForceToCenter(b2Vec2(0, -180), 1);
+
+		//}
+		pbody->body->ApplyForceToCenter(b2Vec2(0, -10500), 1);
+		//Usar funcion GetLinearVelocity
+		
 	}
 
 	//Set the velocity of the pbody of the player
