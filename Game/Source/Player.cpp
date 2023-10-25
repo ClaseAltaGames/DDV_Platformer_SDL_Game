@@ -43,60 +43,52 @@ bool Player::Start() {
 
 bool Player::Update(float dt)
 {
-	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
+	//b2Vec2 vel = b2Vec2(pbody->body->GetLocalPoint().x, -GRAVITY_Y);
+	b2Vec2 impulse = b2Vec2_zero;
 	float horizontalImpulse = 0.07f * speed * dt;
 
 	app->render->camera.x = -position.x;
 
-	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN /*&& jumpsAvaiable > 0*/) {
 		//
+		impulse.y -= jumpPower;
+		//jumpsAvaiable--;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
-		//
+		
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		vel = b2Vec2(-speed*dt, -GRAVITY_Y);
-		pbody->body->ApplyLinearImpulse(b2Vec2(-horizontalImpulse, 0), b2Vec2(0, 0), true);
+		impulse.x -= acceleration;
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		vel = b2Vec2(speed*dt, -GRAVITY_Y);
-		pbody->body->ApplyLinearImpulse(b2Vec2(horizontalImpulse, 0), b2Vec2(0, 0), true);
+		impulse.x += acceleration;
 	}
 	
-	if (/*canJump == true &&*/ app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	{
-		float jumpImpulse = -110000; // Ajustar este valor para hacer el salto más suave
+	//if (/*canJump == true &&*/ app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	//{
+	//	float jumpImpulse = -110000; // Ajustar este valor para hacer el salto más suave
 
-		pbody->body->ApplyLinearImpulse(b2Vec2(0, jumpImpulse), pbody->body->GetWorldCenter(), true);
+	//	pbody->body->ApplyLinearImpulse(b2Vec2(0, jumpImpulse), pbody->body->GetWorldCenter(), true);
 
-		if (dt < 20) {
-			pbody->body->ApplyForceToCenter(b2Vec2(vel.x * dt, jumpImpulse), 1);
-		}
-		else {
-			pbody->body->ApplyForceToCenter(b2Vec2(vel.x * dt, jumpImpulse), 1);
-		}
+	//	if (dt < 20) {
+	//		pbody->body->ApplyForceToCenter(b2Vec2(vel.x * dt, jumpImpulse), 1);
+	//	}
+	//	else {
+	//		pbody->body->ApplyForceToCenter(b2Vec2(vel.x * dt, jumpImpulse), 1);
+	//	}
 
-		/*if (Player_Dir == true) {
-			if (currentAnimation != &jumpR)
-			{
-				jumpR.Reset();
-				currentAnimation = &jumpR;
-			}
-		}
-		else {
-			if (currentAnimation != &jumpL)
-			{
-				jumpL.Reset();
-				currentAnimation = &jumpL;
-			}
-		}*/
-	}
+	//}
+	impulse.x = b2Clamp(impulse.x, -velCapado.x, velCapado.x);
+
+	impulse.y = b2Clamp(impulse.y, -velCapado.y, velCapado.y);
 	
 
 	//Set the velocity of the pbody of the player
-	pbody->body->SetLinearVelocity(vel);
+	//pbody->body->SetLinearVelocity(vel);
+	pbody->body->ApplyLinearImpulse(impulse, pbody->body->GetPosition(), false);
+	pbody->body->SetLinearVelocity(b2Clamp(pbody->body->GetLinearVelocity(), -velCapado, velCapado));
 
 	//Update player position in pixels
 	position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;
