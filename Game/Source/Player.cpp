@@ -44,6 +44,7 @@ bool Player::Start() {
 bool Player::Update(float dt)
 {
 	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
+	float horizontalImpulse = 0.07f * speed * dt;
 
 	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
 		//
@@ -54,23 +55,25 @@ bool Player::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 		vel = b2Vec2(-speed*dt, -GRAVITY_Y);
+		pbody->body->ApplyLinearImpulse(b2Vec2(-horizontalImpulse, 0), b2Vec2(0, 0), true);
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		vel = b2Vec2(speed*dt, -GRAVITY_Y);
+		pbody->body->ApplyLinearImpulse(b2Vec2(horizontalImpulse, 0), b2Vec2(0, 0), true);
 	}
 	
 	if (/*canJump == true &&*/ app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		float jumpImpulse = -100000; // Ajustar este valor para hacer el salto más suave
+		float jumpImpulse = -110000; // Ajustar este valor para hacer el salto más suave
 
 		pbody->body->ApplyLinearImpulse(b2Vec2(0, jumpImpulse), pbody->body->GetWorldCenter(), true);
 
 		if (dt < 20) {
-			pbody->body->ApplyForceToCenter(b2Vec2(0, -10500), 1);
+			pbody->body->ApplyForceToCenter(b2Vec2(vel.x * dt, jumpImpulse), 1);
 		}
 		else {
-			pbody->body->ApplyForceToCenter(b2Vec2(0, -10500), 1);
+			pbody->body->ApplyForceToCenter(b2Vec2(vel.x * dt, jumpImpulse), 1);
 		}
 
 		/*if (Player_Dir == true) {
@@ -88,16 +91,7 @@ bool Player::Update(float dt)
 			}
 		}*/
 	}
-	else {
-		// Permitir movimiento lateral durante el salto
-		float horizontalImpulse = 0.07f * speed * dt;
-		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-			pbody->body->ApplyLinearImpulse(b2Vec2(-horizontalImpulse, 0), b2Vec2(0, 0), true);
-		}
-		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-			pbody->body->ApplyLinearImpulse(b2Vec2(horizontalImpulse, 0), b2Vec2(0, 0), true);
-		}
-	}
+	
 
 	//Set the velocity of the pbody of the player
 	pbody->body->SetLinearVelocity(vel);
