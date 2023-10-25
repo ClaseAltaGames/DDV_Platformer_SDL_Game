@@ -46,6 +46,8 @@ bool Player::Update(float dt)
 	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
 	float horizontalImpulse = 0.07f * speed * dt;
 
+	app->render->camera.x = -position.x;
+
 	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
 		//
 	}
