@@ -46,7 +46,7 @@ bool Player::Update(float dt)
 	//b2Vec2 vel = b2Vec2(pbody->body->GetLocalPoint().x, -GRAVITY_Y);
 	b2Vec2 impulse = b2Vec2_zero;
 	float horizontalImpulse = 0.07f * speed * dt;
-
+	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
 	app->render->camera.x = -position.x;
 
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN /*&& jumpsAvaiable > 0*/) {
@@ -59,18 +59,20 @@ bool Player::Update(float dt)
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		impulse.x -= acceleration;
+		//impulse.x -= acceleration;
+		vel = b2Vec2(speed * dt, -GRAVITY_Y);
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		impulse.x += acceleration;
+		//impulse.x += acceleration;
+		vel = b2Vec2(-speed * dt, -GRAVITY_Y);
 	}
 	
 	//if (/*canJump == true &&*/ app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	//{
 	//	float jumpImpulse = -110000; // Ajustar este valor para hacer el salto más suave
 
-	//	pbody->body->ApplyLinearImpulse(b2Vec2(0, jumpImpulse), pbody->body->GetWorldCenter(), true);
+	//pbody->body->ApplyLinearImpulse(b2Vec2(0, impulse.y), pbody->body->GetWorldCenter(), true);
 
 	//	if (dt < 20) {
 	//		pbody->body->ApplyForceToCenter(b2Vec2(vel.x * dt, jumpImpulse), 1);
@@ -79,16 +81,16 @@ bool Player::Update(float dt)
 	//		pbody->body->ApplyForceToCenter(b2Vec2(vel.x * dt, jumpImpulse), 1);
 	//	}
 
-	//}
-	impulse.x = b2Clamp(impulse.x, -velCapado.x, velCapado.x);
+	//}d
+	impulse.x = b2Clamp(impulse.x, -vel.x, vel.x);
 
-	impulse.y = b2Clamp(impulse.y, -velCapado.y, velCapado.y);
+	impulse.y = b2Clamp(impulse.y, -vel.y, vel.y);
 	
 
 	//Set the velocity of the pbody of the player
 	//pbody->body->SetLinearVelocity(vel);
 	pbody->body->ApplyLinearImpulse(impulse, pbody->body->GetPosition(), false);
-	pbody->body->SetLinearVelocity(b2Clamp(pbody->body->GetLinearVelocity(), -velCapado, velCapado));
+	pbody->body->SetLinearVelocity(b2Clamp(pbody->body->GetLinearVelocity(), -vel, vel));
 
 	//Update player position in pixels
 	position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;
