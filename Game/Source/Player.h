@@ -35,10 +35,10 @@ public:
 	int pickCoinFxId;
 
 private:
-	float jumpPower = 2.0f;
+	float jumpPower = 1.75f;
 	float acceleration = 0.2f;
-	//uint jumpsAvaiable = 100;
-	b2Vec2 velCapado{ 5.0f,5.0f };
+	uint jumpsAvaiable = 1;
+
 };
 
 #endif // __PLAYER_H__
