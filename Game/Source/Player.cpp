@@ -60,20 +60,38 @@ bool Player::Update(float dt)
 		vel = b2Vec2(speed*dt, -GRAVITY_Y);
 	}
 	
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	if (/*canJump == true &&*/ app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		//if (dt < 50)
-		//{//Espacio para hacer el salto de la ostia
-		//	
-		//}
-		//else
-		//{
-		//	pbody->body->ApplyForceToCenter(b2Vec2(0, -180), 1);
+		if (dt < 20) {
+			pbody->body->ApplyForceToCenter(b2Vec2(0, -10500), 1);
+		}
+		else {
+			pbody->body->ApplyForceToCenter(b2Vec2(0, -10500), 1);
+		}
 
-		//}
-		pbody->body->ApplyForceToCenter(b2Vec2(0, -10500), 1);
-		//Usar funcion GetLinearVelocity
-		
+		/*if (Player_Dir == true) {
+			if (currentAnimation != &jumpR)
+			{
+				jumpR.Reset();
+				currentAnimation = &jumpR;
+			}
+		}
+		else {
+			if (currentAnimation != &jumpL)
+			{
+				jumpL.Reset();
+				currentAnimation = &jumpL;
+			}
+		}*/
+	}
+	else {
+		// Allow move when jumping / falling
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT /*&& Player_Dir == true*/) {
+			pbody->body->ApplyLinearImpulse(b2Vec2(-speed * 0.07f * dt, 0), b2Vec2(0, 0), 1);
+		}
+		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT /*&& Player_Dir == false*/) {
+			pbody->body->ApplyLinearImpulse(b2Vec2(speed * 0.07f * dt, 0), b2Vec2(0, 0), 1);
+		}
 	}
 
 	//Set the velocity of the pbody of the player
