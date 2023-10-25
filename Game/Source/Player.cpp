@@ -58,14 +58,14 @@ bool Player::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) 
 	{
-		//impulse.x -= acceleration;
-		speed = -0.5f;
+	
+		impulse.x -= acceleration;
 		vel = b2Vec2(speed * dt, -GRAVITY_Y);
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		//impulse.x += acceleration;
+		impulse.x += acceleration;
 		vel = b2Vec2(-speed * dt, -GRAVITY_Y);
 	}
 	
