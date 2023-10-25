@@ -88,6 +88,7 @@ bool Player::Update(float dt)
 	//Set the velocity of the pbody of the player
 	//pbody->body->SetLinearVelocity(vel);
 	pbody->body->ApplyLinearImpulse(impulse, pbody->body->GetPosition(), false);
+
 	pbody->body->SetLinearVelocity(b2Clamp(pbody->body->GetLinearVelocity(), -velCapado, velCapado));
 
 	//Update player position in pixels
