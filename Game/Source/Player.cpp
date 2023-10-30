@@ -38,6 +38,10 @@ void Player::PlayerStartAnims()
 	playerR.PushBack({ 35, 32, 10, 16 });
 	playerR.PushBack({ 35, 32, 10, 16 });
 	playerL.PushBack({ 19, 33, 10, 16 });
+
+	jumpR.PushBack({ 16, 48, 10, 16 });
+	jumpR.PushBack({ 35, 48, 10, 16 }); 
+	
 }
 
 bool Player::Awake() {
@@ -76,9 +80,11 @@ bool Player::Update(float dt)
 		currentAnimation = &idleR;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && jumpsAvaiable > 0) {
-		//
+		
 		impulse.y -= jumpPower;
 		jumpsAvaiable--;
+		currentAnimation = &jumpR;
+		jumpR.Update();
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {

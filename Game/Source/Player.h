@@ -52,8 +52,6 @@ private:
 	// A set of animations
 	Animation playerR, playerL,
 		punchR, punchL,
-		doublePunchR, doublePunchL,
-		climb,
 		deathR, deathL,
 		hitR, hitL,
 		idleR, idleL,
