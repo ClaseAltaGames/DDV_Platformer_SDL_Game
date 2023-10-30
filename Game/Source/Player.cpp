@@ -43,6 +43,8 @@ bool Player::Start() {
 
 bool Player::Update(float dt)
 {
+	app->render->camera.x = -position.x;
+
 	b2Vec2 impulse = b2Vec2_zero;
 	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y); 
 
@@ -82,8 +84,10 @@ bool Player::Update(float dt)
 	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - texH / 2;
 	app->render->DrawTexture(texture, position.x, position.y);
 		
-	app->render->camera.x = -position.x;
-
+	
+	updateCameraPosition(iSight, Jugador, cameraSpeed);
+	
+	
 	return true;
 }
 
@@ -109,4 +113,8 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		LOG("Collision UNKNOWN");
 		break;
 	}
+}
+void updateCameraPosition(iSight& camara, Jugador& jugador, float cameraSpeed) {
+	float targetCameraX = -jugador.x;
+	camara.x = camara.x * (1 - cameraSpeed) + targetCameraX * cameraSpeed;
 }
