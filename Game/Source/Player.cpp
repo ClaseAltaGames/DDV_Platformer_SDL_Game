@@ -8,6 +8,7 @@
 #include "Log.h"
 #include "Point.h"
 #include "Physics.h"
+#include "Window.h"
 
 Player::Player() : Entity(EntityType::PLAYER)
 {
@@ -43,6 +44,7 @@ bool Player::Start() {
 
 bool Player::Update(float dt)
 {
+	
 	b2Vec2 impulse = b2Vec2_zero;
 	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y); 
 
@@ -81,9 +83,10 @@ bool Player::Update(float dt)
 	position.x = METERS_TO_PIXELS(pbodyPos.p.x) - texH / 2;
 	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - texH / 2;
 	app->render->DrawTexture(texture, position.x, position.y);
-		
-	float targetCameraX = -position.x;
-	app->render->camera.x = app->render->camera.x * (1 - cameraSpeed) + targetCameraX * cameraSpeed;
+
+	uint w,h ;
+	app->win->GetWindowSize(w, h);
+	app->render->camera.x = (-position.x*app->win->GetScale()) + w/2;
 
 	return true;
 }
