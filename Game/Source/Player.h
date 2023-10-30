@@ -33,9 +33,10 @@ public:
 	SDL_Texture* texture = NULL;
 	PhysBody* pbody;
 	int pickCoinFxId;
+	uint texW, texH;
 
 private:
-	float jumpPower = 1.75f;
+	float jumpPower = 0.75f;
 	float acceleration = 0.2f;
 	uint jumpsAvaiable = 1;
 
