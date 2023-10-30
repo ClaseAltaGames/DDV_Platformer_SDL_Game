@@ -20,8 +20,9 @@ Player::~Player() {
 
 bool Player::Awake() {
 
-	position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
-
+	position.x = parameters.attribute("x").as_int();
+	position.y = parameters.attribute("y").as_int();
+	texturePath = parameters.attribute("texturepath").as_string();
 
 	return true;
 }
@@ -29,14 +30,13 @@ bool Player::Awake() {
 bool Player::Start() {
 
 	//initilize textures
-	texture = app->tex->Load(parameters.attribute("texturepath").as_string());
-	app->tex->GetSize(texture, texW, texH);		
-	pbody = app->physics->CreateCircle(position.x + 16, position.y + 16, texW, bodyType::DYNAMIC);
+	texture = app->tex->Load(texturePath);
 
+	pbody = app->physics->CreateCircle(position.x + 16, position.y + 16, 16, bodyType::DYNAMIC);
 	pbody->listener = this;
 	pbody->ctype = ColliderType::PLAYER;
 
-	
+	pickCoinFxId = app->audio->LoadFx("Assets/Audio/Fx/retro-video-game-coin-pickup-38299.ogg");
 
 	return true;
 }
@@ -60,6 +60,7 @@ bool Player::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) 
 	{
+	
 		impulse.x -= acceleration;
 		vel = b2Vec2(speed * dt, -GRAVITY_Y);
 	}
@@ -79,15 +80,21 @@ bool Player::Update(float dt)
 	pbody->body->SetLinearVelocity(b2Clamp(pbody->body->GetLinearVelocity(), -vel, vel));
 
 	//Update player position in pixels
-	b2Transform pbodyPos = pbody->body->GetTransform();
-	position.x = METERS_TO_PIXELS(pbodyPos.p.x) - texH / 2;
-	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - texH / 2;
+	position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;
+	position.y = METERS_TO_PIXELS(pbody->body->GetTransform().p.y) - 16;
+
 	app->render->DrawTexture(texture, position.x, position.y);
+<<<<<<< HEAD
 		
 	
 	updateCameraPosition(iSight, Jugador, cameraSpeed);
 	
 	
+=======
+
+	app->render->camera.x = -position.x;
+
+>>>>>>> parent of 2a0dc6b (como talcomo talcomo talcomo talcomo talcomo talcomo talcomo talcomo talcomo talcomo tal)
 	return true;
 }
 

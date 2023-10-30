@@ -34,12 +34,15 @@ public:
 	SDL_Texture* texture = NULL;
 	PhysBody* pbody;
 	int pickCoinFxId;
+<<<<<<< HEAD
 	uint texW, texH;
 	int contador = 0;
 	float cameraSpeed = 0.1;
+=======
+>>>>>>> parent of 2a0dc6b (como talcomo talcomo talcomo talcomo talcomo talcomo talcomo talcomo talcomo talcomo tal)
 
 private:
-	float jumpPower = 0.75f;
+	float jumpPower = 1.75f;
 	float acceleration = 0.2f;
 	uint jumpsAvaiable = 1;
 
