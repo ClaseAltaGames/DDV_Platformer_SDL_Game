@@ -7,6 +7,7 @@
 #include "Scene.h"
 #include "Map.h"
 
+
 #include "Defs.h"
 #include "Log.h"
 
@@ -43,13 +44,14 @@ bool Scene::Awake(pugi::xml_node& config)
 		app->map->name = config.child("map").attribute("name").as_string();
 		app->map->path = config.child("map").attribute("path").as_string();
 	}
-
+	
 	return ret;
 }
 
 // Called before the first frame
 bool Scene::Start()
 {
+	
 	// NOTE: We have to avoid the use of paths in the code, we will move it later to a config file
 	//img = app->tex->Load("Assets/Textures/test.png");
 	

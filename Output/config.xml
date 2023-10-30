@@ -23,7 +23,7 @@
 
   <scene>
     <map path="Assets/Maps/" name="MapTemplate.tmx"/>
-    <player x="3" y="180" texturepath="Assets/Textures/player1.png"/>
+    <player x="3" y="180" texturepath="Assets/Textures/Old_hero-removebg-preview.png"/>
     
   </scene>
   

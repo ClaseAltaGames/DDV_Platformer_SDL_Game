@@ -41,6 +41,9 @@ private:
 	uint windowW, windowH;
 	Player* player;
 
+
+public:
+	bool pause;
 };
 
 #endif // __SCENE_H__

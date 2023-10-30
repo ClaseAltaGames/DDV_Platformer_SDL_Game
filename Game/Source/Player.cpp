@@ -19,6 +19,27 @@ Player::~Player() {
 
 }
 
+void Player::PlayerStartAnims()
+{
+	playerR.PushBack({ 19, 33, 10, 16 });
+	playerR.PushBack({ 35, 32, 10, 16 });
+	playerR.PushBack({ 35, 32, 10, 16 });
+	playerR.PushBack({ 35, 32, 10, 16 });
+	playerR.PushBack({ 35, 32, 10, 16 });
+	playerR.PushBack({ 52, 33, 10, 16 });
+
+	idleR.PushBack({ 19, 17, 10, 16 });
+	idleR.PushBack({ 35, 16, 10, 16 });
+	idleR.PushBack({ 51, 17, 10, 16 });
+
+	playerL.PushBack({ 52, 33, 10, 16 });
+	playerL.PushBack({ 35, 32, 10, 16 });
+	playerL.PushBack({ 35, 32, 10, 16 });
+	playerR.PushBack({ 35, 32, 10, 16 });
+	playerR.PushBack({ 35, 32, 10, 16 });
+	playerL.PushBack({ 19, 33, 10, 16 });
+}
+
 bool Player::Awake() {
 
 	position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
@@ -30,9 +51,12 @@ bool Player::Awake() {
 bool Player::Start() {
 
 	//initilize textures
+
+	PlayerStartAnims();
 	texture = app->tex->Load(parameters.attribute("texturepath").as_string());
-	app->tex->GetSize(texture, texW, texH);		
-	pbody = app->physics->CreateCircle(position.x + 16, position.y + 16, texW, bodyType::DYNAMIC);
+	
+	
+	pbody = app->physics->CreateCircle(position.x + 16, position.y + 16, 8, bodyType::DYNAMIC);
 
 	pbody->listener = this;
 	pbody->ctype = ColliderType::PLAYER;
@@ -44,10 +68,13 @@ bool Player::Start() {
 
 bool Player::Update(float dt)
 {
-	
+
 	b2Vec2 impulse = b2Vec2_zero;
 	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y); 
-
+	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
+	{
+		currentAnimation = &idleR;
+	}
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && jumpsAvaiable > 0) {
 		//
 		impulse.y -= jumpPower;
@@ -60,12 +87,18 @@ bool Player::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) 
 	{
+		currentAnimation = &playerL;
+		playerL.Update();
+
 		impulse.x -= acceleration;
 		vel = b2Vec2(speed * dt, -GRAVITY_Y);
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
+		currentAnimation = &playerR;
+		playerR.Update();
+
 		impulse.x += acceleration;
 		vel = b2Vec2(-speed * dt, -GRAVITY_Y);
 	}
@@ -80,9 +113,9 @@ bool Player::Update(float dt)
 
 	//Update player position in pixels
 	b2Transform pbodyPos = pbody->body->GetTransform();
-	position.x = METERS_TO_PIXELS(pbodyPos.p.x) - texH / 2;
-	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - texH / 2;
-	app->render->DrawTexture(texture, position.x, position.y);
+	position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 10 / 2;
+	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - 16 / 2;
+	app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
 
 	uint w,h ;
 	app->win->GetWindowSize(w, h);
@@ -90,6 +123,8 @@ bool Player::Update(float dt)
 
 	return true;
 }
+
+
 
 bool Player::CleanUp()
 {

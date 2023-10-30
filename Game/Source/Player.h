@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "Point.h"
 #include "SDL/include/SDL.h"
+#include "Animation.h"
 
 #include "Box2D/Box2D/Box2D.h"
 
@@ -23,7 +24,11 @@ public:
 
 	bool Update(float dt);
 
+	bool PostUpdate();
+
 	bool CleanUp();
+
+	void PlayerStartAnims();
 
 	void OnCollision(PhysBody* physA, PhysBody* physB);
 
@@ -37,10 +42,29 @@ public:
 	float cameraSpeed = 1.0f;
 
 private:
-	float jumpPower = 0.75f;
+	float jumpPower = 0.5f;
 	float acceleration = 0.2f;
 	uint jumpsAvaiable = 1;
+	
 
+	Animation* currentAnimation = nullptr;
+
+	// A set of animations
+	Animation playerR, playerL,
+		punchR, punchL,
+		doublePunchR, doublePunchL,
+		climb,
+		deathR, deathL,
+		hitR, hitL,
+		idleR, idleL,
+		jumpR, jumpL,
+		fallR, fallL,
+		pushR, pushL,
+		runR, runL,
+		throwR, throwL,
+		walkR, walkL,
+		walkPunchR, walkPunchL;
 };
+
 
 #endif // __PLAYER_H__
