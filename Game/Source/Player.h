@@ -34,6 +34,7 @@ public:
 	PhysBody* pbody;
 	int pickCoinFxId;
 	uint texW, texH;
+	float cameraSpeed = 1.0f;
 
 private:
 	float jumpPower = 0.75f;

@@ -82,7 +82,8 @@ bool Player::Update(float dt)
 	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - texH / 2;
 	app->render->DrawTexture(texture, position.x, position.y);
 		
-	app->render->camera.x = -position.x;
+	float targetCameraX = -position.x;
+	app->render->camera.x = app->render->camera.x * (1 - cameraSpeed) + targetCameraX * cameraSpeed;
 
 	return true;
 }
