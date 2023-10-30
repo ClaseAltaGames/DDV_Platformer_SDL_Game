@@ -8,7 +8,6 @@
 #include "Box2D/Box2D/Box2D.h"
 
 struct SDL_Texture;
-void updateCameraPosition(iSight& camara, Jugador& jugador, float cameraSpeed);
 
 class Player : public Entity
 {
@@ -35,8 +34,6 @@ public:
 	PhysBody* pbody;
 	int pickCoinFxId;
 	uint texW, texH;
-	int contador = 0;
-	float cameraSpeed = 0.1;
 
 private:
 	float jumpPower = 0.75f;
@@ -44,16 +41,5 @@ private:
 	uint jumpsAvaiable = 1;
 
 };
-struct iSight {
-	float x, y;
-};
-
-struct Jugador {
-	float x, y;
-};
-
-
-
-
 
 #endif // __PLAYER_H__
