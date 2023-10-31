@@ -22,7 +22,7 @@ public:
 
 	bool Start();
 
-	bool Update(float dt, int posx, int posy);
+	bool Update(float dt);
 
 	bool PostUpdate();
 
@@ -30,7 +30,10 @@ public:
 
 	void PlayerStartAnims();
 
+	
+
 	void OnCollision(PhysBody* physA, PhysBody* physB);
+
 
 public:
 	float speed = 0.12f;

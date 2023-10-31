@@ -70,10 +70,8 @@ bool Player::Start() {
 	return true;
 }
 
-bool Player::Update(float dt, int posx, int posy)
+bool Player::Update(float dt)
 {
-	position.x = posx;
-	position.y = posy;
 	b2Vec2 impulse = b2Vec2_zero;
 	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y); 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
@@ -108,6 +106,8 @@ bool Player::Update(float dt, int posx, int posy)
 
 		impulse.x += acceleration;
 		vel = b2Vec2(-speed * dt, -GRAVITY_Y);
+
+		
 	}
 	
 	// Hace que salte
@@ -128,6 +128,8 @@ bool Player::Update(float dt, int posx, int posy)
 	app->win->GetWindowSize(w, h);
 	app->render->camera.x = (-position.x*app->win->GetScale()) + w/2;
 
+
+
 	return true;
 }
 
@@ -138,6 +140,8 @@ bool Player::CleanUp()
 
 	return true;
 }
+
+
 
 void Player::OnCollision(PhysBody* physA, PhysBody* physB) 
 {
@@ -151,12 +155,10 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 	case ColliderType::PLATFORM:
 		LOG("Collision PLATFORM");
 		jumpsAvaiable = 1;
+		position.x = 100;
 		break;
 	case ColliderType::DEATH:
-		LOG("Collision DEATH");
-		position.x = 3;
-		position.y = 180;
-		Player::Update(16, position.x, position.y);
+		LOG("Collision DEATH"); 		
 		break;
 	case ColliderType::UNKNOWN:
 		LOG("Collision UNKNOWN");
