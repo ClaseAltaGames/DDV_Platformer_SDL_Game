@@ -22,7 +22,7 @@ public:
 
 	bool Start();
 
-	bool Update(float dt);
+	bool Update(float dt, int posx, int posy);
 
 	bool PostUpdate();
 

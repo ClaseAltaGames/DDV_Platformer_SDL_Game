@@ -70,9 +70,10 @@ bool Player::Start() {
 	return true;
 }
 
-bool Player::Update(float dt)
+bool Player::Update(float dt, int posx, int posy)
 {
-
+	position.x = posx;
+	position.y = posy;
 	b2Vec2 impulse = b2Vec2_zero;
 	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y); 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
@@ -155,6 +156,7 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		LOG("Collision DEATH");
 		position.x = 3;
 		position.y = 180;
+		Player::Update(16, position.x, position.y);
 		break;
 	case ColliderType::UNKNOWN:
 		LOG("Collision UNKNOWN");
