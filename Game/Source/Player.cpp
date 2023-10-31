@@ -138,7 +138,8 @@ bool Player::CleanUp()
 	return true;
 }
 
-void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
+void Player::OnCollision(PhysBody* physA, PhysBody* physB) 
+{
 
 	switch (physB->ctype)
 	{
@@ -149,6 +150,11 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 	case ColliderType::PLATFORM:
 		LOG("Collision PLATFORM");
 		jumpsAvaiable = 1;
+		break;
+	case ColliderType::DEATH:
+		LOG("Collision DEATH");
+		position.x = 3;
+		position.y = 180;
 		break;
 	case ColliderType::UNKNOWN:
 		LOG("Collision UNKNOWN");

@@ -224,6 +224,39 @@ bool Map::Load(SString mapFileName)
         }        
         mapLayerItem = mapLayerItem->next;
     }
+
+    mapLayerItem = mapData.maplayers.start;
+
+    while (mapLayerItem != NULL) {
+
+        if (mapLayerItem->data->properties.GetProperty("Death") != NULL && mapLayerItem->data->properties.GetProperty("Death")->value) {
+
+            for (int x = 0; x < mapLayerItem->data->width; x++)
+            {
+                for (int y = 0; y < mapLayerItem->data->height; y++)
+                {
+                    int gid = mapLayerItem->data->Get(x, y);
+
+                    if (gid == 395)
+                    {
+                        iPoint pos = MapToWorld(x, y);
+
+                        PhysBody* c1 = app->physics->CreateRectangle(pos.x + (mapData.tileWidth / 2), pos.y + (mapData.tileHeight / 2),
+                            mapData.tileWidth, mapData.tileHeight, STATIC
+                        /*224 + 128, 543 + 32, 256, 64, STATIC*/);
+                        c1->ctype = ColliderType::DEATH;
+                    }
+                    /*TileSet* tileset = GetTilesetFromTileId(gid);
+
+                    SDL_Rect r = tileset->GetTileRect(gid);*/
+
+
+                }
+            }
+        }
+        mapLayerItem = mapLayerItem->next;
+
+    }
     if(ret == true)
     {
         LOG("Successfully parsed map XML file :%s", mapFileName.GetString());
