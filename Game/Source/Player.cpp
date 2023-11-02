@@ -21,27 +21,29 @@ Player::~Player() {
 
 void Player::PlayerStartAnims()
 {
-	playerR.PushBack({ 19, 33, 10, 16 });
-	playerR.PushBack({ 35, 32, 10, 16 });
-	playerR.PushBack({ 35, 32, 10, 16 });
-	playerR.PushBack({ 35, 32, 10, 16 });
-	playerR.PushBack({ 35, 32, 10, 16 });
-	playerR.PushBack({ 52, 33, 10, 16 });
+	playerR.PushBack({ 19, 33, 16, 16 });
+	playerR.PushBack({ 35, 32, 16, 16 });
+	playerR.PushBack({ 35, 32, 16, 16 });
+	playerR.PushBack({ 35, 32, 16, 16 });
+	playerR.PushBack({ 35, 32, 16, 16 });
+	playerR.PushBack({ 52, 33, 16, 16 });
 
-	idleR.PushBack({ 19, 17, 10, 16 });
-	idleR.PushBack({ 35, 16, 10, 16 });
-	idleR.PushBack({ 51, 17, 10, 16 });
+	idleR.PushBack({ 19, 17, 16, 16 });
+	idleR.PushBack({ 35, 16, 16, 16 });
+	idleR.PushBack({ 51, 17, 16, 16 });
 
-	playerL.PushBack({ 52, 33, 10, 16 });
-	playerL.PushBack({ 35, 32, 10, 16 });
-	playerL.PushBack({ 35, 32, 10, 16 });
-	playerR.PushBack({ 35, 32, 10, 16 });
-	playerR.PushBack({ 35, 32, 10, 16 });
-	playerL.PushBack({ 19, 33, 10, 16 });
+	playerL.PushBack({ 52, 33, 16, 16 });
+	playerL.PushBack({ 35, 32, 16, 16 });
+	playerL.PushBack({ 35, 32, 16, 16 });
+	playerL.PushBack({ 35, 32, 16, 16 });
+	playerL.PushBack({ 35, 32, 16, 16 });
+	playerL.PushBack({ 19, 33, 16, 16 });
 
-	jumpR.PushBack({ 16, 48, 10, 16 });
-	jumpR.PushBack({ 35, 48, 10, 16 }); 
-	
+	jumpR.PushBack({ 16, 48, 16, 16 });
+	jumpR.PushBack({ 16, 48, 16, 16 });
+	jumpR.PushBack({ 16, 48, 16, 16 });
+	jumpR.PushBack({ 16, 48, 16, 16 });
+	jumpR.PushBack({ 16, 48, 16, 16 });
 }
 
 bool Player::Awake() {
@@ -62,6 +64,8 @@ bool Player::Start() {
 	
 	pbody = app->physics->CreateCircle(position.x + 16, position.y + 16, 8, bodyType::DYNAMIC);
 
+	currentAnimation = &idleR;
+
 	pbody->listener = this;
 	pbody->ctype = ColliderType::PLAYER;
 
@@ -73,28 +77,33 @@ bool Player::Start() {
 bool Player::Update(float dt)
 {
 	b2Vec2 impulse = b2Vec2_zero;
-	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y); 
-	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
-	{
-		currentAnimation = &idleR;
-	}
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && jumpsAvaiable > 0) {
-		
-		impulse.y -= jumpPower;
-		jumpsAvaiable--;
+	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
+	
+	
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && jumpsAvaiable > 0) {
+
 		currentAnimation = &jumpR;
 		jumpR.Update();
+		impulse.y -= jumpPower;
+		jumpsAvaiable--;
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
-		
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+	{
+		currentAnimation = &jumpR;
+		jumpR.Update();
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) 
 	{
 		currentAnimation = &playerL;
 		playerL.Update();
+		if (app->input->GetKey(SDL_SCANCODE_SPACE))
+		{
+			currentAnimation = &jumpR;
+			jumpR.Update();
 
+		}
 		impulse.x -= acceleration;
 		vel = b2Vec2(speed * dt, -GRAVITY_Y);
 	}
@@ -103,6 +112,12 @@ bool Player::Update(float dt)
 	{
 		currentAnimation = &playerR;
 		playerR.Update();
+		if (app->input->GetKey(SDL_SCANCODE_SPACE))
+		{
+			playerR.HasFinished();
+			currentAnimation = &jumpR;
+			jumpR.Update();
+		}
 
 		impulse.x += acceleration;
 		vel = b2Vec2(-speed * dt, -GRAVITY_Y);
@@ -154,8 +169,8 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		break;
 	case ColliderType::PLATFORM:
 		LOG("Collision PLATFORM");
+		currentAnimation = &idleR;
 		jumpsAvaiable = 1;
-		position.x = 100;
 		break;
 	case ColliderType::DEATH:
 		LOG("Collision DEATH"); 		
