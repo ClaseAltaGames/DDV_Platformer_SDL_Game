@@ -80,7 +80,7 @@ bool Player::Update(float dt)
 	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
 	
 	
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && jumpsAvaiable > 0) {
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && jumpsAvaiable > 0) {
 
 		currentAnimation = &jumpR;
 		jumpR.Update();
@@ -88,12 +88,7 @@ bool Player::Update(float dt)
 		jumpsAvaiable--;
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-	{
-		currentAnimation = &jumpR;
-		jumpR.Update();
-	}
-
+	
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) 
 	{
 		currentAnimation = &playerL;
