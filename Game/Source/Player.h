@@ -48,6 +48,7 @@ private:
 	float jumpPower = 0.5f;
 	float acceleration = 0.2f;
 	uint jumpsAvaiable = 1;
+	int deathAvailable = 1;
 	
 
 	Animation* currentAnimation = nullptr;

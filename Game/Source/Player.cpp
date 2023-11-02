@@ -44,13 +44,15 @@ void Player::PlayerStartAnims()
 	jumpR.PushBack({ 16, 48, 16, 16 });
 	jumpR.PushBack({ 16, 48, 16, 16 });
 	jumpR.PushBack({ 16, 48, 16, 16 });
+
+	deathR.PushBack({81, 15, 16, 16});
 }
 
-bool Player::Awake() {
 
+bool Player::Awake() 
+{
 	position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
-
-
+	
 	return true;
 }
 
@@ -78,8 +80,6 @@ bool Player::Update(float dt)
 {
 	b2Vec2 impulse = b2Vec2_zero;
 	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
-	
-	
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && jumpsAvaiable > 0) {
 
 		currentAnimation = &jumpR;
@@ -119,6 +119,10 @@ bool Player::Update(float dt)
 
 		
 	}
+	if (deathAvailable == 0)
+	{
+		position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
+	}
 	
 	// Hace que salte
 	impulse.y = b2Clamp(impulse.y, -vel.y, vel.y);
@@ -130,7 +134,7 @@ bool Player::Update(float dt)
 
 	//Update player position in pixels
 	b2Transform pbodyPos = pbody->body->GetTransform();
-	position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 10 / 2;
+	position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 16 / 2;
 	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - 16 / 2;
 	app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
 
@@ -155,7 +159,6 @@ bool Player::CleanUp()
 
 void Player::OnCollision(PhysBody* physA, PhysBody* physB) 
 {
-
 	switch (physB->ctype)
 	{
 	case ColliderType::ITEM:
@@ -168,7 +171,10 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		jumpsAvaiable = 1;
 		break;
 	case ColliderType::DEATH:
-		LOG("Collision DEATH"); 		
+		LOG("Collision DEATH");
+		deathAvailable--;
+		currentAnimation = &deathR;
+		
 		break;
 	case ColliderType::UNKNOWN:
 		LOG("Collision UNKNOWN");
