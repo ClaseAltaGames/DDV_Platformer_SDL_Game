@@ -79,7 +79,7 @@ bool Player::Start() {
 bool Player::Update(float dt)
 {
 	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN){
-		godMode = true;
+		godMode = !godMode;
 	}
 	
 
