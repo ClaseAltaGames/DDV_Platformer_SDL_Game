@@ -78,6 +78,9 @@ bool Player::Start() {
 
 bool Player::Update(float dt)
 {
+	if (app->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN){
+		death = false;
+	}
 	if (death == false)
 	{
 		app->scene->pause = false;
