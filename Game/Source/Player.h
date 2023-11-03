@@ -24,7 +24,7 @@ public:
 
 	bool Update(float dt);
 
-	bool PostUpdate();
+	/*bool DeathUpdate();*/
 
 	bool CleanUp();
 
@@ -43,6 +43,7 @@ public:
 	int pickCoinFxId;
 	uint texW, texH;
 	float cameraSpeed = 1.0f;
+	bool death = false;
 
 private:
 	float jumpPower = 0.5f;

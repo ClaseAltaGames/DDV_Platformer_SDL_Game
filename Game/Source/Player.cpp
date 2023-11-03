@@ -78,71 +78,88 @@ bool Player::Start() {
 
 bool Player::Update(float dt)
 {
-	b2Vec2 impulse = b2Vec2_zero;
-	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && jumpsAvaiable > 0) {
+	if (death == false)
+	{
+		app->scene->pause = false;
+		b2Vec2 impulse = b2Vec2_zero;
+		b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
+		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && jumpsAvaiable > 0) {
 
-		currentAnimation = &jumpR;
-		jumpR.Update();
-		impulse.y -= jumpPower;
-		jumpsAvaiable--;
+			currentAnimation = &jumpR;
+			jumpR.Update();
+			impulse.y -= jumpPower;
+			jumpsAvaiable--;
+		}
+
+
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+		{
+			currentAnimation = &playerL;
+			playerL.Update();
+			if (app->input->GetKey(SDL_SCANCODE_SPACE))
+			{
+				currentAnimation = &jumpR;
+				jumpR.Update();
+
+			}
+			impulse.x -= acceleration;
+			vel = b2Vec2(speed * dt, -GRAVITY_Y);
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+		{
+			currentAnimation = &playerR;
+			playerR.Update();
+			if (app->input->GetKey(SDL_SCANCODE_SPACE))
+			{
+				playerR.HasFinished();
+				currentAnimation = &jumpR;
+				jumpR.Update();
+			}
+
+			impulse.x += acceleration;
+			vel = b2Vec2(-speed * dt, -GRAVITY_Y);
+
+
+		}
+
+
+		// Hace que salte
+		impulse.y = b2Clamp(impulse.y, -vel.y, vel.y);
+
+		//Set the velocity of the pbody of the player
+
+		pbody->body->ApplyLinearImpulse(impulse, pbody->body->GetPosition(), false);
+		pbody->body->SetLinearVelocity(b2Clamp(pbody->body->GetLinearVelocity(), -vel, vel));
+
+		//Update player position in pixels
+		b2Transform pbodyPos = pbody->body->GetTransform();
+		position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 16 / 2;
+		position.y = METERS_TO_PIXELS(pbodyPos.p.y) - 16 / 2;
+		app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
+
+		uint w, h;
+		app->win->GetWindowSize(w, h);
+		app->render->camera.x = (-position.x * app->win->GetScale()) + w / 2;
+
 	}
-
 	
-	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) 
+	else if (death == true)
 	{
-		currentAnimation = &playerL;
-		playerL.Update();
-		if (app->input->GetKey(SDL_SCANCODE_SPACE))
-		{
-			currentAnimation = &jumpR;
-			jumpR.Update();
+		app->scene->pause = true;
 
-		}
-		impulse.x -= acceleration;
-		vel = b2Vec2(speed * dt, -GRAVITY_Y);
-	}
+		currentAnimation = &deathR;
 
-	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-	{
-		currentAnimation = &playerR;
-		playerR.Update();
-		if (app->input->GetKey(SDL_SCANCODE_SPACE))
-		{
-			playerR.HasFinished();
-			currentAnimation = &jumpR;
-			jumpR.Update();
-		}
+		// Actualizar la posición del jugador en píxeles
+		b2Transform pbodyPosD = pbody->body->GetTransform();
+		position.x = METERS_TO_PIXELS(pbodyPosD.p.x) - 16 / 2;
+		position.y = METERS_TO_PIXELS(pbodyPosD.p.y) - 16 / 2;
 
-		impulse.x += acceleration;
-		vel = b2Vec2(-speed * dt, -GRAVITY_Y);
-
-		
-	}
-	if (deathAvailable == 0)
-	{
 		position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
+		app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
+		texture = app->tex->Load(parameters.attribute("texturepath").as_string());
+	
 	}
-	
-	// Hace que salte
-	impulse.y = b2Clamp(impulse.y, -vel.y, vel.y);
-	
-	//Set the velocity of the pbody of the player
-	
-	pbody->body->ApplyLinearImpulse(impulse, pbody->body->GetPosition(), false);
-	pbody->body->SetLinearVelocity(b2Clamp(pbody->body->GetLinearVelocity(), -vel, vel));
-
-	//Update player position in pixels
-	b2Transform pbodyPos = pbody->body->GetTransform();
-	position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 16 / 2;
-	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - 16 / 2;
-	app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
-
-	uint w,h ;
-	app->win->GetWindowSize(w, h);
-	app->render->camera.x = (-position.x*app->win->GetScale()) + w/2;
-
-
 
 	return true;
 }
@@ -169,11 +186,14 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		LOG("Collision PLATFORM");
 		currentAnimation = &idleR;
 		jumpsAvaiable = 1;
+		app->scene->pause = false;
 		break;
 	case ColliderType::DEATH:
 		LOG("Collision DEATH");
-		deathAvailable--;
-		currentAnimation = &deathR;
+		death = true;
+		
+		
+		
 		
 		break;
 	case ColliderType::UNKNOWN:
