@@ -78,8 +78,112 @@ bool Player::Start() {
 
 bool Player::Update(float dt)
 {
+	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN){
+		godMode = true;
+	}
 	
-	if (death == false)
+
+	if (godMode != true) {
+		if (death == false)
+		{
+			app->scene->pause = false;
+			b2Vec2 impulse = b2Vec2_zero;
+			b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && jumpsAvaiable > 0) {
+
+				currentAnimation = &jumpR;
+				jumpR.Update();
+				impulse.y -= jumpPower;
+				jumpsAvaiable--;
+			}
+
+
+			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+			{
+				currentAnimation = &playerL;
+				playerL.Update();
+				if (app->input->GetKey(SDL_SCANCODE_SPACE))
+				{
+					currentAnimation = &jumpR;
+					jumpR.Update();
+
+				}
+				impulse.x -= acceleration;
+				vel = b2Vec2(speed * dt, -GRAVITY_Y);
+			}
+
+			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+			{
+				currentAnimation = &playerR;
+				playerR.Update();
+				if (app->input->GetKey(SDL_SCANCODE_SPACE))
+				{
+					playerR.HasFinished();
+					currentAnimation = &jumpR;
+					jumpR.Update();
+				}
+
+				impulse.x += acceleration;
+				vel = b2Vec2(-speed * dt, -GRAVITY_Y);
+
+
+			}
+
+
+			// Hace que salte
+			impulse.y = b2Clamp(impulse.y, -vel.y, vel.y);
+
+			//Set the velocity of the pbody of the player
+
+			pbody->body->ApplyLinearImpulse(impulse, pbody->body->GetPosition(), false);
+			pbody->body->SetLinearVelocity(b2Clamp(pbody->body->GetLinearVelocity(), -vel, vel));
+
+			//Update player position in pixels
+			b2Transform pbodyPos = pbody->body->GetTransform();
+			position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 16 / 2;
+			position.y = METERS_TO_PIXELS(pbodyPos.p.y) - 16 / 2;
+			app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
+
+			uint w, h;
+			app->win->GetWindowSize(w, h);
+			app->render->camera.x = (-position.x * app->win->GetScale()) + w / 2;
+
+		}
+
+		else if (death == true)
+		{
+			currentAnimation = &deathR;
+			app->scene->pause = true;
+
+			app->physics->DestroyCircle(pbody);
+
+			pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
+
+			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
+			app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
+			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
+
+			pbody->listener = this;
+			pbody->ctype = ColliderType::PLAYER;
+
+		}
+		if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
+		{
+			app->scene->pause = true;
+
+			app->physics->DestroyCircle(pbody);
+
+			pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
+
+			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
+			app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
+			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
+
+			pbody->listener = this;
+			pbody->ctype = ColliderType::PLAYER;
+		}
+	}
+	if (godMode == true)
 	{
 		app->scene->pause = false;
 		b2Vec2 impulse = b2Vec2_zero;
@@ -144,46 +248,8 @@ bool Player::Update(float dt)
 		app->render->camera.x = (-position.x * app->win->GetScale()) + w / 2;
 
 	}
-
-	else if (death == true)		
-	{
-		if (godMode == false)
-		{
-			currentAnimation = &deathR;
-			app->scene->pause = true;
-
-			app->physics->DestroyCircle(pbody);
-
-			pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
-
-			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
-			app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
-			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
-
-			pbody->listener = this;
-			pbody->ctype = ColliderType::PLAYER;
-		}
 	
-	}
-	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
-	{
-		godMode = !godMode;
-	}
-	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
-	{
-		app->scene->pause = true;
-
-		app->physics->DestroyCircle(pbody);
-
-		pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
-
-		position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
-		app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
-		texture = app->tex->Load(parameters.attribute("texturepath").as_string());
-
-		pbody->listener = this;
-		pbody->ctype = ColliderType::PLAYER;
-	}
+	
 
 	return true;
 }
