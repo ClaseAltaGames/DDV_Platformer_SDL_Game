@@ -139,6 +139,23 @@ PhysBody* Physics::CreateCircle(int x, int y, int radious, bodyType type)
 	// Return our PhysBody class
 	return pbody;
 }
+void Physics::DestroyCircle(PhysBody* pbody)
+{
+	if (pbody)
+	{
+		b2Body* body = pbody->body;
+
+		if (body)
+		{
+			// Elimina el cuerpo físico del mundo
+			world->DestroyBody(body);
+		}
+
+		// Libera la memoria de la instancia de PhysBody
+		delete pbody;
+	}
+}
+
 
 PhysBody* Physics::CreateRectangleSensor(int x, int y, int width, int height, bodyType type)
 {
