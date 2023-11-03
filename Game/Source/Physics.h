@@ -71,9 +71,9 @@ public:
 	// Create basic physics objects
 	PhysBody* CreateRectangle(int x, int y, int width, int height, bodyType type);
 	PhysBody* CreateCircle(int x, int y, int radious, bodyType type);
-	void DestroyCircle(PhysBody* pbody);
 	PhysBody* CreateRectangleSensor(int x, int y, int width, int height, bodyType type);
 	PhysBody* CreateChain(int x, int y, int* points, int size, bodyType type);
+	PhysBody* DestroyCircle(PhysBody* pbody);
 	
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);

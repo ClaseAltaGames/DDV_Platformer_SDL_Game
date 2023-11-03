@@ -78,9 +78,7 @@ bool Player::Start() {
 
 bool Player::Update(float dt)
 {
-	if (app->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN){
-		death = false;
-	}
+	
 	if (death == false)
 	{
 		app->scene->pause = false;
@@ -146,22 +144,45 @@ bool Player::Update(float dt)
 		app->render->camera.x = (-position.x * app->win->GetScale()) + w / 2;
 
 	}
+
+	else if (death == true)		
+	{
+		if (godMode == false)
+		{
+			currentAnimation = &deathR;
+			app->scene->pause = true;
+
+			app->physics->DestroyCircle(pbody);
+
+			pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
+
+			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
+			app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
+			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
+
+			pbody->listener = this;
+			pbody->ctype = ColliderType::PLAYER;
+		}
 	
-	else if (death == true)
+	}
+	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	{
+		godMode = !godMode;
+	}
+	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 	{
 		app->scene->pause = true;
 
-		currentAnimation = &deathR;
+		app->physics->DestroyCircle(pbody);
 
-		// Actualizar la posición del jugador en píxeles
-		b2Transform pbodyPosD = pbody->body->GetTransform();
-		position.x = METERS_TO_PIXELS(pbodyPosD.p.x) - 16 / 2;
-		position.y = METERS_TO_PIXELS(pbodyPosD.p.y) - 16 / 2;
+		pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
 
 		position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
 		app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
 		texture = app->tex->Load(parameters.attribute("texturepath").as_string());
-	
+
+		pbody->listener = this;
+		pbody->ctype = ColliderType::PLAYER;
 	}
 
 	return true;
@@ -190,14 +211,11 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		currentAnimation = &idleR;
 		jumpsAvaiable = 1;
 		app->scene->pause = false;
+		death = false;
 		break;
 	case ColliderType::DEATH:
 		LOG("Collision DEATH");
-		death = true;
-		
-		
-		
-		
+		death = true;			
 		break;
 	case ColliderType::UNKNOWN:
 		LOG("Collision UNKNOWN");

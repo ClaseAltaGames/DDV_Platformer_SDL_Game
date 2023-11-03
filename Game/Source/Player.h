@@ -44,6 +44,7 @@ public:
 	uint texW, texH;
 	float cameraSpeed = 1.0f;
 	bool death = false;
+	bool godMode = true;
 
 private:
 	float jumpPower = 0.5f;
