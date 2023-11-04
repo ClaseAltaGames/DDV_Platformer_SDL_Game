@@ -23,21 +23,15 @@ void Player::PlayerStartAnims()
 {
 	playerR.PushBack({ 19, 33, 16, 16 });
 	playerR.PushBack({ 35, 32, 16, 16 });
-	playerR.PushBack({ 35, 32, 16, 16 });
-	playerR.PushBack({ 35, 32, 16, 16 });
-	playerR.PushBack({ 35, 32, 16, 16 });
 	playerR.PushBack({ 52, 33, 16, 16 });
 
 	idleR.PushBack({ 19, 17, 16, 16 });
 	idleR.PushBack({ 35, 16, 16, 16 });
 	idleR.PushBack({ 51, 17, 16, 16 });
 
-	playerL.PushBack({ 52, 33, 16, 16 });
-	playerL.PushBack({ 35, 32, 16, 16 });
-	playerL.PushBack({ 35, 32, 16, 16 });
-	playerL.PushBack({ 35, 32, 16, 16 });
-	playerL.PushBack({ 35, 32, 16, 16 });
-	playerL.PushBack({ 19, 33, 16, 16 });
+	playerL.PushBack({ 98, 82, 16, 16 });
+	playerL.PushBack({ 80, 81, 16, 16 });
+	playerL.PushBack({ 66, 82, 16, 16 });
 
 	jumpR.PushBack({ 16, 48, 16, 16 });
 	jumpR.PushBack({ 16, 48, 16, 16 });
