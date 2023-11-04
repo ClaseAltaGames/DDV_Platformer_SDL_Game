@@ -23,6 +23,9 @@ void Player::PlayerStartAnims()
 {
 	playerR.PushBack({ 19, 33, 16, 16 });
 	playerR.PushBack({ 35, 32, 16, 16 });
+	playerR.PushBack({ 35, 32, 16, 16 });
+	playerR.PushBack({ 35, 32, 16, 16 });
+	playerR.PushBack({ 35, 32, 16, 16 });
 	playerR.PushBack({ 52, 33, 16, 16 });
 
 	idleR.PushBack({ 19, 17, 16, 16 });
@@ -30,6 +33,10 @@ void Player::PlayerStartAnims()
 	idleR.PushBack({ 51, 17, 16, 16 });
 
 	playerL.PushBack({ 98, 82, 16, 16 });
+	playerL.PushBack({ 80, 81, 16, 16 });
+	playerL.PushBack({ 80, 81, 16, 16 });
+	playerL.PushBack({ 80, 81, 16, 16 });
+	playerL.PushBack({ 80, 81, 16, 16 });
 	playerL.PushBack({ 80, 81, 16, 16 });
 	playerL.PushBack({ 66, 82, 16, 16 });
 
@@ -57,7 +64,6 @@ bool Player::Start() {
 	PlayerStartAnims();
 	texture = app->tex->Load(parameters.attribute("texturepath").as_string());
 	
-	fpsCap = parameters.attribute("maxFrameDuration").as_int();
 	pbody = app->physics->CreateCircle(position.x + 16, position.y + 16, 8, bodyType::DYNAMIC);
 
 	currentAnimation = &idleR;
@@ -75,12 +81,13 @@ bool Player::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN){
 		godMode = !godMode;
 	}
+
 	if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN) {
-		if (fpsCap == 16 ) {
-			fpsCap = 32;
+		if (app->maxFrameDuration == 16) {
+			app->maxFrameDuration = 32;
 		}
-		else if(fpsCap == 32) {
-			fpsCap = 16;
+		else if(app->maxFrameDuration == 32) {
+			app->maxFrameDuration = 16;
 		}
 	}
 	

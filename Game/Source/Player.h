@@ -45,7 +45,6 @@ public:
 	float cameraSpeed = 1.0f;
 	bool death = false;
 	bool godMode = false;
-	uint fpsCap;
 
 private:
 	float jumpPower = 0.45f;
