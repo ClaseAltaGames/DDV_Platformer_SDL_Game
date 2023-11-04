@@ -80,6 +80,8 @@ bool App::Awake()
 
 	bool ret = LoadConfig();
 
+	
+
 	if(ret == true)
 	{
 		gameTitle = configNode.child("app").child("title").child_value();
@@ -109,6 +111,8 @@ bool App::Awake()
 bool App::Start()
 {
 	Timer timer = Timer();
+
+	vsync = configFile.child("config").child("renderer").child("vsync").attribute("value").as_bool();
 
 	bool ret = true;
 	ListItem<Module*>* item;
@@ -206,8 +210,8 @@ void App::FinishUpdate()
 
 	// Shows the time measurements in the window title
 	static char title[256];
-	sprintf_s(title, 256, "%s: Av.FPS: %.2f Last sec frames: %i Last dt: %.3f Time since startup: %I32u Frame Count: %I64u ",
-		gameTitle.GetString(), averageFps, framesPerSecond, dt, secondsSinceStartup, frameCount);
+	sprintf_s(title, 256, "%s: Av.FPS: %.2f Last sec frames: %i Last dt: %.3f Time since startup: %I32u Frame Count: %I64u Vsync: %d",
+		gameTitle.GetString(), averageFps, framesPerSecond, dt, secondsSinceStartup, frameCount, vsync);
 
 	app->win->SetTitle(title);
 }

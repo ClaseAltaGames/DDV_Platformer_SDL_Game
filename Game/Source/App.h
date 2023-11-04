@@ -112,6 +112,7 @@ private:
 	uint32 framesPerSecond = 0;
 	uint32 lastSecFrameCount = 0;
 
+	bool vsync = false;
 	float averageFps = 0.0f;
 	uint32 secondsSinceStartup = 0;
 
