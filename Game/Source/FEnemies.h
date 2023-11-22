@@ -1,3 +1,7 @@
+#ifndef __FENEMIES_H__
+#define __FENEMIES_H__
+
+
 #include "Entity.h"
 #include "Point.h"
 #include "SDL/include/SDL.h"
@@ -27,3 +31,5 @@ public:
 
 	void OnCollision(PhysBody* physA, PhysBody* physB);
 };
+
+#endif

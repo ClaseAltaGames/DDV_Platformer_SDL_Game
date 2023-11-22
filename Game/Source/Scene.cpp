@@ -38,6 +38,14 @@ bool Scene::Awake(pugi::xml_node& config)
 		player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
 		player->parameters = config.child("player");
 	}
+	if (config.child("wenemy")) {
+		wenemy = (WEnemies*)app->entityManager->CreateEntity(EntityType::WENEMIES);
+		wenemy->parameters = config.child("wenemy");
+	}
+	if (config.child("fenemy")) {
+		fenemy = (FEnemies*)app->entityManager->CreateEntity(EntityType::FENEMIES);
+		fenemy->parameters = config.child("fenemy");
+	}
 
 	if (config.child("map")) {
 		//Get the map name from the config file and assigns the value in the module

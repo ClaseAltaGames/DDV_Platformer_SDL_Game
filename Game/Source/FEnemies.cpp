@@ -10,6 +10,7 @@
 #include "Point.h"
 #include "Physics.h"
 #include "Window.h"
+
 FEnemies::FEnemies() : Entity(EntityType::FENEMIES)
 {
 	name.Create("FEnemies");
