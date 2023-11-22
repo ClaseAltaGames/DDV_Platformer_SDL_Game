@@ -23,6 +23,8 @@
     <ClCompile Include="Source\Map.cpp" />
     <ClCompile Include="Source\Physics.cpp" />
     <ClCompile Include="Source\Path.cpp" />
+    <ClCompile Include="Source\WEnemies.cpp" />
+    <ClCompile Include="Source\FEnemies.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -71,6 +73,8 @@
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\Path.h" />
     <ClInclude Include="Source\p2Point.h" />
+    <ClInclude Include="Source\WEnemies.h" />
+    <ClInclude Include="Source\FEnemies.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
