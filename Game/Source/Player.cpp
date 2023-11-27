@@ -218,59 +218,51 @@ bool Player::Update(float dt)
 			pbody->ctype = ColliderType::PLAYER;
 		}
 	}
-	if (godMode == true)
-	{
+	if (godMode == true) {
 		app->scene->pause = false;
 		b2Vec2 impulse = b2Vec2_zero;
-		b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
-		
+		b2Vec2 vel = b2Vec2(0, 0);
 
-		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-		{
-			currentAnimation = playerL;
-			currentAnimation->Update();
-			if (app->input->GetKey(SDL_SCANCODE_SPACE))
-			{
-				currentAnimation = jumpR;
-				currentAnimation->Update();
-
-			}
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+			currentAnimation = idleR;
 			impulse.x -= acceleration;
-			vel = b2Vec2(speed * dt, -GRAVITY_Y);
+			vel = b2Vec2(speed * dt, vel.y);
 		}
 
-		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-		{
-			currentAnimation = playerR;
-			currentAnimation->Update();
-			if (app->input->GetKey(SDL_SCANCODE_SPACE))
-			{
-				currentAnimation = jumpR;
-				currentAnimation->Update();
-			}
-
+		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+			currentAnimation = idleR;
 			impulse.x += acceleration;
-			vel = b2Vec2(-speed * dt, -GRAVITY_Y);
-
-
+			vel = b2Vec2(-speed * dt, vel.y);
 		}
 
+		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
+			currentAnimation = idleR;
+			impulse.y -= acceleration;
+			vel = b2Vec2(vel.x, speed * dt);
+		}
 
-		// Hace que salte
-		impulse.y = b2Clamp(impulse.y, -vel.y, vel.y);
+		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
+			currentAnimation = idleR;
+			currentAnimation->Update();
+			impulse.y += acceleration;
+			vel = b2Vec2(vel.x, -speed * dt);
+		}
 
-		//Set the velocity of the pbody of the player
-
+		// Apply the impulse to the character's rigidbody
 		pbody->body->ApplyLinearImpulse(impulse, pbody->body->GetPosition(), false);
+
+		// Clamp the character's velocity to prevent excessive speed
 		pbody->body->SetLinearVelocity(b2Clamp(pbody->body->GetLinearVelocity(), -vel, vel));
 
-		//Update player position in pixels
+		// Update the character's position
 		b2Transform pbodyPos = pbody->body->GetTransform();
 		position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 16 / 2;
 		position.y = METERS_TO_PIXELS(pbodyPos.p.y) - 16 / 2;
 
+		// Draw the character's texture
 		app->render->DrawTexture(texture, position.x, position.y, &currentAnimation->GetCurrentFrame());
 
+		// Update the camera position
 		uint w, h;
 		app->win->GetWindowSize(w, h);
 		app->render->camera.x = (-position.x * app->win->GetScale()) + w / 2;

@@ -46,7 +46,7 @@
 		<frame x="66" y="82" w="16" h="16" />
 	  </animation>
 
-	  <animation name="jumpR" loop="true" speed="0.2f">
+	  <animation name="jumpR" loop="true" speed="0.5f">
 		<frame x="16" y="48" w="16" h="16" />
 		<frame x="16" y="48" w="16" h="16" />
 		<frame x="16" y="48" w="16" h="16" />
