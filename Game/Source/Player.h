@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "Point.h"
 #include "SDL/include/SDL.h"
+#include "List.h"
 #include "Animation.h"
 
 #include "Box2D/Box2D/Box2D.h"
@@ -30,7 +31,7 @@ public:
 
 	void PlayerStartAnims();
 
-	
+	Animation* GetAnimation(SString name);
 
 	void OnCollision(PhysBody* physA, PhysBody* physB);
 
@@ -56,18 +57,15 @@ private:
 	Animation* currentAnimation = nullptr;
 
 	// A set of animations
-	Animation playerR, playerL,
-		punchR, punchL,
-		deathR, deathL,
-		hitR, hitL,
-		idleR, idleL,
-		jumpR, jumpL,
-		fallR, fallL,
-		pushR, pushL,
-		runR, runL,
-		throwR, throwL,
-		walkR, walkL,
-		walkPunchR, walkPunchL;
+	Animation* playerR;
+	Animation* playerL;
+	Animation* jumpR;
+	Animation* idleR;
+	Animation* deathR;
+
+
+
+	List<Animation*> animationList;
 };
 
 

@@ -2,11 +2,13 @@
 #define __ANIMATION_H__
 
 #include "SDL/include/SDL_rect.h"
-#define MAX_FRAMES 100
+#include "SString.h"
+#define MAX_FRAMES 300
 
 class Animation
 {
 public:
+	SString name;
 	float speed = 1.0f;
 	SDL_Rect frames[MAX_FRAMES];
 	bool loop = true;

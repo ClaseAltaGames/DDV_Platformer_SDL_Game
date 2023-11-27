@@ -21,6 +21,33 @@ Player::~Player() {
 
 void Player::PlayerStartAnims()
 {
+	for (pugi::xml_node animNode = parameters.child("animation"); animNode; animNode = animNode.next_sibling())
+	{
+		Animation* anim = new Animation();
+
+		anim->name = animNode.attribute("name").as_string();
+		anim->speed = animNode.attribute("speed").as_float();
+		anim->loop = animNode.attribute("loop").as_bool();
+		anim->pingpong = animNode.attribute("pingpong").as_bool();
+
+		for (pugi::xml_node frameNode = animNode.child("frame"); frameNode; frameNode = frameNode.next_sibling())
+		{
+			int x = frameNode.attribute("x").as_int();
+			int y = frameNode.attribute("y").as_int();
+			int w = frameNode.attribute("w").as_int();
+			int h = frameNode.attribute("h").as_int();
+			anim->PushBack({ x,y,w,h });
+		}
+		animationList.Add(anim);
+	}
+
+	idleR = GetAnimation("idleR");
+	playerR = GetAnimation("playerR");
+	playerL = GetAnimation("playerL");
+	jumpR = GetAnimation("jumpR");
+	deathR = GetAnimation("deathR");
+	
+	/*
 	playerR.PushBack({ 19, 33, 16, 16 });
 	playerR.PushBack({ 35, 32, 16, 16 });
 	playerR.PushBack({ 35, 32, 16, 16 });
@@ -46,7 +73,7 @@ void Player::PlayerStartAnims()
 	jumpR.PushBack({ 16, 48, 16, 16 });
 	jumpR.PushBack({ 16, 48, 16, 16 });
 
-	deathR.PushBack({81, 15, 16, 16});
+	deathR.PushBack({81, 15, 16, 16});*/
 }
 
 
@@ -61,16 +88,16 @@ bool Player::Start() {
 
 	//initilize textures
 
-	PlayerStartAnims();
 	texture = app->tex->Load(parameters.attribute("texturepath").as_string());
 	
 	pbody = app->physics->CreateCircle(position.x + 16, position.y + 16, 8, bodyType::DYNAMIC);
 
-	currentAnimation = &idleR;
+	currentAnimation = idleR;
 
 	pbody->listener = this;
 	pbody->ctype = ColliderType::PLAYER;
 
+	PlayerStartAnims();
 	
 
 	return true;
@@ -100,8 +127,8 @@ bool Player::Update(float dt)
 			b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
 			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && jumpsAvaiable > 0) {
 
-				currentAnimation = &jumpR;
-				jumpR.Update();
+				currentAnimation = jumpR;
+				currentAnimation->Update();
 				impulse.y -= jumpPower;
 				jumpsAvaiable--;
 			}
@@ -109,13 +136,12 @@ bool Player::Update(float dt)
 
 			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 			{
-				currentAnimation = &playerL;
-				playerL.Update();
+				currentAnimation = playerL;
+				currentAnimation->Update();
 				if (app->input->GetKey(SDL_SCANCODE_SPACE))
 				{
-					currentAnimation = &jumpR;
-					jumpR.Update();
-
+					currentAnimation = jumpR;
+					currentAnimation->Update();
 				}
 				impulse.x -= acceleration;
 				vel = b2Vec2(speed * dt, -GRAVITY_Y);
@@ -123,13 +149,12 @@ bool Player::Update(float dt)
 
 			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 			{
-				currentAnimation = &playerR;
-				playerR.Update();
+				currentAnimation = playerR;
+				currentAnimation->Update();
 				if (app->input->GetKey(SDL_SCANCODE_SPACE))
 				{
-					playerR.HasFinished();
-					currentAnimation = &jumpR;
-					jumpR.Update();
+					currentAnimation = jumpR;
+					currentAnimation->Update();
 				}
 
 				impulse.x += acceleration;
@@ -161,7 +186,8 @@ bool Player::Update(float dt)
 
 		else if (death == true)
 		{
-			currentAnimation = &deathR;
+			currentAnimation = deathR;
+			currentAnimation->Update();
 			app->scene->pause = true;
 
 			app->physics->DestroyCircle(pbody);
@@ -185,7 +211,7 @@ bool Player::Update(float dt)
 			pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
 
 			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
-			app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
+			app->render->DrawTexture(texture, position.x, position.y, &currentAnimation->GetCurrentFrame());
 			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
 
 			pbody->listener = this;
@@ -197,23 +223,16 @@ bool Player::Update(float dt)
 		app->scene->pause = false;
 		b2Vec2 impulse = b2Vec2_zero;
 		b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && jumpsAvaiable > 0) {
-
-			currentAnimation = &jumpR;
-			jumpR.Update();
-			impulse.y -= jumpPower;
-			jumpsAvaiable--;
-		}
-
+		
 
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 		{
-			currentAnimation = &playerL;
-			playerL.Update();
+			currentAnimation = playerL;
+			currentAnimation->Update();
 			if (app->input->GetKey(SDL_SCANCODE_SPACE))
 			{
-				currentAnimation = &jumpR;
-				jumpR.Update();
+				currentAnimation = jumpR;
+				currentAnimation->Update();
 
 			}
 			impulse.x -= acceleration;
@@ -222,13 +241,12 @@ bool Player::Update(float dt)
 
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 		{
-			currentAnimation = &playerR;
-			playerR.Update();
+			currentAnimation = playerR;
+			currentAnimation->Update();
 			if (app->input->GetKey(SDL_SCANCODE_SPACE))
 			{
-				playerR.HasFinished();
-				currentAnimation = &jumpR;
-				jumpR.Update();
+				currentAnimation = jumpR;
+				currentAnimation->Update();
 			}
 
 			impulse.x += acceleration;
@@ -250,14 +268,14 @@ bool Player::Update(float dt)
 		b2Transform pbodyPos = pbody->body->GetTransform();
 		position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 16 / 2;
 		position.y = METERS_TO_PIXELS(pbodyPos.p.y) - 16 / 2;
-		app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
+
+		app->render->DrawTexture(texture, position.x, position.y, &currentAnimation->GetCurrentFrame());
 
 		uint w, h;
 		app->win->GetWindowSize(w, h);
 		app->render->camera.x = (-position.x * app->win->GetScale()) + w / 2;
 
 	}
-	
 	
 
 	return true;
@@ -283,7 +301,7 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		break;
 	case ColliderType::PLATFORM:
 		LOG("Collision PLATFORM");
-		currentAnimation = &idleR;
+		currentAnimation = idleR;
 		jumpsAvaiable = 1;
 		app->scene->pause = false;
 		death = false;
@@ -296,4 +314,16 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		LOG("Collision UNKNOWN");
 		break;
 	}
+
+}
+
+Animation* Player::GetAnimation(SString name)
+{
+	for (ListItem<Animation*>* item = animationList.start; item != nullptr; item = item->next)
+	{
+		if (item->data != nullptr) {
+			if (item->data->name == name) return item->data;
+		}
+	}
+	return nullptr;
 }

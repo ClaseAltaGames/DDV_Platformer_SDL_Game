@@ -1,6 +1,6 @@
 <config>
   <app>
-    <title>Game Development by Pau Mena & Edgar Mesa</title>
+    <title>Game Development by Pau Mena and Edgar Mesa</title>
     <maxFrameDuration value="16"/>
   </app>
 
@@ -23,17 +23,54 @@
 
   <scene>
     <map path="Assets/Maps/" name="MapTemplate.tmx"/>
-    <player x="3" y="180" texturepath="Assets/Textures/player.png"/>
+    <player x="3" y="180" texturepath="Assets/Textures/player.png">
+	  <animation name="playerR" loop="true" speed="0.2f">
+		<frame x="19" y="33" w="16" h="16" />
+		<frame x="35" y="32" w="16" h="16" />
+		<frame x="35" y="32" w="16" h="16" />
+		<frame x="35" y="32" w="16" h="16" />
+		<frame x="52" y="33" w="16" h="16" />
+	  </animation>
+	 	  
+	  <animation name="idleR" loop="true" speed="0.2f">
+		<frame x="19" y="17" w="16" h="16" />
+		<frame x="35" y="16" w="16" h="16" />
+		<frame x="51" y="17" w="16" h="16" />
+	  </animation>
+	 
+	  <animation name="playerL" loop="true" speed="0.2f">
+		<frame x="98" y="82" w="16" h="16" />
+		<frame x="80" y="81" w="16" h="16" />
+		<frame x="80" y="81" w="16" h="16" />
+		<frame x="80" y="81" w="16" h="16" />
+		<frame x="66" y="82" w="16" h="16" />
+	  </animation>
+
+	  <animation name="jumpR" loop="true" speed="0.2f">
+		<frame x="16" y="48" w="16" h="16" />
+		<frame x="16" y="48" w="16" h="16" />
+		<frame x="16" y="48" w="16" h="16" />
+		<frame x="16" y="48" w="16" h="16" />
+		<frame x="16" y="48" w="16" h="16" />
+	  </animation>
+
+	  <animation name="deathR" loop="false" speed="1f">
+		<frame x="81" y="15" w="16" h="16" />
+	  </animation>
+	  
 	<wenemy x="20" y="180" texturepath="Assets/Textures/enemy1.png"/>
 	  <animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
-		  <frame x="1" y="23" w="12" h="17"/>
-		  <frame x="21" y="23" w="12" h="17"/>
+		<frame x="1" y="23" w="12" h="17"/>
+		<frame x="21" y="23" w="12" h="17"/>
 	  </animation>
 	  
 	  <animation name="enemy1WalkAnimL" loop="true" speed = "0.2f">
-		  <frame x="3" y="63" w="14" h="17"/>
-		  <frame x="21" y="63" w="14" h="17"/>
+		<frame x="3" y="63" w="14" h="17"/>
+		<frame x="21" y="63" w="14" h="17"/>
 	  </animation>
+	</player>
+	
+	
     
   </scene>
   
