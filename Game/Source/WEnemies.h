@@ -37,12 +37,8 @@ public:
 public:
 	SDL_Texture* enemyTex1 = NULL;
 
-	Animation* idleAnim;
-	Animation* forwardAnim;
-	Animation* backwardAnim;
-	Animation* forwardjump;
-	Animation* backwardjump;
-	Animation* death;
+	Animation* playerR;
+	Animation* playerL;
 
 };
 

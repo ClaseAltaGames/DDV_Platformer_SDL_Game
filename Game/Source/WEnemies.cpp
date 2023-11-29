@@ -24,6 +24,29 @@ WEnemies::~WEnemies() {
 
 void WEnemies::WEnemiesStartAnims()
 {
+	for (pugi::xml_node animNode = parameters.child("animation"); animNode; animNode = animNode.next_sibling())
+	{
+		Animation* anim = new Animation();
+
+		anim->name = animNode.attribute("name").as_string();
+		anim->speed = animNode.attribute("speed").as_float();
+		anim->loop = animNode.attribute("loop").as_bool();
+		anim->pingpong = animNode.attribute("pingpong").as_bool();
+
+		for (pugi::xml_node frameNode = animNode.child("frame"); frameNode; frameNode = frameNode.next_sibling())
+		{
+			int x = frameNode.attribute("x").as_int();
+			int y = frameNode.attribute("y").as_int();
+			int w = frameNode.attribute("w").as_int();
+			int h = frameNode.attribute("h").as_int();
+			anim->PushBack({ x,y,w,h });
+		}
+		animationList.Add(anim);
+	}
+
+	
+	playerR = GetAnimation("enemy1WalkAnimR");
+	playerL = GetAnimation("enemy1WalkAnimL");
 	
 }
 
