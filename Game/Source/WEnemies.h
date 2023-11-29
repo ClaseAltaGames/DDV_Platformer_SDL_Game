@@ -5,8 +5,8 @@
 #include "Entity.h"
 #include "Point.h"
 #include "SDL/include/SDL.h"
-#include "Animation.h"
 #include "List.h"
+#include "Animation.h"
 
 #include "Box2D/Box2D/Box2D.h"
 
@@ -29,6 +29,8 @@ public:
 	bool CleanUp();
 
 	void OnCollision(PhysBody* physA, PhysBody* physB);
+
+	Animation* GetAnimation(SString name);
 	
 	void WEnemiesStartAnims();
 
@@ -37,9 +39,15 @@ public:
 public:
 	SDL_Texture* enemyTex1 = NULL;
 
-	Animation* playerR;
-	Animation* playerL;
+	PhysBody* ebody;
 
+	Animation* currentAnimation = nullptr;
+
+	Animation* enemy1WalkAnimR;
+	Animation* enemy1WalkAnimL;
+
+
+	List<Animation*> animationList;
 };
 
 #endif

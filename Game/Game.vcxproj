@@ -104,6 +104,7 @@
     <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Map.cpp" />
     <ClCompile Include="Source\Path.cpp" />
+    <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\PerfTimer.cpp" />
     <ClCompile Include="Source\Physics.cpp" />
     <ClCompile Include="Source\Player.cpp" />
@@ -121,6 +122,7 @@
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\p2Point.h" />
     <ClInclude Include="Source\Path.h" />
+    <ClInclude Include="Source\Pathfinding.h" />
     <ClInclude Include="Source\PerfTimer.h" />
     <ClInclude Include="Source\Physics.h" />
     <ClInclude Include="Source\Player.h" />

@@ -57,8 +57,10 @@
 	  <animation name="deathR" loop="false" speed="1f">
 		<frame x="81" y="15" w="16" h="16" />
 	  </animation>
+
+	</player>
 	  
-	<wenemy x="20" y="180" texturepath="Assets/Textures/enemy1.png"/>
+	<wenemy x="3" y="180" texturepath="Assets/Textures/enemy1.png">
 	  <animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
 		<frame x="1" y="23" w="12" h="17"/>
 		<frame x="21" y="23" w="12" h="17"/>
@@ -68,7 +70,7 @@
 		<frame x="3" y="63" w="14" h="17"/>
 		<frame x="21" y="63" w="14" h="17"/>
 	  </animation>
-	</player>
+	</wenemy>
 	
 	
     

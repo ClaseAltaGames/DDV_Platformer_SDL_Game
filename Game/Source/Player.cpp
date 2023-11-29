@@ -47,33 +47,6 @@ void Player::PlayerStartAnims()
 	jumpR = GetAnimation("jumpR");
 	deathR = GetAnimation("deathR");
 	
-	/*
-	playerR.PushBack({ 19, 33, 16, 16 });
-	playerR.PushBack({ 35, 32, 16, 16 });
-	playerR.PushBack({ 35, 32, 16, 16 });
-	playerR.PushBack({ 35, 32, 16, 16 });
-	playerR.PushBack({ 35, 32, 16, 16 });
-	playerR.PushBack({ 52, 33, 16, 16 });
-
-	idleR.PushBack({ 19, 17, 16, 16 });
-	idleR.PushBack({ 35, 16, 16, 16 });
-	idleR.PushBack({ 51, 17, 16, 16 });
-
-	playerL.PushBack({ 98, 82, 16, 16 });
-	playerL.PushBack({ 80, 81, 16, 16 });
-	playerL.PushBack({ 80, 81, 16, 16 });
-	playerL.PushBack({ 80, 81, 16, 16 });
-	playerL.PushBack({ 80, 81, 16, 16 });
-	playerL.PushBack({ 80, 81, 16, 16 });
-	playerL.PushBack({ 66, 82, 16, 16 });
-
-	jumpR.PushBack({ 16, 48, 16, 16 });
-	jumpR.PushBack({ 16, 48, 16, 16 });
-	jumpR.PushBack({ 16, 48, 16, 16 });
-	jumpR.PushBack({ 16, 48, 16, 16 });
-	jumpR.PushBack({ 16, 48, 16, 16 });
-
-	deathR.PushBack({81, 15, 16, 16});*/
 }
 
 
@@ -243,7 +216,6 @@ bool Player::Update(float dt)
 
 		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
 			currentAnimation = idleR;
-			currentAnimation->Update();
 			impulse.y += acceleration;
 			vel = b2Vec2(vel.x, -speed * dt);
 		}
