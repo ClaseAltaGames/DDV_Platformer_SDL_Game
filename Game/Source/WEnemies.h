@@ -37,6 +37,9 @@ public:
 	//iPoint GetOrigin() const override;
 
 public:
+
+	float speed = 0.04f;
+
 	SDL_Texture* enemyTex1 = NULL;
 
 	PhysBody* ebody;
@@ -48,6 +51,9 @@ public:
 
 
 	List<Animation*> animationList;
+
+private:
+	float acceleration = 0.2f;
 };
 
 #endif

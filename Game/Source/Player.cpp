@@ -92,7 +92,7 @@ bool Player::Update(float dt)
 	}
 	
 
-	if (godMode != true) {
+	if (godMode == false) {
 		if (death == false)
 		{
 			app->scene->pause = false;
@@ -146,7 +146,7 @@ bool Player::Update(float dt)
 			pbody->body->SetLinearVelocity(b2Clamp(pbody->body->GetLinearVelocity(), -vel, vel));
 
 			//Update player position in pixels
-			b2Transform pbodyPos = pbody->body->GetTransform();
+			b2Transform pbodyPos = pbody->body->GetTransform();	
 			position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 16 / 2;
 			position.y = METERS_TO_PIXELS(pbodyPos.p.y) - 16 / 2;
 			app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
@@ -273,6 +273,10 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 	case ColliderType::DEATH:
 		LOG("Collision DEATH");
 		death = true;			
+		break;
+	case ColliderType::WENEMIES:
+		LOG("Collision WENEMIES");
+		death = true;
 		break;
 	case ColliderType::UNKNOWN:
 		LOG("Collision UNKNOWN");

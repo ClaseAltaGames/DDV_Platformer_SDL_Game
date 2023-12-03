@@ -23,7 +23,7 @@
 
   <scene>
     <map path="Assets/Maps/" name="MapTemplate.tmx"/>
-    <player x="3" y="180" texturepath="Assets/Textures/player.png">
+    <player x="3" y="215" texturepath="Assets/Textures/player.png">
 	  <animation name="playerR" loop="true" speed="0.2f">
 		<frame x="19" y="33" w="16" h="16" />
 		<frame x="35" y="32" w="16" h="16" />
@@ -60,7 +60,7 @@
 
 	</player>
 	  
-	<wenemy x="3" y="180" texturepath="Assets/Textures/enemy1.png">
+	<wenemy x="250" y="215" texturepath="Assets/Textures/enemy1.png">
 	  <animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
 		<frame x="1" y="23" w="12" h="17"/>
 		<frame x="21" y="23" w="12" h="17"/>

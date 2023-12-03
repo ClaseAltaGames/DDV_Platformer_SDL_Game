@@ -28,6 +28,10 @@ enum class ColliderType {
 	ITEM,
 	PLATFORM, 
 	UNKNOWN,
+	WENEMIES,
+	FENEMIES,
+	WALLENEMYL,
+	WALLENEMYR,
 	DEATH
 	// ..
 };

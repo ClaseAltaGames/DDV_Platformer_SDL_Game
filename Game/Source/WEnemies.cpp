@@ -69,13 +69,26 @@ bool WEnemies::Start() {
 	currentAnimation = enemy1WalkAnimL;
 
 	ebody->listener = this;
-	ebody->ctype = ColliderType::PLAYER;
+	ebody->ctype = ColliderType::WENEMIES;
 
 	return true;
 }
 
 bool WEnemies::Update(float dt)
 {
+	b2Vec2 impulse = b2Vec2_zero;
+	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
+	
+	currentAnimation = enemy1WalkAnimL;
+	currentAnimation->Update();
+
+	impulse.x -= acceleration;
+	vel = b2Vec2(speed * dt, -GRAVITY_Y);
+	
+	//Set the velocity of the pbody of the player
+	ebody->body->ApplyLinearImpulse(impulse, ebody->body->GetPosition(), false);
+	ebody->body->SetLinearVelocity(b2Clamp(ebody->body->GetLinearVelocity(), -vel, vel));
+
 	// Update the character's position
 	b2Transform ebodyPos = ebody->body->GetTransform();
 	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
@@ -97,27 +110,45 @@ bool WEnemies::CleanUp()
 
 void WEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 {
-	/*switch (physB->ctype)
+
+	b2Vec2 impulse = b2Vec2_zero;
+	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
+
+	float dt = 16;
+
+	switch (physB->ctype)
 	{
 	case ColliderType::ITEM:
-		LOG("Collision ITEM");
-		app->audio->PlayFx(pickCoinFxId);
 		break;
+
 	case ColliderType::PLATFORM:
-		LOG("Collision PLATFORM");
-		currentAnimation = &idleR;
-		jumpsAvaiable = 1;
-		app->scene->pause = false;
-		death = false;
+
 		break;
 	case ColliderType::DEATH:
-		LOG("Collision DEATH");
-		death = true;
 		break;
+
+	case ColliderType::WALLENEMYL:
+
+		currentAnimation = enemy1WalkAnimR;
+		currentAnimation->Update();
+
+		impulse.x += acceleration;
+		vel = b2Vec2(-speed * dt, -GRAVITY_Y);
+
+		break;
+
+	case ColliderType::WALLENEMYR:
+
+		currentAnimation = enemy1WalkAnimL;
+		currentAnimation->Update();
+
+		impulse.x -= acceleration;
+		vel = b2Vec2(speed * dt, -GRAVITY_Y);
+		break;
+
 	case ColliderType::UNKNOWN:
-		LOG("Collision UNKNOWN");
 		break;
-	}*/
+	}
 }
 
 
