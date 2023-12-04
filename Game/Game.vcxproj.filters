@@ -77,6 +77,7 @@
     <ClInclude Include="Source\WEnemies.h" />
     <ClInclude Include="Source\FEnemies.h" />
     <ClInclude Include="Source\Pathfinding.h" />
+    <ClInclude Include="Source\PQueue.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

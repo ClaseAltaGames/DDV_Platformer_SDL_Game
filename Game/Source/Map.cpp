@@ -33,9 +33,18 @@ bool Map::Start() {
     //Calls the functon to load the map, make sure that the filename is assigned
     SString mapPath = path;
     mapPath += name;
-    bool ret = Load(mapPath);
+    Load(mapPath);
 
-    return ret;
+    //Initialize pathfinding 
+    pathfinding = new PathFinding();
+
+    //Initialize the navigation map
+    uchar* navigationMap = NULL;
+    CreateNavigationMap(mapData.width, mapData.height, &navigationMap);
+    pathfinding->SetNavigationMap((uint)mapData.width, (uint)mapData.height, navigationMap);
+    RELEASE_ARRAY(navigationMap);
+
+    return true;
 }
 
 bool Map::Update(float dt)
@@ -194,6 +203,7 @@ bool Map::Load(SString mapFileName)
     c3->ctype = ColliderType::PLATFORM;*/
     ListItem<MapLayer*>* mapLayerItem;
     mapLayerItem = mapData.maplayers.start;
+    navigationLayer = mapLayerItem->data;
 
     while (mapLayerItem != NULL) {
 
@@ -220,6 +230,7 @@ bool Map::Load(SString mapFileName)
     }
 
     mapLayerItem = mapData.maplayers.start;
+
 
     while (mapLayerItem != NULL) {
 
@@ -323,10 +334,13 @@ bool Map::Load(SString mapFileName)
         ListItem<MapLayer*>* mapLayer;
         mapLayer = mapData.maplayers.start;
 
-        while (mapLayer != NULL) {
-            LOG("id : %d name : %s", mapLayer->data->id, mapLayer->data->name.GetString());
-            LOG("Layer width : %d Layer height : %d", mapLayer->data->width, mapLayer->data->height);
-            mapLayer = mapLayer->next;
+        //Search the layer in the map that contains information for navigation
+        while (mapLayerItem != NULL) {
+            if (mapLayerItem->data->properties.GetProperty("Navigation") != NULL && mapLayerItem->data->properties.GetProperty("Navigation")->value) {
+                navigationLayer = mapLayerItem->data;
+                break;
+            }
+            mapLayerItem = mapLayerItem->next;
         }
     }
 
@@ -465,4 +479,35 @@ Properties::Property* Properties::GetProperty(const char* name)
     return p;
 }
 
+void Map::CreateNavigationMap(int& width, int& height, uchar** buffer) const
+{
+    bool ret = false;
+
+    //Sets the size of the map. The navigation map is a unidimensional array 
+    uchar* navigationMap = new uchar[navigationLayer->width * navigationLayer->height];
+    //reserves the memory for the navigation map
+    memset(navigationMap, 1, navigationLayer->width * navigationLayer->height);
+
+    for (int x = 0; x < mapData.width; x++)
+    {
+        for (int y = 0; y < mapData.height; y++)
+        {
+            //i is the index of x,y coordinate in a unidimensional array that represents the navigation map
+            int i = (y * navigationLayer->width) + x;
+
+            //Gets the gid of the map in the navigation layer
+            int gid = navigationLayer->Get(x, y);
+
+            //If the gid is a blockedGid is an area that I cannot navigate, so is set in the navigation map as 0, all the other areas can be navigated
+            //!!!! make sure that you assign blockedGid according to your map
+            if (gid == blockedGid) navigationMap[i] = 0;
+            else navigationMap[i] = 1;
+        }
+    }
+
+    *buffer = navigationMap;
+    width = mapData.width;
+    height = mapData.height;
+
+}
 
