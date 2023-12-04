@@ -35,6 +35,12 @@ public:
 
 	void OnCollision(PhysBody* physA, PhysBody* physB);
 
+	//
+	bool LoadState(pugi::xml_node node);
+
+	//
+	bool SaveState(pugi::xml_node node);
+
 
 public:
 	float speed = 0.12f;
