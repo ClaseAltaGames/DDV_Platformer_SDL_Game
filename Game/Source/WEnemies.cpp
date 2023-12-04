@@ -110,7 +110,6 @@ bool WEnemies::CleanUp()
 
 void WEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 {
-
 	b2Vec2 impulse = b2Vec2_zero;
 	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
 

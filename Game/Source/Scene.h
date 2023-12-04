@@ -1,3 +1,4 @@
+
 #ifndef __SCENE_H__
 #define __SCENE_H__
 
@@ -34,7 +35,13 @@ public:
 	bool PostUpdate();
 
 	// Called before quitting
-	bool CleanUp();
+	bool CleanUp();	
+	
+	//
+	bool LoadState(pugi::xml_node node);
+
+	//
+	bool SaveState(pugi::xml_node node);
 
 private:
 	SDL_Texture* img;

@@ -158,3 +158,23 @@ bool Scene::CleanUp()
 
 	return true;
 }
+
+bool Scene::LoadState(pugi::xml_node node) {
+
+	player->position.x = node.child("player").attribute("x").as_int();
+	player->position.y = node.child("player").attribute("y").as_int();
+
+	return true;
+}
+
+bool Scene::SaveState(pugi::xml_node node) {
+
+
+	pugi::xml_node playerNode = node.append_child("player");
+	playerNode.append_attribute("x").set_value(player->position.x);
+	playerNode.append_attribute("y").set_value(player->position.y);
+
+
+
+	return true;
+}

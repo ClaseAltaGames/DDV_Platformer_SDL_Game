@@ -35,11 +35,6 @@ public:
 
 	void OnCollision(PhysBody* physA, PhysBody* physB);
 
-	//
-	bool LoadState(pugi::xml_node node);
-
-	//
-	bool SaveState(pugi::xml_node node);
 
 
 public:
@@ -69,7 +64,7 @@ private:
 	Animation* idleR;
 	Animation* deathR;
 
-
+	float gravityScale;
 
 	List<Animation*> animationList;
 };

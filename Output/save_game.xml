@@ -5,7 +5,9 @@
 	<textures />
 	<audio />
 	<:anonymous />
-	<scene />
+	<scene>
+		<player x="16" y="239" />
+	</scene>
 	<:anonymous />
 	<entitymanager />
 	<renderer />
