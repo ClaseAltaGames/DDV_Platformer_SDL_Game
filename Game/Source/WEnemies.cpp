@@ -12,11 +12,13 @@
 #include "Point.h"
 #include "Physics.h"
 #include "Window.h"
+#include "Pathfinding.h"
 
 
 WEnemies::WEnemies() : Entity(EntityType::WENEMIES)
 {
 	name.Create("WEnemies");
+	currentState = EnemyState::MOVING_TO_DESTINATION; // Inicialmente, el enemigo se mueve hacia la posición de destino
 }
 
 WEnemies::~WEnemies() {
@@ -62,6 +64,8 @@ bool WEnemies::Start() {
 
 	WEnemiesStartAnims();
 
+	//WEnemies* enemy2 = new WEnemies();
+
 	enemyTex1 = app->tex->Load(parameters.attribute("texturepath").as_string());
 
 	ebody = app->physics->CreateCircle(position.x + 16, position.y + 16, 8, bodyType::DYNAMIC);
@@ -76,15 +80,25 @@ bool WEnemies::Start() {
 
 bool WEnemies::Update(float dt)
 {
+	dt = 16;
+
 	b2Vec2 impulse = b2Vec2_zero;
 	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
-	
-	currentAnimation = enemy1WalkAnimL;
-	currentAnimation->Update();
 
-	impulse.x -= acceleration;
-	vel = b2Vec2(speed * dt, -GRAVITY_Y);
-	
+	switch (currentState)
+	{
+	case EnemyState::MOVING_TO_DESTINATION:
+		MoveToDestination(dt);
+		impulse.x -= acceleration;
+		vel = b2Vec2(speed * dt, -GRAVITY_Y);
+		break;
+	case EnemyState::MOVING_TO_ORIGIN:
+		MoveToOrigin(dt);
+		impulse.x += acceleration;
+		vel = b2Vec2(-speed * dt, -GRAVITY_Y);
+		break;
+	}
+
 	//Set the velocity of the pbody of the player
 	ebody->body->ApplyLinearImpulse(impulse, ebody->body->GetPosition(), false);
 	ebody->body->SetLinearVelocity(b2Clamp(ebody->body->GetLinearVelocity(), -vel, vel));
@@ -95,6 +109,7 @@ bool WEnemies::Update(float dt)
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
 	app->render->DrawTexture(enemyTex1, position.x, position.y, &currentAnimation->GetCurrentFrame());
+
 	return true;
 }
 
@@ -110,11 +125,6 @@ bool WEnemies::CleanUp()
 
 void WEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 {
-	b2Vec2 impulse = b2Vec2_zero;
-	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
-
-	float dt = 16;
-
 	switch (physB->ctype)
 	{
 	case ColliderType::ITEM:
@@ -123,30 +133,67 @@ void WEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 	case ColliderType::PLATFORM:
 
 		break;
+
 	case ColliderType::DEATH:
-		break;
-
-	case ColliderType::WALLENEMYL:
-
-		currentAnimation = enemy1WalkAnimR;
-		currentAnimation->Update();
-
-		impulse.x += acceleration;
-		vel = b2Vec2(-speed * dt, -GRAVITY_Y);
 
 		break;
-
-	case ColliderType::WALLENEMYR:
-
-		currentAnimation = enemy1WalkAnimL;
-		currentAnimation->Update();
-
-		impulse.x -= acceleration;
-		vel = b2Vec2(speed * dt, -GRAVITY_Y);
-		break;
-
 	case ColliderType::UNKNOWN:
+
 		break;
+	}
+}
+
+void WEnemies::MoveToDestination(float dt)
+{
+	// Update the character's position
+	b2Transform ebodyPos = ebody->body->GetTransform();
+	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
+	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
+
+
+	currentAnimation = enemy1WalkAnimL;
+	currentAnimation->Update();
+
+	if (HasReachedOrigin())
+	{
+		currentState = EnemyState::MOVING_TO_DESTINATION;
+	}
+}
+
+void WEnemies::MoveToOrigin(float dt)
+{
+	currentAnimation = enemy1WalkAnimR;
+	currentAnimation->Update();
+
+	if (HasReachedDestination())
+	{
+		currentState = EnemyState::MOVING_TO_ORIGIN;
+	}
+}
+
+bool WEnemies::HasReachedDestination()
+{
+	// Update the character's position
+	b2Transform ebodyPos = ebody->body->GetTransform();
+	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
+	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
+
+	if (position.x == 100)
+	{
+		return false; // Cambia esto con tu lógica real
+	}
+}
+
+bool WEnemies::HasReachedOrigin()
+{
+	// Update the character's position
+	b2Transform ebodyPos = ebody->body->GetTransform();
+	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
+	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
+
+	if (position.x < 251)
+	{
+		return false; // Cambia esto con tu lógica real
 	}
 }
 

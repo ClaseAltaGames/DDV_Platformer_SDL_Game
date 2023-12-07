@@ -72,6 +72,8 @@ bool Player::Start() {
 
 	gravityScale = pbody->body->GetGravityScale();
 
+	saltoFX = app->audio->LoadFx("Assets/Audio/Fx/saltoFX.wav");
+
 	PlayerStartAnims();
 	
 
@@ -104,7 +106,7 @@ bool Player::Update(float dt)
 			b2Vec2 impulse = b2Vec2_zero;
 			b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
 			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && jumpsAvaiable > 0) {
-
+				app->audio->PlayFx(saltoFX);
 				currentAnimation = jumpR;
 				currentAnimation->Update();
 				impulse.y -= jumpPower;

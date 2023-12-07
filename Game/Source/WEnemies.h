@@ -12,6 +12,12 @@
 
 struct SDL_Texture;
 
+enum class EnemyState
+{
+	MOVING_TO_DESTINATION,
+	MOVING_TO_ORIGIN
+};
+
 class WEnemies : public Entity
 {
 public:
@@ -34,6 +40,15 @@ public:
 	
 	void WEnemiesStartAnims();
 
+	void MoveToDestination(float dt);
+
+	void MoveToOrigin(float dt);
+
+	bool HasReachedDestination();
+
+	bool HasReachedOrigin();
+
+
 	//iPoint GetOrigin() const override;
 
 public:
@@ -49,11 +64,12 @@ public:
 	Animation* enemy1WalkAnimR;
 	Animation* enemy1WalkAnimL;
 
+	EnemyState currentState;
+
+	float acceleration = 0.2f;
 
 	List<Animation*> animationList;
 
-private:
-	float acceleration = 0.2f;
 };
 
 #endif

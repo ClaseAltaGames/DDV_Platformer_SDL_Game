@@ -47,6 +47,7 @@ public:
 	float cameraSpeed = 1.0f;
 	bool death = false;
 	bool godMode = false;
+	int saltoFX;
 
 private:
 	float jumpPower = 0.45f;
@@ -65,6 +66,7 @@ private:
 	Animation* deathR;
 
 	float gravityScale;
+
 
 	List<Animation*> animationList;
 };
