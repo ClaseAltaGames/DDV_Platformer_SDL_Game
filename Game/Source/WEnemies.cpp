@@ -154,9 +154,9 @@ void WEnemies::MoveToDestination(float dt)
 	currentAnimation = enemy1WalkAnimL;
 	currentAnimation->Update();
 
-	if (HasReachedOrigin())
+	if (HasReachedDestination())
 	{
-		currentState = EnemyState::MOVING_TO_DESTINATION;
+		currentState = EnemyState::MOVING_TO_ORIGIN;
 	}
 }
 
@@ -165,9 +165,9 @@ void WEnemies::MoveToOrigin(float dt)
 	currentAnimation = enemy1WalkAnimR;
 	currentAnimation->Update();
 
-	if (HasReachedDestination())
+	if (HasReachedOrigin())
 	{
-		currentState = EnemyState::MOVING_TO_ORIGIN;
+		currentState = EnemyState::MOVING_TO_DESTINATION;
 	}
 }
 
@@ -180,7 +180,10 @@ bool WEnemies::HasReachedDestination()
 
 	if (position.x == 100)
 	{
-		return false; // Cambia esto con tu lógica real
+		return true; // Cambia esto con tu lógica real
+	}
+	else {
+		return false;
 	}
 }
 
@@ -191,9 +194,12 @@ bool WEnemies::HasReachedOrigin()
 	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
-	if (position.x < 251)
+	if (position.x == 250)
 	{
-		return false; // Cambia esto con tu lógica real
+		return true; // Cambia esto con tu lógica real
+	}
+	else {
+		return false;
 	}
 }
 

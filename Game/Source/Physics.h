@@ -30,8 +30,6 @@ enum class ColliderType {
 	UNKNOWN,
 	WENEMIES,
 	FENEMIES,
-	WALLENEMYL,
-	WALLENEMYR,
 	DEATH
 	// ..
 };

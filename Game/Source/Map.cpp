@@ -259,57 +259,7 @@ bool Map::Load(SString mapFileName)
         mapLayerItem = mapLayerItem->next;
 
     } 
-
-    while (mapLayerItem != NULL) {
-
-        if (mapLayerItem->data->properties.GetProperty("WallEnemyL") != NULL && mapLayerItem->data->properties.GetProperty("Wall")->value) {
-
-            for (int x = 0; x < mapLayerItem->data->width; x++)
-            {
-                for (int y = 0; y < mapLayerItem->data->height; y++)
-                {
-                    int gid = mapLayerItem->data->Get(x, y);
-
-                    if (gid == 401)
-                    {
-                        iPoint pos = MapToWorld(x, y);
-
-                        PhysBody* c1 = app->physics->CreateRectangle(pos.x + (mapData.tileWidth / 2), pos.y + (mapData.tileHeight / 2),
-                            mapData.tileWidth, mapData.tileHeight, STATIC);
-                        c1->ctype = ColliderType::WALLENEMYL;
-                    }
-                   
-                }
-            }
-        }
-        mapLayerItem = mapLayerItem->next;
-    }
-
-    while (mapLayerItem != NULL) {
-
-        if (mapLayerItem->data->properties.GetProperty("WallEnemyR") != NULL && mapLayerItem->data->properties.GetProperty("Wall")->value) {
-
-            for (int x = 0; x < mapLayerItem->data->width; x++)
-            {
-                for (int y = 0; y < mapLayerItem->data->height; y++)
-                {
-                    int gid = mapLayerItem->data->Get(x, y);
-
-                    if (gid == 399)
-                    {
-                        iPoint pos = MapToWorld(x, y);
-
-                        PhysBody* c1 = app->physics->CreateRectangle(pos.x + (mapData.tileWidth / 2), pos.y + (mapData.tileHeight / 2),
-                            mapData.tileWidth, mapData.tileHeight, STATIC);
-                        c1->ctype = ColliderType::WALLENEMYR;
-                    }
-
-                }
-            }
-        }
-        mapLayerItem = mapLayerItem->next;
-    }
-
+        
 
     if(ret == true)
     {
