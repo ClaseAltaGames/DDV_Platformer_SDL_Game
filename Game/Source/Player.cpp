@@ -285,6 +285,10 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		LOG("Collision WENEMIES");
 		death = true;
 		break;
+	case ColliderType::FENEMIES:
+		LOG("Collision FENEMIES");
+		death = true;
+		break;
 	case ColliderType::UNKNOWN:
 		LOG("Collision UNKNOWN");
 		break;
