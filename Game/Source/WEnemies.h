@@ -7,6 +7,8 @@
 #include "SDL/include/SDL.h"
 #include "List.h"
 #include "Animation.h"
+#include "EntityManager.h"
+#include "Player.h"
 
 #include "Box2D/Box2D/Box2D.h"
 
@@ -69,6 +71,8 @@ public:
 	float acceleration = 0.2f;
 
 	List<Animation*> animationList;
+
+	Player* player;
 
 };
 

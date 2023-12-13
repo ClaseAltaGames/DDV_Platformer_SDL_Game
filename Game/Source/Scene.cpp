@@ -6,6 +6,9 @@
 #include "Window.h"
 #include "Scene.h"
 #include "Map.h"
+#include "Physics.h"
+#include "Player.h"
+#include "EntityManager.h"
 
 
 #include "Defs.h"
@@ -40,7 +43,7 @@ bool Scene::Awake(pugi::xml_node& config)
 	}
 	if (config.child("wenemy")) {
 		wenemy = (WEnemies*)app->entityManager->CreateEntity(EntityType::WENEMIES);
-		wenemy->parameters = config.child("wenemy");
+		wenemy-> parameters= config.child("wenemy");
 	}
 	if (config.child("fenemy")) {
 		fenemy = (FEnemies*)app->entityManager->CreateEntity(EntityType::FENEMIES);
@@ -81,6 +84,8 @@ bool Scene::Start()
 		app->map->mapData.tileWidth,
 		app->map->mapData.tileHeight,
 		app->map->mapData.tilesets.Count());
+
+
 
 	return true;
 }
@@ -161,20 +166,24 @@ bool Scene::CleanUp()
 
 bool Scene::LoadState(pugi::xml_node node) {
 
-	player->position.x = node.child("player").attribute("x").as_int();
-	player->position.y = node.child("player").attribute("y").as_int();
+	b2Vec2 posMetres = b2Vec2(PIXEL_TO_METERS(node.child("player").attribute("x").as_int()), 
+							  PIXEL_TO_METERS(node.child("player").attribute("y").as_int()));
+
+	player->pbody->body->SetTransform(posMetres,0);
 
 	return true;
 }
 
 bool Scene::SaveState(pugi::xml_node node) {
+	
+	/*b2Transform pbodyPos = pbody->body->GetTransform();
 
+	player->position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 16 / 2;
+	player->position.y = METERS_TO_PIXELS(pbodyPos.p.y) - 16 / 2;*/
 
 	pugi::xml_node playerNode = node.append_child("player");
 	playerNode.append_attribute("x").set_value(player->position.x);
 	playerNode.append_attribute("y").set_value(player->position.y);
-
-
 
 	return true;
 }

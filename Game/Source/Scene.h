@@ -56,6 +56,7 @@ private:
 
 public:
 	bool pause;
+	PhysBody* pbody;
 };
 
 #endif // __SCENE_H__

@@ -13,6 +13,7 @@
 #include "Physics.h"
 #include "Window.h"
 #include "Pathfinding.h"
+#include "Map.h"
 
 
 WEnemies::WEnemies() : Entity(EntityType::WENEMIES)
@@ -47,6 +48,7 @@ void WEnemies::WEnemiesStartAnims()
 		animationList.Add(anim);
 	}
 
+
 	
 	enemy1WalkAnimR = GetAnimation("enemy1WalkAnimR");
 	enemy1WalkAnimL = GetAnimation("enemy1WalkAnimL");
@@ -64,7 +66,6 @@ bool WEnemies::Start() {
 
 	WEnemiesStartAnims();
 
-	//WEnemies* enemy2 = new WEnemies();
 
 	enemyTex1 = app->tex->Load(parameters.attribute("texturepath").as_string());
 
@@ -99,6 +100,7 @@ bool WEnemies::Update(float dt)
 		break;
 	}
 
+
 	//Set the velocity of the pbody of the player
 	ebody->body->ApplyLinearImpulse(impulse, ebody->body->GetPosition(), false);
 	ebody->body->SetLinearVelocity(b2Clamp(ebody->body->GetLinearVelocity(), -vel, vel));
@@ -107,6 +109,10 @@ bool WEnemies::Update(float dt)
 	b2Transform ebodyPos = ebody->body->GetTransform();
 	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
+
+	// Pathfinding
+	app->map->pathfinding->CreatePath(position, player->position);
+	
 
 	app->render->DrawTexture(enemyTex1, position.x, position.y, &currentAnimation->GetCurrentFrame());
 
