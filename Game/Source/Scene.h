@@ -52,6 +52,7 @@ private:
 	WEnemies* wenemy;
 	FEnemies* fenemy;
 	SDL_Texture* mouseTileTex = nullptr;
+	SDL_Texture* fondo;
 
 
 public:

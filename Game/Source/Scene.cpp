@@ -62,6 +62,7 @@ bool Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool Scene::Start()
 {
+	fondo = app->tex->Load("Assets/Textures/fondo.png");
 	app->audio->PlayMusic("Assets/Music/Song1.ogg", 1.0f);
 	// NOTE: We have to avoid the use of paths in the code, we will move it later to a config file
 	//img = app->tex->Load("Assets/Textures/test.png");
@@ -99,6 +100,8 @@ bool Scene::PreUpdate()
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
+	app->render->DrawTexture(fondo, player->position.x - 340, 0);
+
 	float camSpeed = 1; 
 
 	if(app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
