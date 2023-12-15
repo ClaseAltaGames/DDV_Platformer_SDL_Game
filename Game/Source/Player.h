@@ -6,6 +6,7 @@
 #include "SDL/include/SDL.h"
 #include "List.h"
 #include "Animation.h"
+#include "WEnemies.h"
 
 #include "Box2D/Box2D/Box2D.h"
 
@@ -48,6 +49,7 @@ public:
 	bool death = false;
 	bool godMode = false;
 	int saltoFX;
+	//WEnemies* wenemy;
 
 private:
 	float jumpPower = 0.45f;
