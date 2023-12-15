@@ -40,25 +40,32 @@ bool Scene::Awake(pugi::xml_node& config)
 	if (config.child("player")) {
 		player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
 		player->parameters = config.child("player");
-	}
-	if (config.child("wenemy")) {
-		wenemy = (WEnemies*)app->entityManager->CreateEntity(EntityType::WENEMIES);
-		wenemy-> parameters= config.child("wenemy");
-	}
-	if (config.child("fenemy")) {
-		fenemy = (FEnemies*)app->entityManager->CreateEntity(EntityType::FENEMIES);
-		fenemy->parameters = config.child("fenemy");
-	}
 
-	if (config.child("map")) {
-		//Get the map name from the config file and assigns the value in the module
-		app->map->name = config.child("map").attribute("name").as_string();
-		app->map->path = config.child("map").attribute("path").as_string();
+		/*if (config.child("wenemy")) {
+				wenemy = (WEnemies*)app->entityManager->CreateEntity(EntityType::WENEMIES);
+				wenemy->parameters = config.child("wenemy");
+		}*/
+		for (pugi::xml_node wenemyNode = config.child("wenemy"); wenemyNode; wenemyNode = wenemyNode.next_sibling("wenemy"))
+		{
+			WEnemies* wenemy = (WEnemies*)app->entityManager->CreateEntity(EntityType::WENEMIES);
+			wenemy->parameters = wenemyNode;
+		}
+		for (pugi::xml_node fenemyNode = config.child("fenemy"); fenemyNode; fenemyNode = fenemyNode.next_sibling("fenemy"))
+		{
+			FEnemies* fenemy = (FEnemies*)app->entityManager->CreateEntity(EntityType::FENEMIES);
+			fenemy->parameters = fenemyNode;
+		}
+		
+
+		if (config.child("map")) {
+			//Get the map name from the config file and assigns the value in the module
+			app->map->name = config.child("map").attribute("name").as_string();
+			app->map->path = config.child("map").attribute("path").as_string();
+		}
+
+		return ret;
 	}
-	
-	return ret;
 }
-
 // Called before the first frame
 bool Scene::Start()
 {

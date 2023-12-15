@@ -223,7 +223,7 @@ bool WEnemies::HasReachedDestination()
 	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
-	if (position.x == 100)
+	if (position.x == 100 || position.x == 650 || position.x == 1872)
 	{
 		return true; // Cambia esto con tu lógica real
 	}
@@ -235,11 +235,12 @@ bool WEnemies::HasReachedDestination()
 bool WEnemies::HasReachedOrigin()
 {
 	// Update the character's position
+
 	b2Transform ebodyPos = ebody->body->GetTransform();
 	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
-	if (position.x == 250)
+	if (position.x == 250 || position.x == 765 || position.x == 2098)
 	{
 		return true; // Cambia esto con tu lógica real
 	}
