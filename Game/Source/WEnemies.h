@@ -59,7 +59,8 @@ public:
 
 	SDL_Texture* enemyTex1 = NULL;
 
-	PhysBody* ebody;
+	PhysBody* ebody; 
+	PhysBody* deathBody;
 
 	Animation* currentAnimation = nullptr;
 

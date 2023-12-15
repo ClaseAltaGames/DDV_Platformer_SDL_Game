@@ -70,11 +70,15 @@ bool WEnemies::Start() {
 	enemyTex1 = app->tex->Load(parameters.attribute("texturepath").as_string());
 
 	ebody = app->physics->CreateCircle(position.x + 16, position.y + 16, 8, bodyType::DYNAMIC);
+	deathBody = app->physics->CreateRectangle(position.x + 16, position.y + 16, 12, 4, bodyType::DYNAMIC);
 
 	currentAnimation = enemy1WalkAnimL;
 
 	ebody->listener = this;
 	ebody->ctype = ColliderType::WENEMIES;
+
+	deathBody->listener = this;
+	deathBody->ctype = ColliderType::WENEMYDEATH;
 
 	return true;
 }
