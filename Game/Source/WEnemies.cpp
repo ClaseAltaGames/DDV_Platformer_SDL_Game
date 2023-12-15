@@ -18,7 +18,7 @@
 
 WEnemies::WEnemies() : Entity(EntityType::WENEMIES)
 {
-	name.Create("WEnemies");
+	name.Create("wenemy");
 	currentState = EnemyState::MOVING_TO_DESTINATION; // Inicialmente, el enemigo se mueve hacia la posición de destino
 }
 
@@ -124,23 +124,23 @@ bool WEnemies::Update(float dt)
 	// pathfinding next steps
 	const DynArray<iPoint>* path = app->map->pathfinding->GetLastPath();
 
-	// condicional: si el jugador esta a menos de 100 pixeles de distancia del enemigo, el enemigo comienza a hacer pathfinding
-	if (position.DistanceTo(player->position) < 100)
-	{
-		// condicional: si el pathfinding tiene mas de 0 pasos, el enemigo se mueve hacia el jugador
-		if (path->Count() > 0)
-		{
-			// actualiza la posicion del enemigo
-			
-			//iPoint nextStep = (*path)[1];
-			//iPoint direction = nextStep - position;
-			
-			// posicion con el impulse
-			impulse.x += acceleration;
+	//// condicional: si el jugador esta a menos de 100 pixeles de distancia del enemigo, el enemigo comienza a hacer pathfinding
+	//if (position.DistanceTo(player->position) < 100)
+	//{
+	//	// condicional: si el pathfinding tiene mas de 0 pasos, el enemigo se mueve hacia el jugador
+	//	if (path->Count() > 0)
+	//	{
+	//		// actualiza la posicion del enemigo
+	//		
+	//		//iPoint nextStep = (*path)[1];
+	//		//iPoint direction = nextStep - position;
+	//		
+	//		// posicion con el impulse
+	//		impulse.x += acceleration;
 
-			
-		}
-	}
+	//		
+	//	}
+	//}
 
 	app->render->DrawTexture(enemyTex1, position.x, position.y, &currentAnimation->GetCurrentFrame());
 
