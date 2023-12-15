@@ -70,15 +70,13 @@ bool WEnemies::Start() {
 	enemyTex1 = app->tex->Load(parameters.attribute("texturepath").as_string());
 
 	ebody = app->physics->CreateCircle(position.x + 16, position.y + 16, 8, bodyType::DYNAMIC);
-	deathBody = app->physics->CreateRectangle(position.x + 16, position.y + 16, 12, 4, bodyType::DYNAMIC);
 
 	currentAnimation = enemy1WalkAnimL;
 
 	ebody->listener = this;
 	ebody->ctype = ColliderType::WENEMIES;
 
-	deathBody->listener = this;
-	deathBody->ctype = ColliderType::WENEMYDEATH;
+	
 
 	return true;
 }
@@ -104,6 +102,7 @@ bool WEnemies::Update(float dt)
 		break;
 	}
 
+
 	
 
 
@@ -119,8 +118,29 @@ bool WEnemies::Update(float dt)
 	// Pathfinding
 	//app->map->pathfinding->CreatePath(position, player->position);
 
-	
-	
+	// pathginding entre el enemigo y el player
+	app->map->pathfinding->CreatePath(position, player->position);
+
+	// pathfinding next steps
+	const DynArray<iPoint>* path = app->map->pathfinding->GetLastPath();
+
+	// condicional: si el jugador esta a menos de 100 pixeles de distancia del enemigo, el enemigo comienza a hacer pathfinding
+	if (position.DistanceTo(player->position) < 100)
+	{
+		// condicional: si el pathfinding tiene mas de 0 pasos, el enemigo se mueve hacia el jugador
+		if (path->Count() > 0)
+		{
+			// actualiza la posicion del enemigo
+			
+			//iPoint nextStep = (*path)[1];
+			//iPoint direction = nextStep - position;
+			
+			// posicion con el impulse
+			impulse.x += acceleration;
+
+			
+		}
+	}
 
 	app->render->DrawTexture(enemyTex1, position.x, position.y, &currentAnimation->GetCurrentFrame());
 
