@@ -104,6 +104,8 @@ bool WEnemies::Update(float dt)
 		break;
 	}
 
+	
+
 
 	//Set the velocity of the pbody of the player
 	ebody->body->ApplyLinearImpulse(impulse, ebody->body->GetPosition(), false);
@@ -115,7 +117,9 @@ bool WEnemies::Update(float dt)
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
 	// Pathfinding
-	app->map->pathfinding->CreatePath(position, player->position);
+	//app->map->pathfinding->CreatePath(position, player->position);
+
+	
 	
 
 	app->render->DrawTexture(enemyTex1, position.x, position.y, &currentAnimation->GetCurrentFrame());
@@ -145,10 +149,21 @@ void WEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 		break;
 
 	case ColliderType::DEATH:
-
+		//si el player esta encima del enemigo, el enemigo muere
+		
+		app->physics->DestroyCircle(ebody);
+		//delete enemy texture
+		app->tex->UnLoad(enemyTex1);
 		break;
 	case ColliderType::UNKNOWN:
-
+		break;
+	case ColliderType::PLAYER:
+		/*if (player == nullptr && ebody->body->GetPosition().y > player->pbody->body->GetPosition().y)*/
+		
+			app->physics->DestroyCircle(ebody);
+			//delete enemy texture
+			app->tex->UnLoad(enemyTex1);
+		
 		break;
 	}
 }

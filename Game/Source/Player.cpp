@@ -9,6 +9,9 @@
 #include "Point.h"
 #include "Physics.h"
 #include "Window.h"
+#include "WEnemies.h"
+#include "FEnemies.h"
+
 
 Player::Player() : Entity(EntityType::PLAYER)
 {

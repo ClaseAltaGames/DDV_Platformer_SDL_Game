@@ -1,5 +1,4 @@
-#ifndef __WENEMIES_H__
-#define __WENEMIES_H__
+#pragma once
 
 
 #include "Entity.h"
@@ -77,4 +76,3 @@ public:
 
 };
 
-#endif

@@ -1,11 +1,12 @@
-#ifndef __PLAYER_H__
-#define __PLAYER_H__
+#pragma once
+
 
 #include "Entity.h"
 #include "Point.h"
 #include "SDL/include/SDL.h"
 #include "List.h"
 #include "Animation.h"
+#include "App.h"
 
 #include "Box2D/Box2D/Box2D.h"
 
@@ -48,6 +49,9 @@ public:
 	bool death = false;
 	bool godMode = false;
 	int saltoFX;
+	
+	
+	
 
 private:
 	float jumpPower = 0.45f;
@@ -69,7 +73,9 @@ private:
 
 
 	List<Animation*> animationList;
+
+
+	
 };
 
 
-#endif // __PLAYER_H__
