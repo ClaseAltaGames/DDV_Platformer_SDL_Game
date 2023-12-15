@@ -14,7 +14,6 @@
 #include "Window.h"
 #include "Pathfinding.h"
 #include "Map.h"
-#include "EntityManager.h"
 
 
 WEnemies::WEnemies() : Entity(EntityType::WENEMIES)
@@ -49,6 +48,8 @@ void WEnemies::WEnemiesStartAnims()
 		animationList.Add(anim);
 	}
 
+
+	
 	enemy1WalkAnimR = GetAnimation("enemy1WalkAnimR");
 	enemy1WalkAnimL = GetAnimation("enemy1WalkAnimL");
 	
@@ -69,12 +70,7 @@ bool WEnemies::Start() {
 	enemyTex1 = app->tex->Load(parameters.attribute("texturepath").as_string());
 
 	ebody = app->physics->CreateCircle(position.x + 16, position.y + 16, 8, bodyType::DYNAMIC);
-	deathBody = app->physics->CreateRectangle(position.x + 16, position.y + 32, 12, 4, bodyType::DYNAMIC);
-
-	//the enemy can pathfind the player
-	//player = (Player*)app->entity->FindEntityByType(EntityType::PLAYER);
-
-
+	deathBody = app->physics->CreateRectangle(position.x + 16, position.y + 16, 12, 4, bodyType::DYNAMIC);
 
 	currentAnimation = enemy1WalkAnimL;
 
@@ -106,13 +102,6 @@ bool WEnemies::Update(float dt)
 		impulse.x += acceleration;
 		vel = b2Vec2(-speed * dt, -GRAVITY_Y);
 		break;
-	case EnemyState::DEAD:
-		
-		//destroy enemy
-		app->physics->DestroyCircle(ebody);
-		//delete enemy texture
-		app->tex->UnLoad(enemyTex1);
-		break;
 	}
 
 
@@ -126,12 +115,10 @@ bool WEnemies::Update(float dt)
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
 	// Pathfinding
-	//app->map->pathfinding->CreatePath(position, player->position);
+	app->map->pathfinding->CreatePath(position, player->position);
 	
 
 	app->render->DrawTexture(enemyTex1, position.x, position.y, &currentAnimation->GetCurrentFrame());
-
-	
 
 	return true;
 }
@@ -158,7 +145,6 @@ void WEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 		break;
 
 	case ColliderType::DEATH:
-	
 
 		break;
 	case ColliderType::UNKNOWN:

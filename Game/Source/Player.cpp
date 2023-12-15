@@ -284,12 +284,6 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 	case ColliderType::WENEMIES:
 		LOG("Collision WENEMIES");
 		death = true;
-
-		// if the player jumps on the enemy, the enemy dies
-		/*if (position.y < wenemy->position.y)
-		{
-			wenemy->currentState = EnemyState::DEAD;
-		}*/
 		break;
 	case ColliderType::FENEMIES:
 		LOG("Collision FENEMIES");

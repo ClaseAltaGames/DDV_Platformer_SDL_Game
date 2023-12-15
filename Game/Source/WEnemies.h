@@ -17,9 +17,7 @@ struct SDL_Texture;
 enum class EnemyState
 {
 	MOVING_TO_DESTINATION,
-	MOVING_TO_ORIGIN,
-	DEAD,
-	STATE
+	MOVING_TO_ORIGIN
 };
 
 class WEnemies : public Entity
@@ -75,11 +73,8 @@ public:
 
 	List<Animation*> animationList;
 
-	//Player* player;
+	Player* player;
 
-	
-
-	
 };
 
 #endif
