@@ -206,11 +206,9 @@ void WEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 	case ColliderType::UNKNOWN:
 		break;
 	case ColliderType::PLAYER:
-		///*if (player == nullptr && ebody->body->GetPosition().y > player->pbody->body->GetPosition().y)*/
-		//
-		//	app->physics->DestroyCircle(ebody);
-		//	//delete enemy texture
-		//	app->tex->UnLoad(enemyTex1);
+				
+		app->physics->DestroyCircle(ebody);
+		app->tex->UnLoad(enemyTex1);
 		
 		break;
 	}
