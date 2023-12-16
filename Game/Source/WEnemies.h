@@ -1,5 +1,4 @@
-#ifndef __WENEMIES_H__
-#define __WENEMIES_H__
+#pragma once
 
 
 #include "Entity.h"
@@ -59,7 +58,8 @@ public:
 
 	SDL_Texture* enemyTex1 = NULL;
 
-	PhysBody* ebody;
+	PhysBody* ebody; 
+	
 
 	Animation* currentAnimation = nullptr;
 
@@ -76,4 +76,3 @@ public:
 
 };
 
-#endif

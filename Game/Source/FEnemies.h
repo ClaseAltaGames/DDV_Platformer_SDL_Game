@@ -53,7 +53,7 @@ public:
 
 public:
 
-	float speed = 0.04f;
+	float speed = 0.08f;
 
 	SDL_Texture* enemyTex1 = NULL;
 

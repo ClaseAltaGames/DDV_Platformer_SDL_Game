@@ -9,6 +9,9 @@
 #include "Point.h"
 #include "Physics.h"
 #include "Window.h"
+#include "WEnemies.h"
+#include "FEnemies.h"
+
 
 Player::Player() : Entity(EntityType::PLAYER)
 {
@@ -199,6 +202,7 @@ bool Player::Update(float dt)
 	}
 	if (godMode == true) {
 		app->scene->pause = false;
+		speed = 0.35f;
 		b2Vec2 impulse = b2Vec2_zero;
 		b2Vec2 vel = b2Vec2(0, 0);
 

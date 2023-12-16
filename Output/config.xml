@@ -73,8 +73,69 @@
 		<frame x="21" y="63" w="14" h="17"/>
 	  </animation>
 	</wenemy>
+	  
+	<wenemy x="765" y="130" texturepath="Assets/Textures/enemy1.png">
+	  <animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
+		<frame x="21" y="23" w="12" h="17"/>
+		<frame x="38" y="23" w="14" h="17"/>
+		<frame x="1" y="23" w="12" h="17"/>
+	  </animation>
+	  
+	  <animation name="enemy1WalkAnimL" loop="true" speed = "0.2f">
+		<frame x="3" y="63" w="14" h="17"/>
+		<frame x="38" y="63" w="14" h="17"/>
+		<frame x="21" y="63" w="14" h="17"/>
+	  </animation>
+	</wenemy>
+	<wenemy x="2098" y="239" texturepath="Assets/Textures/enemy1.png">
+	  <animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
+		<frame x="21" y="23" w="12" h="17"/>
+		<frame x="38" y="23" w="14" h="17"/>
+		<frame x="1" y="23" w="12" h="17"/>
+	  </animation>
+
+	  <animation name="enemy1WalkAnimL" loop="true" speed = "0.2f">
+		<frame x="3" y="63" w="14" h="17"/>
+		<frame x="38" y="63" w="14" h="17"/>
+		<frame x="21" y="63" w="14" h="17"/>
+	  </animation>
+	</wenemy>
+
+
 
 	<fenemy x="500" y="100" texturepath="Assets/Textures/duck_spritesheet.png">
+		<animation name="enemy1FlyAnimR" loop="true" speed = "0.2f">
+			<frame x="23" y="3" w="16" h="11"/>
+			<frame x="23" y="20" w="16" h="7"/>
+			<frame x="23" y="35" w="16" h="10"/>
+			<frame x="23" y="49" w="16" h="13"/>
+		</animation>
+
+		<animation name="enemy1FlyAnimL" loop="true" speed = "0.2f">
+			<frame x="0" y="3" w="16" h="11"/>
+			<frame x="0" y="20" w="16" h="7"/>
+			<frame x="0" y="35" w="16" h="10"/>
+			<frame x="0" y="49" w="16" h="13"/>
+		</animation>
+	</fenemy>
+
+	<fenemy x="1382" y="163" texturepath="Assets/Textures/duck_spritesheet.png">
+		<animation name="enemy1FlyAnimR" loop="true" speed = "0.2f">
+			<frame x="23" y="3" w="16" h="11"/>
+			<frame x="23" y="20" w="16" h="7"/>
+			<frame x="23" y="35" w="16" h="10"/>
+			<frame x="23" y="49" w="16" h="13"/>
+		</animation>
+
+		<animation name="enemy1FlyAnimL" loop="true" speed = "0.2f">
+			<frame x="0" y="3" w="16" h="11"/>
+			<frame x="0" y="20" w="16" h="7"/>
+			<frame x="0" y="35" w="16" h="10"/>
+			<frame x="0" y="49" w="16" h="13"/>
+		</animation>
+	</fenemy>
+
+	<fenemy x="3030" y="205" texturepath="Assets/Textures/duck_spritesheet.png">
 		<animation name="enemy1FlyAnimR" loop="true" speed = "0.2f">
 			<frame x="23" y="3" w="16" h="11"/>
 			<frame x="23" y="20" w="16" h="7"/>

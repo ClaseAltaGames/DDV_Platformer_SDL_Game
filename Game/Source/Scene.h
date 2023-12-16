@@ -43,6 +43,10 @@ public:
 	//
 	bool SaveState(pugi::xml_node node);
 
+	iPoint GetPlayerPosition() {
+		return player->position;
+	}
+
 private:
 	SDL_Texture* img;
 	float textPosX, textPosY = 0;
@@ -51,10 +55,12 @@ private:
 	Player* player;
 	WEnemies* wenemy;
 	FEnemies* fenemy;
-	SDL_Texture* mouseTileTex = nullptr;
+
+	SDL_Texture* fondo;
 
 
 public:
+	SDL_Texture* mouseTileTex = nullptr;
 	bool pause;
 	PhysBody* pbody;
 };

@@ -40,28 +40,36 @@ bool Scene::Awake(pugi::xml_node& config)
 	if (config.child("player")) {
 		player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
 		player->parameters = config.child("player");
-	}
-	if (config.child("wenemy")) {
-		wenemy = (WEnemies*)app->entityManager->CreateEntity(EntityType::WENEMIES);
-		wenemy-> parameters= config.child("wenemy");
-	}
-	if (config.child("fenemy")) {
-		fenemy = (FEnemies*)app->entityManager->CreateEntity(EntityType::FENEMIES);
-		fenemy->parameters = config.child("fenemy");
-	}
 
-	if (config.child("map")) {
-		//Get the map name from the config file and assigns the value in the module
-		app->map->name = config.child("map").attribute("name").as_string();
-		app->map->path = config.child("map").attribute("path").as_string();
+		/*if (config.child("wenemy")) {
+				wenemy = (WEnemies*)app->entityManager->CreateEntity(EntityType::WENEMIES);
+				wenemy->parameters = config.child("wenemy");
+		}*/
+		for (pugi::xml_node wenemyNode = config.child("wenemy"); wenemyNode; wenemyNode = wenemyNode.next_sibling("wenemy"))
+		{
+			WEnemies* wenemy = (WEnemies*)app->entityManager->CreateEntity(EntityType::WENEMIES);
+			wenemy->parameters = wenemyNode;
+		}
+		for (pugi::xml_node fenemyNode = config.child("fenemy"); fenemyNode; fenemyNode = fenemyNode.next_sibling("fenemy"))
+		{
+			FEnemies* fenemy = (FEnemies*)app->entityManager->CreateEntity(EntityType::FENEMIES);
+			fenemy->parameters = fenemyNode;
+		}
+		
+
+		if (config.child("map")) {
+			//Get the map name from the config file and assigns the value in the module
+			app->map->name = config.child("map").attribute("name").as_string();
+			app->map->path = config.child("map").attribute("path").as_string();
+		}
+
+		return ret;
 	}
-	
-	return ret;
 }
-
 // Called before the first frame
 bool Scene::Start()
 {
+	fondo = app->tex->Load("Assets/Textures/fondo.png");
 	app->audio->PlayMusic("Assets/Music/Song1.ogg", 1.0f);
 	// NOTE: We have to avoid the use of paths in the code, we will move it later to a config file
 	//img = app->tex->Load("Assets/Textures/test.png");
@@ -85,7 +93,8 @@ bool Scene::Start()
 		app->map->mapData.tileHeight,
 		app->map->mapData.tilesets.Count());
 
-
+	// Texture to highligh mouse position 
+	mouseTileTex = app->tex->Load("Assets/Maps/tileSelection.png");
 
 	return true;
 }
@@ -99,6 +108,8 @@ bool Scene::PreUpdate()
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
+	app->render->DrawTexture(fondo, player->position.x - 340, 0);
+
 	float camSpeed = 1; 
 
 	if(app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
@@ -113,30 +124,30 @@ bool Scene::Update(float dt)
 	if(app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		app->render->camera.x += (int)ceil(camSpeed * dt);
 
-	iPoint mousePos;
-	app->input->GetMousePosition(mousePos.x, mousePos.y);
-	iPoint mouseTile = app->map->WorldToMap(mousePos.x - app->render->camera.x,
-		mousePos.y - app->render->camera.y);
+	//iPoint mousePos;
+	//app->input->GetMousePosition(mousePos.x, mousePos.y);
+	//iPoint mouseTile = app->map->WorldToMap(mousePos.x - app->render->camera.x,
+	//	mousePos.y - app->render->camera.y);
 
-	// Render a texture where the mouse is over to highlight the tile, use the texture 'mouseTileTex'
-	iPoint highlightedTileWorld = app->map->MapToWorld(mouseTile.x, mouseTile.y);
-	app->render->DrawTexture(mouseTileTex, highlightedTileWorld.x, highlightedTileWorld.y);
+	//// Render a texture where the mouse is over to highlight the tile, use the texture 'mouseTileTex'
+	//iPoint highlightedTileWorld = app->map->MapToWorld(mouseTile.x, mouseTile.y);
+	//app->render->DrawTexture(mouseTileTex, highlightedTileWorld.x, highlightedTileWorld.y);
 
-	iPoint origin = iPoint(2, 2);
+	//iPoint origin = iPoint(2, 2);
 
-	//If mouse button is pressed modify player position
-	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-		player->position = iPoint(highlightedTileWorld.x, highlightedTileWorld.y);
-		app->map->pathfinding->CreatePath(origin, mouseTile);
-	}
+	////If mouse button is pressed modify player position
+	//if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+	//	player->position = iPoint(highlightedTileWorld.x, highlightedTileWorld.y);
+	//	app->map->pathfinding->CreatePath(origin, mouseTile);
+	//}
 
-	// L13: Get the latest calculated path and draw
-	const DynArray<iPoint>* path = app->map->pathfinding->GetLastPath();
-	for (uint i = 0; i < path->Count(); ++i)
-	{
-		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-		app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
-	}
+	//// L13: Get the latest calculated path and draw
+	//const DynArray<iPoint>* path = app->map->pathfinding->GetLastPath();
+	//for (uint i = 0; i < path->Count(); ++i)
+	//{
+	//	iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+	//	app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
+	//}
 
 
 	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN) app->SaveRequest();

@@ -18,7 +18,7 @@
 
 WEnemies::WEnemies() : Entity(EntityType::WENEMIES)
 {
-	name.Create("WEnemies");
+	name.Create("wenemy");
 	currentState = EnemyState::MOVING_TO_DESTINATION; // Inicialmente, el enemigo se mueve hacia la posición de destino
 }
 
@@ -76,6 +76,8 @@ bool WEnemies::Start() {
 	ebody->listener = this;
 	ebody->ctype = ColliderType::WENEMIES;
 
+	
+
 	return true;
 }
 
@@ -101,6 +103,9 @@ bool WEnemies::Update(float dt)
 	}
 
 
+	
+
+
 	//Set the velocity of the pbody of the player
 	ebody->body->ApplyLinearImpulse(impulse, ebody->body->GetPosition(), false);
 	ebody->body->SetLinearVelocity(b2Clamp(ebody->body->GetLinearVelocity(), -vel, vel));
@@ -111,8 +116,39 @@ bool WEnemies::Update(float dt)
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
 	// Pathfinding
-	app->map->pathfinding->CreatePath(position, player->position);
-	
+	//app->map->pathfinding->CreatePath(position, player->position);
+
+	// pathginding entre el enemigo y el player
+	app->map->pathfinding->CreatePath(app->map->WorldToMap(position.x,position.y), 
+									  app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y));
+
+	// pathfinding next steps
+	const DynArray<iPoint>* path = app->map->pathfinding->GetLastPath();
+
+	//const DynArray<iPoint>* path = app->map->pathfinding->GetLastPath();
+	for (uint i = 0; i < path->Count(); ++i)
+	{
+		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+		app->render->DrawTexture(app->scene->mouseTileTex, pos.x, pos.y);
+	}
+
+	//// condicional: si el jugador esta a menos de 100 pixeles de distancia del enemigo, el enemigo comienza a hacer pathfinding
+	//if (position.DistanceTo(player->position) < 100)
+	//{
+	//	// condicional: si el pathfinding tiene mas de 0 pasos, el enemigo se mueve hacia el jugador
+	//	if (path->Count() > 0)
+	//	{
+	//		// actualiza la posicion del enemigo
+	//		
+	//		//iPoint nextStep = (*path)[1];
+	//		//iPoint direction = nextStep - position;
+	//		
+	//		// posicion con el impulse
+	//		impulse.x += acceleration;
+
+	//		
+	//	}
+	//}
 
 	app->render->DrawTexture(enemyTex1, position.x, position.y, &currentAnimation->GetCurrentFrame());
 
@@ -141,10 +177,21 @@ void WEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 		break;
 
 	case ColliderType::DEATH:
-
+		//si el player esta encima del enemigo, el enemigo muere
+		
+		app->physics->DestroyCircle(ebody);
+		//delete enemy texture
+		app->tex->UnLoad(enemyTex1);
 		break;
 	case ColliderType::UNKNOWN:
-
+		break;
+	case ColliderType::PLAYER:
+		/*if (player == nullptr && ebody->body->GetPosition().y > player->pbody->body->GetPosition().y)*/
+		
+			app->physics->DestroyCircle(ebody);
+			//delete enemy texture
+			app->tex->UnLoad(enemyTex1);
+		
 		break;
 	}
 }
@@ -184,7 +231,7 @@ bool WEnemies::HasReachedDestination()
 	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
-	if (position.x == 100)
+	if (position.x == 100 || position.x == 650 || position.x == 1872)
 	{
 		return true; // Cambia esto con tu lógica real
 	}
@@ -196,11 +243,12 @@ bool WEnemies::HasReachedDestination()
 bool WEnemies::HasReachedOrigin()
 {
 	// Update the character's position
+
 	b2Transform ebodyPos = ebody->body->GetTransform();
 	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
-	if (position.x == 250)
+	if (position.x == 250 || position.x == 765 || position.x == 2098)
 	{
 		return true; // Cambia esto con tu lógica real
 	}

@@ -30,6 +30,8 @@ enum class ColliderType {
 	UNKNOWN,
 	WENEMIES,
 	FENEMIES,
+	WENEMYDEATH,
+	FENEMYDEATH,
 	DEATH
 	// ..
 };
