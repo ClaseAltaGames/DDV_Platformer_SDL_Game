@@ -73,6 +73,8 @@ public:
 
 	List<Animation*> animationList;
 
+	bool death = false;
+
 	Player* player;
 
 };

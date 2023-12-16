@@ -348,7 +348,7 @@ void Physics::BeginContact(b2Contact* contact)
 	if (physA && physA->listener != NULL)
 		physA->listener->OnCollision(physA, physB);
 
-	if (physB && physB->listener != NULL)
+	if (physB && physB->listener != NULL && physB != nullptr)
 		physB->listener->OnCollision(physB, physA);
 }
 

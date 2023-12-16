@@ -71,7 +71,6 @@ private:
 
 	float gravityScale;
 
-
 	List<Animation*> animationList;
 
 

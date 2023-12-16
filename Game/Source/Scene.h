@@ -47,6 +47,10 @@ public:
 		return player->position;
 	}
 
+	iPoint GetWenemyPosition() {
+		return wenemy->position;
+	}
+
 private:
 	SDL_Texture* img;
 	float textPosX, textPosY = 0;
