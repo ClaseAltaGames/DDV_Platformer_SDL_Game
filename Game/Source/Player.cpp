@@ -103,6 +103,7 @@ bool Player::Update(float dt)
 		if (death == false)
 		{
 			app->scene->pause = false;
+			speed = 0.12f;
 
 			pbody->body->SetGravityScale(gravityScale);
 

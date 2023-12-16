@@ -16,7 +16,8 @@ struct SDL_Texture;
 enum class EnemyState
 {
 	MOVING_TO_DESTINATION,
-	MOVING_TO_ORIGIN
+	MOVING_TO_ORIGIN,
+	ATTACKING,
 };
 
 class WEnemies : public Entity

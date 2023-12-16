@@ -15,7 +15,8 @@ struct SDL_Texture;
 enum class EnemyFlyState
 {
 	MOVING_TO_DESTINATION,
-	MOVING_TO_ORIGIN
+	MOVING_TO_ORIGIN,
+	ATTACKING,
 };
 
 class FEnemies : public Entity
@@ -53,7 +54,7 @@ public:
 
 public:
 
-	float speed = 0.08f;
+	float speed = 0.04f;
 
 	SDL_Texture* enemyTex1 = NULL;
 

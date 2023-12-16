@@ -13,6 +13,7 @@
 #include "Physics.h"
 #include "Window.h"
 #include "Pathfinding.h"
+#include "Map.h"
 
 
 FEnemies::FEnemies() : Entity(EntityType::FENEMIES)
@@ -99,6 +100,54 @@ bool FEnemies::Update(float dt)
 		impulse.x += acceleration;
 		vel = b2Vec2(-speed * dt, 0);
 		break;
+	case EnemyFlyState::ATTACKING:
+
+		//condicional para saber si va a la derecha o a la izquierda
+		if (app->scene->GetPlayerPosition().x < position.x)
+		{
+			currentAnimation = enemy1FlyAnimL;
+
+			impulse.x -= acceleration;
+			if (app->scene->GetPlayerPosition().y < position.y)
+			{
+				impulse.y -= 0.001f;
+			}
+			else 
+			{
+				impulse.y += 0.001f;
+			}
+			vel = b2Vec2(speed * dt, -GRAVITY_Y);
+			//si el personaje esta fuera del path		
+
+			if (app->map->WorldToMap(position.x, position.y).DistanceTo(app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y)) > 7)
+			{
+				currentState = EnemyFlyState::MOVING_TO_DESTINATION;
+				app->map->pathfinding->CreatePath(app->map->WorldToMap(position.x, position.y),
+					app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y));
+			}
+		}
+		else
+		{
+			currentAnimation = enemy1FlyAnimR;
+			impulse.x += acceleration;
+			if (app->scene->GetPlayerPosition().y < position.y)
+			{
+				impulse.y -= 0.001f;
+			}
+			else
+			{
+				impulse.y += 0.001f;
+			}
+			vel = b2Vec2(-speed * dt, -GRAVITY_Y);
+			//si el personaje esta fuera del path
+			if (app->map->WorldToMap(position.x, position.y).DistanceTo(app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y)) > 7)
+			{
+				currentState = EnemyFlyState::MOVING_TO_ORIGIN;
+				app->map->pathfinding->CreatePath(app->map->WorldToMap(position.x, position.y),
+					app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y));
+			}
+		}
+		break;
 	}
 
 	//Set the velocity of the pbody of the player
@@ -109,6 +158,38 @@ bool FEnemies::Update(float dt)
 	b2Transform ebodyPos = ebody->body->GetTransform();
 	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
+
+	// Pathfinding
+
+	// pathfinding entre el enemigo y el player
+
+	//conditional to check if player is 7 tiles to the enemy
+
+	if (app->map->WorldToMap(position.x, position.y).DistanceTo(app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y)) < 7)
+	{
+		currentState = EnemyFlyState::ATTACKING;
+		app->map->pathfinding->CreatePath(app->map->WorldToMap(position.x, position.y),
+			app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y));
+	}
+	// pathfinding next steps
+	const DynArray<iPoint>* path = app->map->pathfinding->GetLastPath();
+
+	//const DynArray<iPoint>* path = app->map->pathfinding->GetLastPath();
+	if (app->physics->debug == true)
+	{
+		for (uint i = 0; i < path->Count(); ++i)
+		{
+			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+			app->render->DrawTexture(app->scene->mouseTileTex, pos.x, pos.y);
+		}
+	}
+	else
+	{
+		for (uint i = 0; i < path->Count(); ++i)
+		{
+			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+		}
+	}
 
 	app->render->DrawTexture(enemyTex1, position.x, position.y, &currentAnimation->GetCurrentFrame());
 
