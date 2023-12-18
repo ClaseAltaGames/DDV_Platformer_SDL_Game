@@ -187,11 +187,6 @@ bool Scene::LoadState(pugi::xml_node node) {
 
 bool Scene::SaveState(pugi::xml_node node) {
 	
-	/*b2Transform pbodyPos = pbody->body->GetTransform();
-
-	player->position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 16 / 2;
-	player->position.y = METERS_TO_PIXELS(pbodyPos.p.y) - 16 / 2;*/
-
 	pugi::xml_node playerNode = node.append_child("player");
 	playerNode.append_attribute("x").set_value(player->position.x);
 	playerNode.append_attribute("y").set_value(player->position.y);
