@@ -236,6 +236,25 @@ PhysBody* Physics::CreateChain(int x, int y, int* points, int size, bodyType typ
 	return pbody;
 }
 
+//Physbody function to destroy a body
+PhysBody* Physics::DestroyBody(PhysBody* pbody)
+{
+	if (pbody)
+	{
+		b2Body* body = pbody->body;
+
+		if (body)
+		{
+			// Elimina el cuerpo físico del mundo
+			world->DestroyBody(body);
+		}
+
+		// Libera la memoria de la instancia de PhysBody
+		delete pbody;
+	}
+	return pbody;
+}
+
 // 
 bool Physics::PostUpdate()
 {
@@ -349,7 +368,7 @@ void Physics::BeginContact(b2Contact* contact)
 		physA->listener->OnCollision(physA, physB);
 
 	if (physB && physB->listener != NULL && physB != nullptr)
-		physB->listener->OnCollision(physB, physA);
+	physB->listener->OnCollision(physB, physA);
 }
 
 //--------------- PhysBody
