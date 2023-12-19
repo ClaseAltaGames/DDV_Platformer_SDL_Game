@@ -167,23 +167,23 @@ bool Player::Update(float dt)
 
 		}
 
-		else if (death == true)
+		if (death == true && lives == 0)
 		{
 			currentAnimation = deathR;
 			currentAnimation->Update();
 			app->scene->pause = true;
-
 			app->physics->DestroyCircle(pbody);
-
 			pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
 
+
 			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
+
 			app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
 			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
 
 			pbody->listener = this;
 			pbody->ctype = ColliderType::PLAYER;
-
+			
 		}
 		if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 		{
@@ -289,7 +289,6 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 	case ColliderType::WENEMIES:
 		LOG("Collision WENEMIES");
 		death = true;
-		
 		break;
 	case ColliderType::FENEMIES:
 		LOG("Collision FENEMIES");

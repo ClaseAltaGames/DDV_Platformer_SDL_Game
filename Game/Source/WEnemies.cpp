@@ -111,7 +111,7 @@ bool WEnemies::Update(float dt)
 			if (app->scene->GetPlayerPosition().x < position.x)
 			{
 				currentAnimation = enemy1WalkAnimL;
-
+				currentAnimation->Update();
 				impulse.x -= acceleration;
 				vel = b2Vec2(speed * dt, -GRAVITY_Y);
 				//si el personaje esta fuera del path
@@ -125,6 +125,7 @@ bool WEnemies::Update(float dt)
 			else
 			{
 				currentAnimation = enemy1WalkAnimR;
+				currentAnimation->Update();
 				impulse.x += acceleration;
 				vel = b2Vec2(-speed * dt, -GRAVITY_Y);
 				//si el personaje esta fuera del path
@@ -181,6 +182,11 @@ bool WEnemies::Update(float dt)
 
 		app->render->DrawTexture(enemyTex1, position.x, position.y, &currentAnimation->GetCurrentFrame());
 	}
+	if (death == true)
+	{
+		app->physics->DestroyCircle(ebody);
+		ebody = app->physics->CreateCircle(-100 + 16, 1000 + 16, 8, bodyType::DYNAMIC);
+	}
 	return true;
 }
 
@@ -211,12 +217,16 @@ void WEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 	case ColliderType::UNKNOWN:
 		break;
 	case ColliderType::PLAYER:
-		death = true;	
 		//conditional to check if player jumps on the enemy
 		if (app->scene->GetPlayerPosition().y < position.y)
 		{	
-			app->physics->DestroyCircle(ebody);
-			app->tex->UnLoad(enemyTex1);
+			death = true;	
+			app->scene->GetPlayerLivesAlive();
+		}
+		else
+		{
+			app->scene->GetPlayerDeath();
+			death = false;
 		}
 		break;
 	}

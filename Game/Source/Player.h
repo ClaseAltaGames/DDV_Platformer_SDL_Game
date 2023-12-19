@@ -49,10 +49,8 @@ public:
 	bool death = false;
 	bool godMode = false;
 	int saltoFX;
+	int lives = 1;
 	
-	
-	
-
 private:
 	float jumpPower = 0.45f;
 	float acceleration = 0.2f;
@@ -71,10 +69,7 @@ private:
 
 	float gravityScale;
 
-	List<Animation*> animationList;
-
-
-	
+	List<Animation*> animationList;	
 };
 
 

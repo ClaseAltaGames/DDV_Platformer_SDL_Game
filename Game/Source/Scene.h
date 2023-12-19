@@ -51,6 +51,16 @@ public:
 		return wenemy->position;
 	}
 
+	int GetPlayerLivesAlive()
+	{
+		return player->lives = 1;	
+	}
+
+	int GetPlayerDeath()
+	{
+		return player->lives = 0;
+	}
+
 private:
 	SDL_Texture* img;
 	float textPosX, textPosY = 0;

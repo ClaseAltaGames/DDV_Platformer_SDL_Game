@@ -71,6 +71,8 @@ public:
 
 	List<Animation*> animationList;
 
+	bool death = false;
+
 };
 
 #endif
