@@ -181,12 +181,6 @@ bool WEnemies::Update(float dt)
 
 		app->render->DrawTexture(enemyTex1, position.x, position.y, &currentAnimation->GetCurrentFrame());
 	}
-	
-	if(death == true)
-	{
-		app->physics->DestroyCircle(ebody);
-		SDL_DestroyTexture(enemyTex1);
-	}
 	return true;
 }
 
@@ -223,6 +217,8 @@ void WEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 		if (app->scene->GetPlayerPosition().y < position.y)
 		{
 			death = true;
+			app->physics->DestroyBody(ebody);
+			SDL_DestroyTexture(enemyTex1);
 		}
 		break;
 	}

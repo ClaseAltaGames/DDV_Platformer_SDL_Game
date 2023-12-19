@@ -171,16 +171,19 @@ bool Player::Update(float dt)
 		{
 			currentAnimation = deathR;
 			currentAnimation->Update();
-			//app->scene->pause = true;
-						
+			app->scene->pause = true;
+
+			app->physics->DestroyCircle(pbody);
+
+			pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
+
 			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
+			app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
+			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
 
-			b2Transform pbodyPos = pbody->body->GetTransform();
-			position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 16 / 2;
-			position.y = METERS_TO_PIXELS(pbodyPos.p.y) - 16 / 2;
+			pbody->listener = this;
+			pbody->ctype = ColliderType::PLAYER;
 
-			pbody->body->SetTransform(b2Vec2(position.x, position.y), 0);
-			
 		}
 		if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 		{
@@ -240,7 +243,6 @@ bool Player::Update(float dt)
 		position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 16 / 2;
 		position.y = METERS_TO_PIXELS(pbodyPos.p.y) - 16 / 2;
 
-		
 		// Draw the character's texture
 		app->render->DrawTexture(texture, position.x, position.y, &currentAnimation->GetCurrentFrame());
 
