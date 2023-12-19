@@ -76,6 +76,7 @@ bool Player::Start() {
 	gravityScale = pbody->body->GetGravityScale();
 
 	saltoFX = app->audio->LoadFx("Assets/Audio/Fx/saltoFX.wav");
+	playerDeathFx = app->audio->LoadFx("Assets/Audio/Fx/playerDeath.wav");
 
 	PlayerStartAnims();
 	
@@ -169,6 +170,7 @@ bool Player::Update(float dt)
 
 		if (death == true && lives == 0)
 		{
+			app->audio->PlayFx(playerDeathFx);
 			currentAnimation = deathR;
 			currentAnimation->Update();
 			app->scene->pause = true;

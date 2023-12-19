@@ -65,7 +65,7 @@ bool FEnemies::Start() {
 
 	FEnemiesStartAnims();
 
-	//WEnemies* enemy2 = new WEnemies();
+	fenemyDeathFx = app->audio->LoadFx("Assets/Audio/Fx/fenemyDeath.wav");
 
 	enemyTex1 = app->tex->Load(parameters.attribute("texturepath").as_string());
 
@@ -241,6 +241,7 @@ void FEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 		{
 			death = true;
 			app->scene->GetPlayerLivesAlive();
+			app->audio->PlayFx(fenemyDeathFx);
 		}
 		else
 		{

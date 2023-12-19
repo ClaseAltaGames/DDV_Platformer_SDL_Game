@@ -77,5 +77,8 @@ public:
 
 	Player* player;
 
+private:
+	int wenemyDeathFx;
+
 };
 

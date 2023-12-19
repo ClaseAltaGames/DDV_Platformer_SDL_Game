@@ -73,6 +73,9 @@ public:
 
 	bool death = false;
 
+private:
+	int fenemyDeathFx;
+
 };
 
 #endif
