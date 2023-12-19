@@ -288,11 +288,8 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		break;
 	case ColliderType::WENEMIES:
 		LOG("Collision WENEMIES");
-		//funcion para que el player se muera si esta a la altura del enemigo o mas abajo
-		/*if (position.y >= app->scene->GetWenemyPosition().y)
-		{
-			death = true;
-		}*/
+		death = true;
+		
 		break;
 	case ColliderType::FENEMIES:
 		LOG("Collision FENEMIES");

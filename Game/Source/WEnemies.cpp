@@ -188,8 +188,6 @@ bool WEnemies::Update(float dt)
 
 bool WEnemies::CleanUp()
 {
-	app->physics->DestroyBody(ebody);
-	SDL_DestroyTexture(enemyTex1);
 
 	return true;
 }
@@ -213,12 +211,12 @@ void WEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 	case ColliderType::UNKNOWN:
 		break;
 	case ColliderType::PLAYER:
-		//conditional to check if player jumps on the enemy with WorldToMap
+		death = true;	
+		//conditional to check if player jumps on the enemy
 		if (app->scene->GetPlayerPosition().y < position.y)
-		{
-			death = true;
-			app->physics->DestroyBody(ebody);
-			SDL_DestroyTexture(enemyTex1);
+		{	
+			app->physics->DestroyCircle(ebody);
+			app->tex->UnLoad(enemyTex1);
 		}
 		break;
 	}
