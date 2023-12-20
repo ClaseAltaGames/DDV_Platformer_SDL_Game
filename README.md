@@ -22,6 +22,10 @@ We are ClaseAltaGames, a pair of students from CITM, videogames fans and C++ dev
 ### Debug    
 - F3 Start from the beginning of the current level
 
+- F5 Save state of the game
+
+- F6 Load state of the game
+
 - F9 View colliders 
 
 - F10 God Mode 
