@@ -8,6 +8,7 @@
 #include "Map.h"
 #include "Physics.h"
 #include "Player.h"
+#include "WEnemies.h"
 #include "EntityManager.h"
 
 
@@ -29,6 +30,7 @@ bool Scene::Awake(pugi::xml_node& config)
 	LOG("Loading Scene");
 	bool ret = true;
 
+	
 	// iterate all objects in the scene
 	// Check https://pugixml.org/docs/quickstart.html#access
 	for (pugi::xml_node itemNode = config.child("item"); itemNode; itemNode = itemNode.next_sibling("item"))
@@ -49,6 +51,8 @@ bool Scene::Awake(pugi::xml_node& config)
 		{
 			WEnemies* wenemy = (WEnemies*)app->entityManager->CreateEntity(EntityType::WENEMIES);
 			wenemy->parameters = wenemyNode;
+			
+			wenemyList.Add(wenemy);
 		}
 		for (pugi::xml_node fenemyNode = config.child("fenemy"); fenemyNode; fenemyNode = fenemyNode.next_sibling("fenemy"))
 		{
@@ -182,19 +186,43 @@ bool Scene::LoadState(pugi::xml_node node) {
 
 	player->pbody->body->SetTransform(posMetres,0);
 
+	
+
+	//load the position of the wenemy with the list in the xml file detecting the id of the wenemy
+	for (int i = 0; i < 3; i++)
+	{
+		b2Vec2 posMetres = b2Vec2(PIXEL_TO_METERS(node.child("wenemy").attribute("x").as_int()),
+								  PIXEL_TO_METERS(node.child("wenemy").attribute("y").as_int()));
+
+		wenemyList.At(i)->data->ebody->body->SetTransform(posMetres, 0);
+	}
+	
+
 	return true;
 }
 
 bool Scene::SaveState(pugi::xml_node node) {
 	
-	/*b2Transform pbodyPos = pbody->body->GetTransform();
-
-	player->position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 16 / 2;
-	player->position.y = METERS_TO_PIXELS(pbodyPos.p.y) - 16 / 2;*/
-
 	pugi::xml_node playerNode = node.append_child("player");
 	playerNode.append_attribute("x").set_value(player->position.x);
 	playerNode.append_attribute("y").set_value(player->position.y);
+	
+
+	// save the position of the wenemy with the list in the xml file detecting the id of the wenemy
+	for (int i = 0; i < 3; i++)
+	{
+		pugi::xml_node wenemyNode = node.append_child("wenemy");
+		wenemyNode.append_attribute("x").set_value(wenemyList.At(i)->data->position.x);
+		wenemyNode.append_attribute("y").set_value(wenemyList.At(i)->data->position.y);
+
+		wenemyNode.append_attribute("id").set_value(i);
+	}
+
+
+	
+
+	
+
 
 	return true;
 }

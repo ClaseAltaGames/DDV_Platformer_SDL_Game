@@ -60,7 +60,7 @@
 
 	</player>
 	  
-	<wenemy x="250" y="215" texturepath="Assets/Textures/enemy1.png">
+	<wenemy id="1" x="250" y="215" texturepath="Assets/Textures/enemy1.png">
 	  <animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
 		<frame x="21" y="23" w="12" h="17"/>
 		<frame x="38" y="23" w="14" h="17"/>
@@ -74,7 +74,7 @@
 	  </animation>
 	</wenemy>
 	  
-	<wenemy x="765" y="130" texturepath="Assets/Textures/enemy1.png">
+	<wenemy id="2" x="765" y="130" texturepath="Assets/Textures/enemy1.png">
 	  <animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
 		<frame x="21" y="23" w="12" h="17"/>
 		<frame x="38" y="23" w="14" h="17"/>
@@ -87,7 +87,7 @@
 		<frame x="21" y="63" w="14" h="17"/>
 	  </animation>
 	</wenemy>
-	<wenemy x="2098" y="239" texturepath="Assets/Textures/enemy1.png">
+	<wenemy id="3" x="2098" y="239" texturepath="Assets/Textures/enemy1.png">
 	  <animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
 		<frame x="21" y="23" w="12" h="17"/>
 		<frame x="38" y="23" w="14" h="17"/>

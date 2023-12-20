@@ -6,7 +6,10 @@
 	<audio />
 	<:anonymous />
 	<scene>
-		<player x="16" y="239" />
+		<player x="150" y="239" />
+		<wenemy x="106" y="239" id="0" />
+		<wenemy x="738" y="127" id="1" />
+		<wenemy x="1903" y="239" id="2" />
 	</scene>
 	<:anonymous />
 	<entitymanager />

@@ -69,6 +69,8 @@ private:
 	Player* player;
 	WEnemies* wenemy;
 	FEnemies* fenemy;
+	List<WEnemies*> wenemyList;
+	List<FEnemies*> fenemyList;
 
 	SDL_Texture* fondo;
 

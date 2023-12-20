@@ -286,7 +286,8 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		break;
 	case ColliderType::DEATH:
 		LOG("Collision DEATH");
-		death = true;		
+		death = true;
+		lives = 0;
 		break;
 	case ColliderType::WENEMIES:
 		LOG("Collision WENEMIES");
