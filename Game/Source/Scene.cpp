@@ -58,6 +58,8 @@ bool Scene::Awake(pugi::xml_node& config)
 		{
 			FEnemies* fenemy = (FEnemies*)app->entityManager->CreateEntity(EntityType::FENEMIES);
 			fenemy->parameters = fenemyNode;
+			
+			fenemyList.Add(fenemy);
 		}
 		
 
@@ -188,15 +190,28 @@ bool Scene::LoadState(pugi::xml_node node) {
 
 	
 
-	//load the position of the wenemy with the list in the xml file detecting the id of the wenemy
-	for (int i = 0; i < 3; i++)
+	//load the position of the wenemyList in the xml file detecting all of enemies and sibling
+	for (pugi::xml_node wenemyNode = node.child("wenemy"); wenemyNode; wenemyNode = wenemyNode.next_sibling("wenemy"))
 	{
-		b2Vec2 posMetres = b2Vec2(PIXEL_TO_METERS(node.child("wenemy").attribute("x").as_int()),
-								  PIXEL_TO_METERS(node.child("wenemy").attribute("y").as_int()));
+		b2Vec2 posMetres = b2Vec2(PIXEL_TO_METERS(wenemyNode.attribute("x").as_int()),
+						PIXEL_TO_METERS(wenemyNode.attribute("y").as_int()));
 
-		wenemyList.At(i)->data->ebody->body->SetTransform(posMetres, 0);
+		int id = wenemyNode.attribute("id").as_int();
+
+		wenemyList.At(id)->data->ebody->body->SetTransform(posMetres, 0);
 	}
 	
+	//load the position of the fenemyList in the xml file detecting all of enemies and sibling
+	for (pugi::xml_node fenemyNode = node.child("fenemy"); fenemyNode; fenemyNode = fenemyNode.next_sibling("fenemy"))
+	{
+		b2Vec2 posMetres = b2Vec2(PIXEL_TO_METERS(fenemyNode.attribute("x").as_int()),
+						PIXEL_TO_METERS(fenemyNode.attribute("y").as_int()));
+
+		int id = fenemyNode.attribute("id").as_int();
+
+		fenemyList.At(id)->data->ebody->body->SetTransform(posMetres, 0);
+	}
+
 
 	return true;
 }
@@ -218,6 +233,15 @@ bool Scene::SaveState(pugi::xml_node node) {
 		wenemyNode.append_attribute("id").set_value(i);
 	}
 
+	// save the position of the fenemy with the list in the xml file 
+	for (int i = 0; i < 3; i++)
+	{
+		pugi::xml_node fenemyNode = node.append_child("fenemy");
+		fenemyNode.append_attribute("x").set_value(fenemyList.At(i)->data->position.x);
+		fenemyNode.append_attribute("y").set_value(fenemyList.At(i)->data->position.y);
+
+		fenemyNode.append_attribute("id").set_value(i);
+	}
 
 	
 

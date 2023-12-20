@@ -103,7 +103,7 @@
 
 
 
-	<fenemy x="500" y="100" texturepath="Assets/Textures/duck_spritesheet.png">
+	<fenemy id ="1" x="500" y="100" texturepath="Assets/Textures/duck_spritesheet.png">
 		<animation name="enemy1FlyAnimR" loop="true" speed = "0.2f">
 			<frame x="23" y="3" w="16" h="11"/>
 			<frame x="23" y="20" w="16" h="7"/>
@@ -119,7 +119,7 @@
 		</animation>
 	</fenemy>
 
-	<fenemy x="1382" y="163" texturepath="Assets/Textures/duck_spritesheet.png">
+	<fenemy id ="2" x="1382" y="163" texturepath="Assets/Textures/duck_spritesheet.png">
 		<animation name="enemy1FlyAnimR" loop="true" speed = "0.2f">
 			<frame x="23" y="3" w="16" h="11"/>
 			<frame x="23" y="20" w="16" h="7"/>
@@ -135,7 +135,7 @@
 		</animation>
 	</fenemy>
 
-	<fenemy x="3030" y="205" texturepath="Assets/Textures/duck_spritesheet.png">
+	<fenemy id ="3" x="3030" y="205" texturepath="Assets/Textures/duck_spritesheet.png">
 		<animation name="enemy1FlyAnimR" loop="true" speed = "0.2f">
 			<frame x="23" y="3" w="16" h="11"/>
 			<frame x="23" y="20" w="16" h="7"/>
