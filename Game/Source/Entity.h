@@ -13,7 +13,7 @@ enum class EntityType
 	PLAYER,
 	WENEMIES,
 	FENEMIES,
-	ITEM,
+	JABON,
 	UNKNOWN
 };
 

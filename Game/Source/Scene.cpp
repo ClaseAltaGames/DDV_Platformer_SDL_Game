@@ -33,11 +33,6 @@ bool Scene::Awake(pugi::xml_node& config)
 	
 	// iterate all objects in the scene
 	// Check https://pugixml.org/docs/quickstart.html#access
-	for (pugi::xml_node itemNode = config.child("item"); itemNode; itemNode = itemNode.next_sibling("item"))
-	{
-		Item* item = (Item*)app->entityManager->CreateEntity(EntityType::ITEM);
-		item->parameters = itemNode;
-	}
 
 	if (config.child("player")) {
 		player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
@@ -61,7 +56,11 @@ bool Scene::Awake(pugi::xml_node& config)
 			
 			fenemyList.Add(fenemy);
 		}
-		
+		for (pugi::xml_node itemNode = config.child("item"); itemNode; itemNode = itemNode.next_sibling("item"))
+		{
+			Jabon* item = (Jabon*)app->entityManager->CreateEntity(EntityType::JABON);
+			item->parameters = itemNode;
+		}
 
 		if (config.child("map")) {
 			//Get the map name from the config file and assigns the value in the module

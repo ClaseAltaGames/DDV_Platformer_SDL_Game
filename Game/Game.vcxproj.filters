@@ -19,7 +19,6 @@
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
     <ClCompile Include="Source\Player.cpp" />
-    <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\Map.cpp" />
     <ClCompile Include="Source\Physics.cpp" />
     <ClCompile Include="Source\Path.cpp" />
@@ -28,6 +27,7 @@
     <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\GuiControlButton.cpp" />
     <ClCompile Include="Source\GuiManager.cpp" />
+    <ClCompile Include="Source\Jabon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -70,7 +70,6 @@
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\EntityManager.h" />
     <ClInclude Include="Source\Player.h" />
-    <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Physics.h" />
     <ClInclude Include="Source\Animation.h" />
@@ -83,6 +82,7 @@
     <ClInclude Include="Source\GuiControl.h" />
     <ClInclude Include="Source\GuiControlButton.h" />
     <ClInclude Include="Source\GuiManager.h" />
+    <ClInclude Include="Source\Jabon.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -97,5 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Output\config.xml" />
+    <Xml Include="..\Output\save_game.xml" />
   </ItemGroup>
 </Project>

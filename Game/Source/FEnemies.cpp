@@ -222,7 +222,7 @@ void FEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 {
 	switch (physB->ctype)
 	{
-	case ColliderType::ITEM:
+	case ColliderType::JABON:
 		break;
 
 	case ColliderType::PLATFORM:

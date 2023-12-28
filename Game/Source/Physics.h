@@ -25,7 +25,7 @@ enum bodyType {
 
 enum class ColliderType {
 	PLAYER, 
-	ITEM,
+	JABON,
 	PLATFORM, 
 	UNKNOWN,
 	WENEMIES,

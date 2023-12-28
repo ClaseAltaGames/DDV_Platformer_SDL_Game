@@ -151,7 +151,11 @@
 		</animation>
 	</fenemy>
 
-	<item x="256" y="180" texturepath="Assets/Textures/jabon.png"/>
+	<item x="256" y="215" texturepath="Assets/Textures/jabon.png"/>
+	<item x="835" y="63" texturepath="Assets/Textures/jabon.png"/>
+	<item x="1616" y="351" texturepath="Assets/Textures/jabon.png"/>
+	<item x="1653" y="351" texturepath="Assets/Textures/jabon.png"/>
+	<item x="1682" y="351" texturepath="Assets/Textures/jabon.png"/>
 
 
   </scene>

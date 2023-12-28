@@ -99,7 +99,7 @@
     <ClCompile Include="Source\FEnemies.cpp" />
     <ClCompile Include="Source\GuiControlButton.cpp" />
     <ClCompile Include="Source\GuiManager.cpp" />
-    <ClCompile Include="Source\Item.cpp" />
+    <ClCompile Include="Source\Jabon.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\App.cpp" />
     <ClCompile Include="Source\Audio.cpp" />
@@ -123,7 +123,7 @@
     <ClInclude Include="Source\GuiControl.h" />
     <ClInclude Include="Source\GuiControlButton.h" />
     <ClInclude Include="Source\GuiManager.h" />
-    <ClInclude Include="Source\Item.h" />
+    <ClInclude Include="Source\Jabon.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\p2Point.h" />
     <ClInclude Include="Source\Path.h" />
@@ -156,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Output\config.xml" />
+    <Xml Include="..\Output\save_game.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
