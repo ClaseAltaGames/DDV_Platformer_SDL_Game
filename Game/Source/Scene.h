@@ -60,7 +60,10 @@ public:
 	{
 		return player->lives = 0;
 	}
-
+	int GetEnemyDeathScore()
+	{
+		return player->score += 150;
+	}
 private:
 	SDL_Texture* img;
 	float textPosX, textPosY = 0;

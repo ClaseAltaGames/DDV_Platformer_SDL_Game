@@ -50,6 +50,8 @@ public:
 	bool godMode = false;
 	int saltoFX;
 	int lives = 1;
+
+	int score = 0;
 	
 private:
 	float jumpPower = 0.45f;
@@ -66,6 +68,8 @@ private:
 	Animation* jumpR;
 	Animation* idleR;
 	Animation* deathR;
+
+	SString points;
 
 	float gravityScale;
 

@@ -63,7 +63,7 @@ bool Player::Awake()
 bool Player::Start() {
 
 	//initilize textures
-
+	
 	texture = app->tex->Load(parameters.attribute("texturepath").as_string());
 	
 	pbody = app->physics->CreateCircle(position.x + 16, position.y + 16, 8, bodyType::DYNAMIC);
@@ -86,6 +86,8 @@ bool Player::Start() {
 
 bool Player::Update(float dt)
 {
+	points.Create("POINTS: %d", score);
+
 	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN){
 		godMode = !godMode;
 	}
@@ -253,8 +255,10 @@ bool Player::Update(float dt)
 		app->win->GetWindowSize(w, h);
 		app->render->camera.x = (-position.x * app->win->GetScale()) + w / 2;
 
+
 	}
-	
+
+	app->render->DrawText(points.GetString(), 900, 30, 100, 50);
 
 	return true;
 }
@@ -276,6 +280,7 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 	case ColliderType::ITEM:
 		LOG("Collision ITEM");
 		app->audio->PlayFx(pickCoinFxId);
+		score += 50;
 		break;
 	case ColliderType::PLATFORM:
 		LOG("Collision PLATFORM");
@@ -292,6 +297,7 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 	case ColliderType::WENEMIES:
 		LOG("Collision WENEMIES");
 		death = true;
+
 		break;
 	case ColliderType::FENEMIES:
 		LOG("Collision FENEMIES");
