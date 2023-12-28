@@ -150,9 +150,10 @@
 			<frame x="0" y="49" w="16" h="13"/>
 		</animation>
 	</fenemy>
-	
-	
-    
+
+	<item x="256" y="180" texturepath="Assets/Textures/jabon.png"/>
+
+
   </scene>
   
 </config>
