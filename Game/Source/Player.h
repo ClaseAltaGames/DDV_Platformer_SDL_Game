@@ -49,7 +49,7 @@ public:
 	bool death = false;
 	bool godMode = false;
 	int saltoFX;
-	int lives = 1;
+	int lives = 3;
 
 	int score = 0;
 	
@@ -74,6 +74,10 @@ private:
 	float gravityScale;
 
 	List<Animation*> animationList;	
+
+	SDL_Texture* oneLive;
+	SDL_Texture* twoLive;
+	SDL_Texture* threeLive;
 
 	int playerDeathFx;
 };

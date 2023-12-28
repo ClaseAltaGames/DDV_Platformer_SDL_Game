@@ -53,12 +53,12 @@ public:
 
 	int GetPlayerLivesAlive()
 	{
-		return player->lives = 1;	
+		return player->lives;	
 	}
 
 	int GetPlayerDeath()
 	{
-		return player->lives = 0;
+		return player->lives--;
 	}
 	int GetEnemyDeathScore()
 	{

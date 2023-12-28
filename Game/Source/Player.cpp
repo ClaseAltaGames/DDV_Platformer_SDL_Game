@@ -64,6 +64,10 @@ bool Player::Start() {
 
 	//initilize textures
 	
+	oneLive = app->tex->Load("Assets/Textures/1vidas.png");
+	twoLive = app->tex->Load("Assets/Textures/2vidas.png");
+	threeLive = app->tex->Load("Assets/Textures/3vidas.png");
+
 	texture = app->tex->Load(parameters.attribute("texturepath").as_string());
 	
 	pbody = app->physics->CreateCircle(position.x + 16, position.y + 16, 8, bodyType::DYNAMIC);
@@ -172,6 +176,8 @@ bool Player::Update(float dt)
 
 		if (death == true && lives == 0)
 		{
+			app->render->DrawTexture(threeLive, position.x - 230, 20);
+			lives = 3;
 			app->audio->PlayFx(playerDeathFx);
 			currentAnimation = deathR;
 			currentAnimation->Update();
@@ -257,6 +263,18 @@ bool Player::Update(float dt)
 
 
 	}
+	if (lives == 3)
+	{
+		app->render->DrawTexture(threeLive, position.x -230, 20);
+	}
+	if(lives == 2)
+	{
+		app->render->DrawTexture(twoLive, position.x - 230, 20);
+	}
+	if (lives == 1)
+	{
+		app->render->DrawTexture(oneLive, position.x - 230, 20);
+	}
 
 	app->render->DrawText(points.GetString(), 900, 30, 100, 50);
 
@@ -292,12 +310,11 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 	case ColliderType::DEATH:
 		LOG("Collision DEATH");
 		death = true;
-		lives = 0;
+		lives--;
 		break;
 	case ColliderType::WENEMIES:
 		LOG("Collision WENEMIES");
 		death = true;
-
 		break;
 	case ColliderType::FENEMIES:
 		LOG("Collision FENEMIES");
