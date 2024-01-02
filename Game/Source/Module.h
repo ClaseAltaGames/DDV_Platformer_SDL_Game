@@ -72,10 +72,35 @@ public:
 		return true;
 	}
 
-public:
+	// Switches isEnabled and calls Start() method
+	void Enable()
+	{
+		if (!isEnabled)
+		{
+			isEnabled = true;
+			Start();
+		}
+	}
 
+	// Switches isEnabled and calls CleanUp() method
+	void Disable()
+	{
+		if (isEnabled)
+		{
+			isEnabled = false;
+			CleanUp();
+		}
+	
+	}
+
+	inline bool IsEnabled() const { return isEnabled; }
+
+public:
 	SString name;
 	bool active;
+
+private: 
+	bool isEnabled = true;
 
 };
 

@@ -8,6 +8,7 @@
 #include "Map.h"
 #include "Physics.h"
 #include "GuiManager.h"
+#include "FadeToBlack.h"
 #include "Optick/include/optick.h"
 
 #include "Defs.h"
@@ -36,6 +37,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	map = new Map();
 	entityManager = new EntityManager();
 	guiManager = new GuiManager();
+	fadeToBlack = new FadeToBlack();
 
 
 	// Ordered for awake / Start / Update
@@ -49,6 +51,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(map);
 	AddModule(entityManager);
 	AddModule(guiManager);
+	AddModule(fadeToBlack);
 
 	// Render last to swap buffer
 	AddModule(render);

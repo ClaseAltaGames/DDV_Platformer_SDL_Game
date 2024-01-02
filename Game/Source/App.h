@@ -20,6 +20,7 @@ class EntityManager;
 class Map;
 class Physics;
 class GuiManager;
+class FadeToBlack;
 
 class App
 {
@@ -97,6 +98,7 @@ public:
 	Map* map;
 	Physics* physics;
 	GuiManager* guiManager;
+	FadeToBlack* fadeToBlack;
 
 	uint32 maxFrameDuration = 16;
 
