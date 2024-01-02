@@ -21,7 +21,7 @@ class Map;
 class Physics;
 class GuiManager;
 class FadeToBlack;
-//class IntroScreen;
+class IntroScreen;
 
 class App
 {
@@ -99,7 +99,7 @@ public:
 	Map* map;
 	Physics* physics;
 	GuiManager* guiManager;
-	//IntroScreen* introScreen;
+	IntroScreen* introScreen;
 	FadeToBlack* fadeToBlack;
 
 	uint32 maxFrameDuration = 16;

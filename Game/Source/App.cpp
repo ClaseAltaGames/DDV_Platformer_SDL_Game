@@ -9,7 +9,7 @@
 #include "Physics.h"
 #include "GuiManager.h"
 #include "FadeToBlack.h"
-//#include "IntroScreen.h"
+#include "IntroScreen.h"
 #include "Optick/include/optick.h"
 
 #include "Defs.h"
@@ -38,7 +38,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	map = new Map();
 	entityManager = new EntityManager();
 	guiManager = new GuiManager();
-	//introScreen = new IntroScreen();
+	introScreen = new IntroScreen();
 	fadeToBlack = new FadeToBlack();
 
 
@@ -53,7 +53,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(map);
 	AddModule(entityManager);
 	AddModule(guiManager);
-	//AddModule(introScreen);
+	AddModule(introScreen);
 	AddModule(fadeToBlack);
 
 	// Render last to swap buffer

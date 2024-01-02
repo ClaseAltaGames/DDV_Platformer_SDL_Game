@@ -2,11 +2,11 @@
 
 #include "Module.h"
 #include "Animation.h"
-#include "Path.h"
-#include "Point.h"
-#include "p2point.h"
 
 #include "SDL/include/SDL.h"
+
+struct SDL_Texture;
+
 
 class IntroScreen : public Module
 {
@@ -27,9 +27,8 @@ public:
 
     SDL_Texture* introScreenTex;
 
-    Animation* introScreenAnim;
+    Animation introScreenAnim;
 
-    Path* introScreenPath;
 
 private:
 
