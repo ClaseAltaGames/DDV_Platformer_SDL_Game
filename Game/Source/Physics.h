@@ -63,7 +63,7 @@ class Physics : public Module, public b2ContactListener // TODO
 public:
 
 	// Constructors & Destructors
-	Physics();
+	Physics(bool startEnabled = true);
 	~Physics();
 
 	// Main module steps

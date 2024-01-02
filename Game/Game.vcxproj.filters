@@ -29,6 +29,7 @@
     <ClCompile Include="Source\GuiManager.cpp" />
     <ClCompile Include="Source\Jabon.cpp" />
     <ClCompile Include="Source\FadeToBlack.cpp" />
+    <ClCompile Include="Source\IntroScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -85,6 +86,7 @@
     <ClInclude Include="Source\GuiManager.h" />
     <ClInclude Include="Source\Jabon.h" />
     <ClInclude Include="Source\FadeToBlack.h" />
+    <ClInclude Include="Source\IntroScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

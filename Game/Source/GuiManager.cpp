@@ -5,7 +5,7 @@
 #include "GuiControlButton.h"
 #include "Audio.h"
 
-GuiManager::GuiManager() :Module()
+GuiManager::GuiManager(bool startEnabled) : Module(startEnabled)
 {
 	name.Create("guiManager");
 }

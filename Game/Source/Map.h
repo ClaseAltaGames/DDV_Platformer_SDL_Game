@@ -106,7 +106,7 @@ class Map : public Module
 {
 public:
 
-    Map();
+    Map(bool startEnabled = true);
 
     // Destructor
     virtual ~Map();

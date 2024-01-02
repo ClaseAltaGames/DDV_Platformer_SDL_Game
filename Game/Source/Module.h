@@ -12,8 +12,10 @@ class Module
 {
 public:
 
-	Module() : active(false)
-	{}
+	Module(bool startEnabled)
+	{
+		isEnabled = startEnabled;
+	}
 
 	void Init()
 	{
@@ -98,9 +100,8 @@ public:
 public:
 	SString name;
 	bool active;
-
-private: 
 	bool isEnabled = true;
+
 
 };
 
