@@ -29,11 +29,14 @@ bool IntroScreen::Start()
 
 	app->titleScreen->active = false;
 	app->titleScreen->Disable();
+	app->titleScreen->titleSound = 0;
 
-	app->audio->PlayMusic("Assets/Music/introScreenMusic.ogg", 1.0f);
+	//app->audio->PlayMusic("Assets/Music/onlymp3.to - Bully Soundtrack Main Theme-7RU7CohvsMU-192k-1704300284.ogg", 1.0f);
 
     app->render->camera.x = 0;
     app->render->camera.y = 0;
+	introSound = app->audio->LoadFx("Assets/Music/onlymp3.to-Welcome-to-Bullworth-Bully-aTAsG7J1kwI-192k-1704299364.wav");
+	app->audio->PlayFx(introSound, 0);
 
     return true;
 }
@@ -43,9 +46,16 @@ bool IntroScreen::Update(float dt)
 {    
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
+		app->audio->UnloadFx(introSound);
 		app->fadeToBlack->FadeToBlackTransition((Module*)app->introScreen, (Module*)app->titleScreen, 0);
 		app->introScreen->Disable();
 		app->introScreen->active = false;
+		
+		//plays the title screen music
+		app->titleScreen->active = true;
+		app->titleScreen->Enable();
+		app->titleScreen->titleSound = app->audio->LoadFx("Assets/Music/onlymp3.to-Bully-Soundtrack-Main-Theme-7RU7CohvsMU-192k-1704300284.wav");
+		app->audio->PlayFx(app->titleScreen->titleSound, 0);
 	}
 	
     return true;

@@ -30,7 +30,9 @@ bool TitleScreen::Start()
     app->render->camera.x = 0;
     app->render->camera.y = 0;
 
-    app->audio->PlayMusic("Assets/Music/titleScreen.ogg", 1.0f);
+    //app->audio->PlayMusic("Assets/Music/titleScreen.ogg", 1.0f);
+    titleSound = app->audio->LoadFx("Assets/Music/onlymp3.to-Bully-Soundtrack-Main-Theme-7RU7CohvsMU-192k-1704300284.wav");
+    
 
     app->scene->Disable();
     app->scene->active = false;
@@ -49,6 +51,7 @@ bool TitleScreen::Update(float dt)
 {
     if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
     {
+        app->audio->UnloadFx(titleSound);
         app->fadeToBlack->FadeToBlackTransition((Module*)app->titleScreen, (Module*)app->scene, 0);
 
         app->titleScreen->active = false;
@@ -59,6 +62,11 @@ bool TitleScreen::Update(float dt)
         app->map->active = true;
         app->entityManager->active = true;
         app->physics->active = true;
+
+        //plays the scene music
+
+        app->audio->PlayMusic("Assets/Music/Song1.ogg", 1.0f);
+
     }
     return true;
 }

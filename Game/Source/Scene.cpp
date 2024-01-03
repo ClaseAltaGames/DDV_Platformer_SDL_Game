@@ -80,7 +80,7 @@ bool Scene::Start()
 	app->tex->UnLoad(app->titleScreen->titleScreenTex);
 
 	fondo = app->tex->Load("Assets/Textures/fondo.png");
-	app->audio->PlayMusic("Assets/Music/Song1.ogg", 1.0f);
+	//app->audio->PlayMusic("Assets/Music/Song1.ogg", 1.0f);
 	// NOTE: We have to avoid the use of paths in the code, we will move it later to a config file
 	//img = app->tex->Load("Assets/Textures/test.png");
 	

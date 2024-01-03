@@ -24,7 +24,9 @@ public:
 public:
 
     SDL_Texture* titleScreenTex;
+    int titleSound;
 
 private:
+    
 
 };

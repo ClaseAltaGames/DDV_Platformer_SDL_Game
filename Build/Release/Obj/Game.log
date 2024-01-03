@@ -1,13 +1,21 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Msbuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
   IntroScreen.cpp
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(56,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(58,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(64,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(66,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\edgar\Documents\GitHub\SDL\DDV_Platformer_SDL_Game\Game\Source\Animation.h(56,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+  (compilando archivo de origen "Source/IntroScreen.cpp")
+  
+C:\Users\edgar\Documents\GitHub\SDL\DDV_Platformer_SDL_Game\Game\Source\Animation.h(58,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  (compilando archivo de origen "Source/IntroScreen.cpp")
+  
+C:\Users\edgar\Documents\GitHub\SDL\DDV_Platformer_SDL_Game\Game\Source\Animation.h(64,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+  (compilando archivo de origen "Source/IntroScreen.cpp")
+  
+C:\Users\edgar\Documents\GitHub\SDL\DDV_Platformer_SDL_Game\Game\Source\Animation.h(66,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  (compilando archivo de origen "Source/IntroScreen.cpp")
+  
   Generando código
-  Previous IPDB and IOBJ mismatch, fall back to full compilation.
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Scene.cpp(74): warning C4715: 'Scene::Awake': no todas las rutas de acceso de control devuelven un valor
-  All 736 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  1 of 740 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
-  Game.vcxproj -> C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Build\Release\Game.exe
+  Game.vcxproj -> C:\Users\edgar\Documents\GitHub\SDL\DDV_Platformer_SDL_Game\Build\Release\Game.exe
           1 archivo(s) copiado(s).

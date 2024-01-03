@@ -26,5 +26,5 @@ public:
     SDL_Texture* introScreenTex;
 
 private:
-
+    int introSound;
 };
