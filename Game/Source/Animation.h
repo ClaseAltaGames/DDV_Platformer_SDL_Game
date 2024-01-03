@@ -3,7 +3,7 @@
 
 #include "SDL/include/SDL_rect.h"
 #include "SString.h"
-#define MAX_FRAMES 300
+#define MAX_FRAMES 500
 
 class Animation
 {

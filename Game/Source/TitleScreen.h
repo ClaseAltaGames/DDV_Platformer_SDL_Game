@@ -6,12 +6,12 @@
 struct SDL_Texture;
 
 
-class IntroScreen : public Module
+class TitleScreen : public Module
 {
 public:
 
-    IntroScreen(bool startEnabled = true);
-    virtual ~IntroScreen();
+    TitleScreen(bool startEnabled = true);
+    virtual ~TitleScreen();
 
     bool Start();
 
@@ -23,7 +23,7 @@ public:
 
 public:
 
-    SDL_Texture* introScreenTex;
+    SDL_Texture* titleScreenTex;
 
 private:
 

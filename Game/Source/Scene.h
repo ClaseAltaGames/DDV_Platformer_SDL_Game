@@ -60,9 +60,13 @@ public:
 	{
 		return player->lives--;
 	}
-	int GetEnemyDeathScore()
+	int GetWEnemyDeathScore()
 	{
 		return player->score += 150;
+	}
+	int GetFEnemyDeathScore()
+	{
+		return player->score += 300;
 	}
 private:
 	SDL_Texture* img;

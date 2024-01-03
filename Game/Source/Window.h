@@ -3,7 +3,7 @@
 
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 768
-#define SCREEN_SIZE 1
+#define SCREEN_SIZE 0
 
 #include "Module.h"
 

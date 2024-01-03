@@ -21,6 +21,7 @@ class Map;
 class Physics;
 class GuiManager;
 class FadeToBlack;
+class TitleScreen;
 class IntroScreen;
 
 class App
@@ -99,6 +100,7 @@ public:
 	Map* map;
 	Physics* physics;
 	GuiManager* guiManager;
+	TitleScreen* titleScreen;
 	IntroScreen* introScreen;
 	FadeToBlack* fadeToBlack;
 

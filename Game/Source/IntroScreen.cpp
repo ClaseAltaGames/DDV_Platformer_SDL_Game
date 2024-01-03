@@ -7,22 +7,15 @@
 #include "Audio.h"
 #include "Scene.h"
 #include "FadeToBlack.h"
+#include "Map.h"
+#include "EntityManager.h"
+#include "Physics.h"
+#include "TitleScreen.h"
+
+#include "SDL/include/SDL.h"    
 
 IntroScreen::IntroScreen(bool startEnabled) : Module(startEnabled)
 {
-    /*for (int fila = 0; fila < 24; fila++)
-    {
-        for (int columna = 0; columna < 5; columna++)
-        {
-            int frameX = columna * SCREEN_WIDTH;
-            int frameY = fila * SCREEN_HEIGHT;
-            introScreenAnim.PushBack({ frameX, frameY, SCREEN_WIDTH, SCREEN_HEIGHT });
-        }
-    }
-
-    introScreenAnim.speed = 0.02f;
-    introScreenAnim.loop = false;*/
-  
 }
 
 // Destructor
@@ -32,26 +25,35 @@ IntroScreen::~IntroScreen()
 // Called before render is available
 bool IntroScreen::Start()
 {
-    /*app->scene->Disable();
-    introScreenTex = app->tex->Load("Assets/Textures/introScreen1.png");*/
+    introScreenTex = app->tex->Load("Assets/Textures/introScreen1.png");
+
+	app->titleScreen->active = false;
+	app->titleScreen->Disable();
+
+	app->audio->PlayMusic("Assets/Music/introScreenMusic.ogg", 1.0f);
+
+    app->render->camera.x = 0;
+    app->render->camera.y = 0;
 
     return true;
 }
 
 // Called each loop iteration
 bool IntroScreen::Update(float dt)
-{
-   /* introScreenAnim.Update();
-    if (app->input->GetKey(SDL_SCANCODE_SPACE))
-    {
-		app->fadeToBlack->FadeToBlackTransition(this, (Module*)app->scene, 90);
-	}*/
+{    
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+		app->fadeToBlack->FadeToBlackTransition((Module*)app->introScreen, (Module*)app->titleScreen, 0);
+		app->introScreen->Disable();
+		app->introScreen->active = false;
+	}
+	
     return true;
 }
 
 bool IntroScreen::PostUpdate()
 {
-   /* app->render->DrawTexture(introScreenTex, 0, 0, &introScreenAnim.GetCurrentFrame());*/
+    app->render->DrawTexture(introScreenTex, 0, 0);
 
 	return true;
 }
@@ -59,5 +61,11 @@ bool IntroScreen::PostUpdate()
 // Called before quitting
 bool IntroScreen::CleanUp()
 {
+    if(introScreenTex != nullptr)
+	{
+		app->tex->UnLoad(introScreenTex);
+		introScreenTex = nullptr;
+	}
+
     return true;
 }

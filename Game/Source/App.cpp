@@ -10,6 +10,7 @@
 #include "GuiManager.h"
 #include "FadeToBlack.h"
 #include "IntroScreen.h"
+#include "TitleScreen.h"
 #include "Optick/include/optick.h"
 
 #include "Defs.h"
@@ -38,6 +39,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	map = new Map();
 	entityManager = new EntityManager();
 	guiManager = new GuiManager();
+	titleScreen = new TitleScreen();
 	introScreen = new IntroScreen();
 	fadeToBlack = new FadeToBlack();
 
@@ -53,6 +55,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(map);
 	AddModule(entityManager);
 	AddModule(guiManager);
+	AddModule(titleScreen);
 	AddModule(introScreen);
 	AddModule(fadeToBlack);
 

@@ -242,7 +242,7 @@ void FEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 			death = true;
 			app->scene->GetPlayerLivesAlive();
 			app->audio->PlayFx(fenemyDeathFx); 
-			app->scene->GetEnemyDeathScore();
+			app->scene->GetFEnemyDeathScore();
 		}
 		else
 		{

@@ -1,7 +1,7 @@
 #ifndef __PATH_H__
 #define __PATH_H__
 
-#include "p2Point.h"
+#include "Point.h"
 #include <string>
 
 #define MAX_STEPS 25

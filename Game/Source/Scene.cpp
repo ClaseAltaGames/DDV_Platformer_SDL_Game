@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "WEnemies.h"
 #include "EntityManager.h"
+#include "TitleScreen.h"
 
 
 #include "Defs.h"
@@ -74,6 +75,10 @@ bool Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool Scene::Start()
 {
+	app->titleScreen->active = false;
+	app->titleScreen->Disable();
+	app->tex->UnLoad(app->titleScreen->titleScreenTex);
+
 	fondo = app->tex->Load("Assets/Textures/fondo.png");
 	app->audio->PlayMusic("Assets/Music/Song1.ogg", 1.0f);
 	// NOTE: We have to avoid the use of paths in the code, we will move it later to a config file
@@ -113,6 +118,7 @@ bool Scene::PreUpdate()
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
+
 	app->render->DrawTexture(fondo, player->position.x - 340, 0);
 
 	float camSpeed = 1; 
