@@ -1,0 +1,19 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Msbuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+  IntroScreen.cpp
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(56,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(58,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(64,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(66,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  Render.cpp
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Render.cpp(220,45): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Render.cpp(221,45): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+  TitleScreen.cpp
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(56,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(58,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(64,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(66,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  Generando código...
+Render.obj : error LNK2019: símbolo externo _TTF_Init sin resolver al que se hace referencia en la función "public: virtual bool __thiscall Render::Awake(class pugi::xml_node &)" (?Awake@Render@@UAE_NAAVxml_node@pugi@@@Z)
+Render.obj : error LNK2019: símbolo externo _TTF_OpenFont sin resolver al que se hace referencia en la función "public: virtual bool __thiscall Render::Awake(class pugi::xml_node &)" (?Awake@Render@@UAE_NAAVxml_node@pugi@@@Z)
+Render.obj : error LNK2019: símbolo externo _TTF_RenderText_Solid sin resolver al que se hace referencia en la función "public: bool __thiscall Render::DrawText(char const *,int,int,int,int)" (?DrawText@Render@@QAE_NPBDHHHH@Z)
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Build\Debug\Game.exe : fatal error LNK1120: 3 externos sin resolver

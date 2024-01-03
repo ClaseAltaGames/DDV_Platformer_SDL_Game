@@ -51,9 +51,8 @@ bool Render::Awake(pugi::xml_node& config)
 	//initialise the SDL_ttf library
 	TTF_Init();
 
-	//load a font into memory
+	//load a font into memory	
 	font = TTF_OpenFont("Assets/Fonts/pricedown/pricedown-bl.ttf", 25);
-	
 
 	return ret;
 }
