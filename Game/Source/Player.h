@@ -81,6 +81,7 @@ private:
 	SDL_Texture* threeLive;
 
 	int playerDeathFx;
+	int pickShampooFx;
 };
 
 

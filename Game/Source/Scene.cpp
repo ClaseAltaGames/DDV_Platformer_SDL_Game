@@ -12,6 +12,7 @@
 #include "EntityManager.h"
 #include "TitleScreen.h"
 #include "LevelCompletedScreen.h"
+#include "DeadScreen.h"
 #include "FadeToBlack.h"
 #include "GuiManager.h"
 
@@ -80,6 +81,12 @@ bool Scene::Start()
 {
 	app->titleScreen->active = false;
 	app->titleScreen->Disable();
+
+	app->deadScreen->active = false;
+	app->deadScreen->Disable();
+
+	app->levelCompletedScreen->active = false;
+	app->levelCompletedScreen->Disable();
 
 	app->guiManager->active = false;
 	app->guiManager->Disable();

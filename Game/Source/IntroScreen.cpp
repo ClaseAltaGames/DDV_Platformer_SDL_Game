@@ -29,6 +29,7 @@ bool IntroScreen::Start()
 
 	app->titleScreen->active = false;
 	app->titleScreen->Disable();
+
 	app->titleScreen->titleSound = 0;
 
 	//app->audio->PlayMusic("Assets/Music/onlymp3.to - Bully Soundtrack Main Theme-7RU7CohvsMU-192k-1704300284.ogg", 1.0f);

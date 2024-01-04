@@ -10,7 +10,6 @@
 #include "Map.h"
 #include "EntityManager.h"
 #include "Physics.h"
-#include "IntroScreen.h"
 
 #include "SDL/include/SDL.h"    
 
@@ -64,7 +63,6 @@ bool TitleScreen::Update(float dt)
         app->physics->active = true;
 
         //plays the scene music
-
         app->audio->PlayMusic("Assets/Music/Song1.ogg", 1.0f);
 
     }

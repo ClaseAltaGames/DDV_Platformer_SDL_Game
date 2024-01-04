@@ -100,10 +100,35 @@
 		<frame x="21" y="63" w="14" h="17"/>
 	  </animation>
 	</wenemy>
+	<wenemy id="4" x="4306" y="95" texturepath="Assets/Textures/enemy1.png">
+		<animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
+			<frame x="21" y="23" w="12" h="17"/>
+			<frame x="38" y="23" w="14" h="17"/>
+			<frame x="1" y="23" w="12" h="17"/>
+		</animation>
 
+		<animation name="enemy1WalkAnimL" loop="true" speed = "0.2f">
+			<frame x="3" y="63" w="14" h="17"/>
+			<frame x="38" y="63" w="14" h="17"/>
+			<frame x="21" y="63" w="14" h="17"/>
+		</animation>
+	</wenemy>
+	<wenemy id="5" x="4697" y="239" texturepath="Assets/Textures/enemy1.png">
+		<animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
+			<frame x="21" y="23" w="12" h="17"/>
+			<frame x="38" y="23" w="14" h="17"/>
+			<frame x="1" y="23" w="12" h="17"/>
+		</animation>
 
+		<animation name="enemy1WalkAnimL" loop="true" speed = "0.2f">
+			<frame x="3" y="63" w="14" h="17"/>
+			<frame x="38" y="63" w="14" h="17"/>
+			<frame x="21" y="63" w="14" h="17"/>
+		</animation>
+	</wenemy>
+	
 
-	<fenemy id ="1" x="500" y="100" texturepath="Assets/Textures/duck_spritesheet.png">
+	  <fenemy id ="1" x="500" y="100" texturepath="Assets/Textures/duck_spritesheet.png">
 		<animation name="enemy1FlyAnimR" loop="true" speed = "0.2f">
 			<frame x="23" y="3" w="16" h="11"/>
 			<frame x="23" y="20" w="16" h="7"/>
@@ -151,6 +176,70 @@
 		</animation>
 	</fenemy>
 
+	<fenemy id ="4" x="2358" y="198" texturepath="Assets/Textures/duck_spritesheet.png">
+		<animation name="enemy1FlyAnimR" loop="true" speed = "0.2f">
+			<frame x="23" y="3" w="16" h="11"/>
+			<frame x="23" y="20" w="16" h="7"/>
+			<frame x="23" y="35" w="16" h="10"/>
+			<frame x="23" y="49" w="16" h="13"/>
+		</animation>
+
+		<animation name="enemy1FlyAnimL" loop="true" speed = "0.2f">
+			<frame x="0" y="3" w="16" h="11"/>
+			<frame x="0" y="20" w="16" h="7"/>
+			<frame x="0" y="35" w="16" h="10"/>
+			<frame x="0" y="49" w="16" h="13"/>
+		</animation>
+	</fenemy>
+	  
+	<fenemy id ="5" x="3479" y="120" texturepath="Assets/Textures/duck_spritesheet.png">
+		<animation name="enemy1FlyAnimR" loop="true" speed = "0.2f">
+			<frame x="23" y="3" w="16" h="11"/>
+			<frame x="23" y="20" w="16" h="7"/>
+			<frame x="23" y="35" w="16" h="10"/>
+			<frame x="23" y="49" w="16" h="13"/>
+		</animation>
+
+		<animation name="enemy1FlyAnimL" loop="true" speed = "0.2f">
+			<frame x="0" y="3" w="16" h="11"/>
+			<frame x="0" y="20" w="16" h="7"/>
+			<frame x="0" y="35" w="16" h="10"/>
+			<frame x="0" y="49" w="16" h="13"/>
+		</animation>
+	</fenemy>
+	
+	<fenemy id ="6" x="3774" y="180" texturepath="Assets/Textures/duck_spritesheet.png">
+		<animation name="enemy1FlyAnimR" loop="true" speed = "0.2f">
+			<frame x="23" y="3" w="16" h="11"/>
+			<frame x="23" y="20" w="16" h="7"/>
+			<frame x="23" y="35" w="16" h="10"/>
+			<frame x="23" y="49" w="16" h="13"/>
+		</animation>
+
+		<animation name="enemy1FlyAnimL" loop="true" speed = "0.2f">
+			<frame x="0" y="3" w="16" h="11"/>
+			<frame x="0" y="20" w="16" h="7"/>
+			<frame x="0" y="35" w="16" h="10"/>
+			<frame x="0" y="49" w="16" h="13"/>
+		</animation>
+	</fenemy>
+	  
+	<fenemy id ="7" x="3981" y="102" texturepath="Assets/Textures/duck_spritesheet.png">
+		<animation name="enemy1FlyAnimR" loop="true" speed = "0.2f">
+			<frame x="23" y="3" w="16" h="11"/>
+			<frame x="23" y="20" w="16" h="7"/>
+			<frame x="23" y="35" w="16" h="10"/>
+			<frame x="23" y="49" w="16" h="13"/>
+		</animation>
+
+		<animation name="enemy1FlyAnimL" loop="true" speed = "0.2f">
+			<frame x="0" y="3" w="16" h="11"/>
+			<frame x="0" y="20" w="16" h="7"/>
+			<frame x="0" y="35" w="16" h="10"/>
+			<frame x="0" y="49" w="16" h="13"/>
+		</animation>
+	</fenemy>
+	  
 	<item x="256" y="215" texturepath="Assets/Textures/jabon.png"/>
 	<item x="835" y="63" texturepath="Assets/Textures/jabon.png"/>
 	<item x="1616" y="351" texturepath="Assets/Textures/jabon.png"/>

@@ -270,7 +270,7 @@ bool WEnemies::HasReachedDestination()
 	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
-	if (position.x == 100 || position.x == 650 || position.x == 1872)
+	if (position.x == 100 || position.x == 650 || position.x == 1872 || position.x == 4098 || position.x == 4355)
 	{
 		return true; // Cambia esto con tu lógica real
 	}
@@ -287,7 +287,7 @@ bool WEnemies::HasReachedOrigin()
 	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
-	if (position.x == 250 || position.x == 765 || position.x == 2098)
+	if (position.x == 250 || position.x == 765 || position.x == 2098 || position.x == 4306 || position.x == 4697)
 	{
 		return true; // Cambia esto con tu lógica real
 	}

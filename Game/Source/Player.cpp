@@ -16,6 +16,7 @@
 #include "GuiManager.h"
 #include "GuiControl.h"
 #include "GuiControlButton.h"
+#include "DeadScreen.h"
 
 
 Player::Player() : Entity(EntityType::PLAYER)
@@ -68,7 +69,7 @@ bool Player::Awake()
 bool Player::Start() {
 
 	//initilize textures
-	
+
 	oneLive = app->tex->Load("Assets/Textures/1vidas.png");
 	twoLive = app->tex->Load("Assets/Textures/2vidas.png");
 	threeLive = app->tex->Load("Assets/Textures/3vidas.png");
@@ -85,7 +86,8 @@ bool Player::Start() {
 	gravityScale = pbody->body->GetGravityScale();
 
 	saltoFX = app->audio->LoadFx("Assets/Audio/Fx/saltoFX.wav");
-	playerDeathFx = app->audio->LoadFx("Assets/Audio/Fx/playerDeath.wav");
+	playerDeathFx = app->audio->LoadFx("Assets/Music/wasted.wav");
+	pickShampooFx = app->audio->LoadFx("Assets/Music/pickShampoo.wav");
 
 	PlayerStartAnims();
 	
@@ -114,6 +116,19 @@ bool Player::Update(float dt)
 	if (godMode == false) {
 		if (death == false)
 		{
+			if (lives == 3)
+			{
+				app->render->DrawTexture(threeLive, position.x - 230, 20);
+			}
+			if (lives == 2)
+			{
+				app->render->DrawTexture(twoLive, position.x - 230, 20);
+			}
+			if (lives == 1)
+			{
+				app->render->DrawTexture(oneLive, position.x - 230, 20);
+			}
+
 			app->scene->pause = false;
 			speed = 0.12f;
 
@@ -181,9 +196,18 @@ bool Player::Update(float dt)
 
 		if (death == true && lives == 0)
 		{
+			//fade to black to death screen
+			app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->deadScreen, 0);
+			app->deadScreen->active = true;
+			app->deadScreen->Enable();
+
+			//unload the scene music
+			app->audio->UnloadMusic();
+
+			app->audio->PlayFx(playerDeathFx);
+
 			app->render->DrawTexture(threeLive, position.x - 230, 20);
 			lives = 3;
-			app->audio->PlayFx(playerDeathFx);
 			currentAnimation = deathR;
 			currentAnimation->Update();
 			app->scene->pause = true;
@@ -268,18 +292,6 @@ bool Player::Update(float dt)
 
 
 	}
-	if (lives == 3)
-	{
-		app->render->DrawTexture(threeLive, position.x -230, 20);
-	}
-	if(lives == 2)
-	{
-		app->render->DrawTexture(twoLive, position.x - 230, 20);
-	}
-	if (lives == 1)
-	{
-		app->render->DrawTexture(oneLive, position.x - 230, 20);
-	}
 
 	app->render->DrawText(points.GetString(), 900, 30, 100, 50);
 
@@ -302,7 +314,7 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 	{
 	case ColliderType::JABON:
 		LOG("Collision ITEM");
-		app->audio->PlayFx(pickCoinFxId);
+		app->audio->PlayFx(pickShampooFx);
 		score += 50;
 		break;
 	case ColliderType::PLATFORM:

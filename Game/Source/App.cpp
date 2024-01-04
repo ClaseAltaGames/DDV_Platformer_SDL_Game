@@ -12,6 +12,7 @@
 #include "IntroScreen.h"
 #include "TitleScreen.h"
 #include "LevelCompletedScreen.h"
+#include "DeadScreen.h"
 #include "Optick/include/optick.h"
 
 #include "Defs.h"
@@ -39,6 +40,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new Scene();
 	map = new Map();
 	entityManager = new EntityManager();
+	deadScreen = new DeadScreen();
 	levelCompletedScreen = new LevelCompletedScreen();
 	titleScreen = new TitleScreen();
 	introScreen = new IntroScreen();
@@ -56,6 +58,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(map);
 	AddModule(entityManager);
+	AddModule(deadScreen);
 	AddModule(levelCompletedScreen);
 	AddModule(titleScreen);
 	AddModule(introScreen);

@@ -288,7 +288,7 @@ bool FEnemies::HasReachedDestination()
 	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
-	if (position.x == 200 || position.x == 994 || position.x == 2553)
+	if (position.x == 200 || position.x == 994 || position.x == 2553 || position.x == 2107 || position.x == 3112 || position.x == 3650 || position.x == 3810)
 	{
 		return true; // Cambia esto con tu lógica real
 	}
@@ -304,7 +304,7 @@ bool FEnemies::HasReachedOrigin()
 	position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
-	if (position.x == 500 || position.x == 1382 || position.x == 3030)
+	if (position.x == 500 || position.x == 1382 || position.x == 3030 || position.x == 2358 || position.x == 3479 || position.x == 3774 || position.x == 3981)
 	{
 		return true; // Cambia esto con tu lógica real
 	}

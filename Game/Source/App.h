@@ -19,6 +19,7 @@ class Scene;
 class EntityManager;
 class Map;
 class Physics;
+class DeadScreen;
 class LevelCompletedScreen;
 class TitleScreen;
 class IntroScreen;
@@ -100,6 +101,7 @@ public:
 	EntityManager* entityManager;
 	Map* map;
 	Physics* physics;
+	DeadScreen* deadScreen;
 	LevelCompletedScreen* levelCompletedScreen;
 	TitleScreen* titleScreen;
 	IntroScreen* introScreen;

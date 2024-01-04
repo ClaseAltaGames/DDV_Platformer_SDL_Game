@@ -6,16 +6,21 @@
 	<audio />
 	<:anonymous />
 	<scene>
-		<player x="1653" y="351" />
-		<wenemy x="117" y="239" id="0" />
-		<wenemy x="975" y="351" id="1" />
-		<wenemy x="1899" y="239" id="2" />
-		<fenemy x="333" y="-87" id="0" />
-		<fenemy x="1091" y="123" id="1" />
-		<fenemy x="2589" y="204" id="2" />
+		<player x="4837" y="127" />
+		<wenemy x="143" y="239" id="0" />
+		<wenemy x="707" y="127" id="1" />
+		<wenemy x="1960" y="239" id="2" />
+		<fenemy x="215" y="99" id="0" />
+		<fenemy x="1158" y="162" id="1" />
+		<fenemy x="2821" y="213" id="2" />
 	</scene>
 	<:anonymous />
 	<entitymanager />
+	<:anonymous />
+	<:anonymous />
+	<:anonymous />
+	<:anonymous />
 	<guiManager />
+	<:anonymous />
 	<renderer />
 </game_state>
