@@ -15,7 +15,7 @@ We are ClaseAltaGames, a pair of students from CITM, videogames fans and C++ dev
 "Furious Bald" is an amazing game in which you play as a bald person, and your objective is to defeat your enemies who have long hair and purchase shampoo. Download the 0.5 version now FOR FREE.
 
 ## Game requirements (minimum)
-- OS : Windows 10/11 32bit / 64 bit
+- OS : Windows 10/11 32bit / 64bit
 - RAM: 1GB
 - Storage: 1GB 
 - Processor: Intel Celeron / AMD Athlon
