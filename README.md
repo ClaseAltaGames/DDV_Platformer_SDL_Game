@@ -22,7 +22,7 @@ We are ClaseAltaGames, a pair of students from CITM, videogames fans and C++ dev
 - Graphics: Integrated graphics
 - Extra features: 120 FPS / 144 FPS (VSync)
 
-## Game requirements (recomnmended)
+## Game requirements (recommended)
 - OS : Windows 10 64bit
 - RAM: 64GB
 - Storage: 1TB SSD
