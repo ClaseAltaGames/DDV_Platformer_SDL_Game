@@ -31,6 +31,7 @@
     <ClCompile Include="Source\FadeToBlack.cpp" />
     <ClCompile Include="Source\IntroScreen.cpp" />
     <ClCompile Include="Source\TitleScreen.cpp" />
+    <ClCompile Include="Source\LevelCompletedScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -89,6 +90,7 @@
     <ClInclude Include="Source\FadeToBlack.h" />
     <ClInclude Include="Source\IntroScreen.h" />
     <ClInclude Include="Source\TitleScreen.h" />
+    <ClInclude Include="Source\LevelCompletedScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

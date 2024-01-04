@@ -27,6 +27,7 @@ enum class ColliderType {
 	PLAYER, 
 	JABON,
 	PLATFORM, 
+	COMPLETED,
 	UNKNOWN,
 	WENEMIES,
 	FENEMIES,

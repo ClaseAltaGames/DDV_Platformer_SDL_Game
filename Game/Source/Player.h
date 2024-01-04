@@ -7,6 +7,7 @@
 #include "List.h"
 #include "Animation.h"
 #include "App.h"
+#include "Window.h"
 
 #include "Box2D/Box2D/Box2D.h"
 
@@ -52,7 +53,7 @@ public:
 	int lives = 3;
 
 	int score = 0;
-	
+		
 private:
 	float jumpPower = 0.45f;
 	float acceleration = 0.2f;

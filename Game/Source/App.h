@@ -19,10 +19,11 @@ class Scene;
 class EntityManager;
 class Map;
 class Physics;
-class GuiManager;
-class FadeToBlack;
+class LevelCompletedScreen;
 class TitleScreen;
 class IntroScreen;
+class GuiManager;
+class FadeToBlack;
 
 class App
 {
@@ -99,9 +100,10 @@ public:
 	EntityManager* entityManager;
 	Map* map;
 	Physics* physics;
-	GuiManager* guiManager;
+	LevelCompletedScreen* levelCompletedScreen;
 	TitleScreen* titleScreen;
 	IntroScreen* introScreen;
+	GuiManager* guiManager;
 	FadeToBlack* fadeToBlack;
 
 	uint32 maxFrameDuration = 16;

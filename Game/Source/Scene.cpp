@@ -11,6 +11,9 @@
 #include "WEnemies.h"
 #include "EntityManager.h"
 #include "TitleScreen.h"
+#include "LevelCompletedScreen.h"
+#include "FadeToBlack.h"
+#include "GuiManager.h"
 
 
 #include "Defs.h"
@@ -77,6 +80,11 @@ bool Scene::Start()
 {
 	app->titleScreen->active = false;
 	app->titleScreen->Disable();
+
+	app->guiManager->active = false;
+	app->guiManager->Disable();
+
+
 	app->tex->UnLoad(app->titleScreen->titleScreenTex);
 
 	fondo = app->tex->Load("Assets/Textures/fondo.png");
@@ -118,7 +126,9 @@ bool Scene::PreUpdate()
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
-
+	
+	app->levelCompletedScreen->active = false;
+	app->levelCompletedScreen->Disable();
 	app->render->DrawTexture(fondo, player->position.x - 340, 0);
 
 	float camSpeed = 1; 

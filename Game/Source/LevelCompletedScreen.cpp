@@ -1,0 +1,104 @@
+#include "LevelCompletedScreen.h"
+#include "App.h"
+#include "Render.h"
+#include "Textures.h"
+#include "Input.h"
+#include "Window.h"
+#include "Audio.h"
+#include "Scene.h"
+#include "FadeToBlack.h"
+#include "Map.h"
+#include "EntityManager.h"
+#include "Physics.h"
+#include "IntroScreen.h"+
+#include "GuiControl.h"
+#include "GuiControlButton.h"
+#include "GuiManager.h"
+
+
+
+#include "SDL/include/SDL.h"    
+
+LevelCompletedScreen::LevelCompletedScreen(bool startEnabled) : Module(startEnabled)
+{
+}
+
+// Destructor
+LevelCompletedScreen::~LevelCompletedScreen()
+{}
+
+// Called before render is available
+bool LevelCompletedScreen::Start()
+{
+    completedScreenTex = app->tex->Load("Assets/Textures/levelCompleteScreen.png");
+
+    app->render->camera.x = 0;
+    app->render->camera.y = 0;
+
+    //app->audio->PlayMusic("Assets/Music/titleScreen.ogg", 1.0f);
+    completedSound = app->audio->LoadFx("Assets/Music/levelCompleted.wav");
+
+    //unload the scene music
+    app->scene->Disable();
+    app->scene->active = false;
+    app->map->active = false;
+    app->entityManager->active = false;
+    app->physics->active = false;
+
+
+    app->levelCompletedScreen->active = true;
+    app->levelCompletedScreen->Enable();
+
+
+    return true;
+}
+
+// Called each loop iteration
+bool LevelCompletedScreen::Update(float dt)
+{   
+    app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Click To Next Level", { posBtX, posBtY, wBt, hBt }, (Module*)app->levelCompletedScreen);
+
+    //if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+    //{
+    //    app->audio->UnloadFx(titleSound);
+    //    app->fadeToBlack->FadeToBlackTransition((Module*)app->titleScreen, (Module*)app->scene, 0);
+
+    //    app->titleScreen->active = false;
+    //    app->titleScreen->Disable();
+
+    //    app->scene->active = true;
+    //    app->scene->Enable();
+    //    app->map->active = true;
+    //    app->entityManager->active = true;
+    //    app->physics->active = true;
+
+    //    //plays the scene music
+
+    //    app->audio->PlayMusic("Assets/Music/Song1.ogg", 1.0f);
+
+    //}
+
+
+
+
+    return true;
+}
+
+bool LevelCompletedScreen::PostUpdate()
+{
+    app->render->DrawTexture(completedScreenTex, 0, 0);
+
+    return true;
+}
+
+// Called before quitting
+bool LevelCompletedScreen::CleanUp()
+{
+    if (completedScreenTex != nullptr)
+    {
+        app->tex->UnLoad(completedScreenTex);
+        completedScreenTex = nullptr;
+    }
+
+    return true;
+}

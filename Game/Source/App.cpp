@@ -11,6 +11,7 @@
 #include "FadeToBlack.h"
 #include "IntroScreen.h"
 #include "TitleScreen.h"
+#include "LevelCompletedScreen.h"
 #include "Optick/include/optick.h"
 
 #include "Defs.h"
@@ -38,9 +39,10 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new Scene();
 	map = new Map();
 	entityManager = new EntityManager();
-	guiManager = new GuiManager();
+	levelCompletedScreen = new LevelCompletedScreen();
 	titleScreen = new TitleScreen();
 	introScreen = new IntroScreen();
+	guiManager = new GuiManager();
 	fadeToBlack = new FadeToBlack();
 
 
@@ -54,9 +56,10 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(map);
 	AddModule(entityManager);
-	AddModule(guiManager);
+	AddModule(levelCompletedScreen);
 	AddModule(titleScreen);
 	AddModule(introScreen);
+	AddModule(guiManager);
 	AddModule(fadeToBlack);
 
 	// Render last to swap buffer

@@ -11,6 +11,11 @@
 #include "Window.h"
 #include "WEnemies.h"
 #include "FEnemies.h"
+#include "LevelCompletedScreen.h"
+#include "FadeToBlack.h"
+#include "GuiManager.h"
+#include "GuiControl.h"
+#include "GuiControlButton.h"
 
 
 Player::Player() : Entity(EntityType::PLAYER)
@@ -311,6 +316,19 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		LOG("Collision DEATH");
 		death = true;
 		lives--;
+		break;
+	case ColliderType::COMPLETED:
+		LOG("Collision COMPLETED");
+		app->audio->UnloadMusic();
+
+		app->guiManager->active = true;
+		app->guiManager->Enable();
+
+		app->levelCompletedScreen->active = true;
+		app->levelCompletedScreen->Enable();
+
+		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
+		app->audio->PlayFx(app->levelCompletedScreen->completedSound);
 		break;
 	case ColliderType::WENEMIES:
 		LOG("Collision WENEMIES");

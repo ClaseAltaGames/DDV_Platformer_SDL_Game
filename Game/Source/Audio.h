@@ -35,6 +35,9 @@ public:
 	// Unload WAV
 	bool UnloadFx(unsigned int fx);
 
+	//Unload Music
+	bool UnloadMusic();
+
 private:
 
 	_Mix_Music* music;

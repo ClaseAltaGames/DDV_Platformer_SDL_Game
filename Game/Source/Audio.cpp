@@ -195,3 +195,20 @@ bool Audio::UnloadFx(unsigned int id)
 
 	return ret;
 }
+
+//Unload Music
+bool Audio::UnloadMusic()
+{
+	bool ret = false;
+
+	if (!active)
+		return false;
+
+	if (music != NULL)
+	{
+		Mix_FreeMusic(music);
+		ret = true;
+	}
+
+	return ret;
+}
