@@ -12,6 +12,9 @@
  <tileset firstgid="399" name="MapMetadata2" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="3" columns="3">
   <image source="MapMetadata2.png" width="65" height="32"/>
  </tileset>
+ <tileset firstgid="402" name="generic_platformer_tiles" tilewidth="16" tileheight="16" tilecount="3072" columns="64">
+  <image source="../Textures/generic_platformer_tiles.png" width="1024" height="768"/>
+ </tileset>
  <layer id="1" name="Mapa" width="320" height="24">
   <properties>
    <property name="Draw" type="bool" value="true"/>
@@ -1312,7 +1315,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="1162"/>
    <tile/>
    <tile/>
    <tile/>
@@ -1632,7 +1635,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="1226"/>
    <tile/>
    <tile/>
    <tile/>
@@ -1939,6 +1942,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="1277"/>
    <tile/>
    <tile/>
    <tile/>
@@ -1951,6 +1955,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="1290"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2257,6 +2262,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="1341"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2268,11 +2274,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="1353"/>
+   <tile gid="1354"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2579,6 +2582,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="1405"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2589,10 +2593,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="1416"/>
+   <tile gid="1417"/>
+   <tile gid="1418"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2899,6 +2902,7 @@
    <tile gid="7"/>
    <tile/>
    <tile/>
+   <tile gid="1469"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2908,11 +2912,10 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="1479"/>
+   <tile gid="1480"/>
+   <tile gid="1481"/>
+   <tile gid="1482"/>
    <tile/>
    <tile/>
    <tile/>
@@ -3219,6 +3222,7 @@
    <tile gid="24"/>
    <tile/>
    <tile/>
+   <tile gid="1533"/>
    <tile/>
    <tile/>
    <tile/>
@@ -3228,11 +3232,10 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="1543"/>
+   <tile gid="1544"/>
+   <tile gid="1545"/>
+   <tile gid="1546"/>
    <tile/>
    <tile/>
    <tile gid="11"/>

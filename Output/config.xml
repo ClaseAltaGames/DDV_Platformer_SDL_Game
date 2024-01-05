@@ -22,7 +22,8 @@
   </audio>
 
   <scene>
-    <map path="Assets/Maps/" name="MapTemplate.tmx"/>
+    <map path="Assets/Maps/" name="MapDefinitivo.tmx"/>
+	
     <player x="3" y="215" texturepath="Assets/Textures/player.png">
 	  <animation name="playerR" loop="true" speed="0.2f">
 		<frame x="19" y="33" w="16" h="16" />
