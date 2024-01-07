@@ -36,7 +36,7 @@ void PathFinding::SetNavigationMap(uint w, uint h, uchar* data)
 	height = h;
 
 	RELEASE_ARRAY(map);
-	map = new uchar[width*height];
+ 	map = new uchar[width*height];
 	memcpy(map, data, width*height);
 }
 

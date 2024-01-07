@@ -22,7 +22,7 @@
   </audio>
 
   <scene>
-    <map path="Assets/Maps/" name="MapaDefinitivo.tmx"/>
+    <map path="Assets/Maps/" name="MapaFinal.tmx"/>
 	
     <player x="3" y="215" texturepath="Assets/Textures/player.png">
 	  <animation name="playerR" loop="true" speed="0.2f">

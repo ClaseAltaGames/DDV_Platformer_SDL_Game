@@ -216,7 +216,7 @@ bool Map::Load(SString mapFileName)
                 {
                     int gid = mapLayerItem->data->Get(x, y);
 
-                    if (gid == 1)
+                    if (gid == 4489)
                     {
                         iPoint pos = MapToWorld(x, y);
 
@@ -242,7 +242,7 @@ bool Map::Load(SString mapFileName)
                 {
                     int gid = mapLayerItem->data->Get(x, y);
 
-                    if (gid == 145)
+                    if (gid == 4497)
                     {
                         iPoint pos = MapToWorld(x, y);
 
@@ -268,7 +268,7 @@ bool Map::Load(SString mapFileName)
                 {
                     int gid = mapLayerItem->data->Get(x, y);
 
-                    if (gid == 3)
+                    if (gid == 4491)
                     {
                         iPoint pos = MapToWorld(x, y);
 
