@@ -186,7 +186,18 @@ bool WEnemies::Update(float dt)
 	if (death == true)
 	{
 		app->physics->DestroyCircle(ebody);
-		ebody = app->physics->CreateCircle(-100 + 16, 1000 + 16, 8, bodyType::DYNAMIC);
+		ebody = app->physics->CreateCircle(-1000 + 16, 3000 + 16, 8, bodyType::DYNAMIC);
+	}
+	if (respawn == true)
+	{
+		respawn = false;
+		position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
+		app->physics->DestroyCircle(ebody);
+		ebody = app->physics->CreateCircle(position.x + 16, position.y, 8, bodyType::DYNAMIC);
+		ebody->listener = this;
+		ebody->ctype = ColliderType::WENEMIES;
+		currentAnimation = enemy1WalkAnimL;
+		currentState = EnemyState::MOVING_TO_DESTINATION;
 	}
 	return true;
 }
@@ -213,7 +224,7 @@ void WEnemies::OnCollision(PhysBody* physA, PhysBody* physB)
 		break;
 
 	case ColliderType::DEATH:
-			
+		respawn = true;
 		break;
 	case ColliderType::UNKNOWN:
 		break;
@@ -246,9 +257,19 @@ void WEnemies::MoveToDestination(float dt)
 	currentAnimation = enemy1WalkAnimL;
 	currentAnimation->Update();
 
-	if (HasReachedDestination())
+	if (app->scene->level1)
 	{
-		currentState = EnemyState::MOVING_TO_ORIGIN;
+		if (HasReachedDestination())
+		{
+			currentState = EnemyState::MOVING_TO_ORIGIN;
+		}
+	}
+	if (app->scene->level2)
+	{
+		if (HasReachedDestination())
+		{
+			currentState = EnemyState::MOVING_TO_ORIGIN;
+		}
 	}
 }
 
@@ -257,9 +278,19 @@ void WEnemies::MoveToOrigin(float dt)
 	currentAnimation = enemy1WalkAnimR;
 	currentAnimation->Update();
 
-	if (HasReachedOrigin())
+	if (app->scene->level1)
 	{
-		currentState = EnemyState::MOVING_TO_DESTINATION;
+		if (HasReachedOrigin())
+		{
+			currentState = EnemyState::MOVING_TO_DESTINATION;
+		}
+	}
+	if (app->scene->level2)
+	{
+		if (HasReachedOrigin())
+		{
+			currentState = EnemyState::MOVING_TO_DESTINATION;
+		}
 	}
 }
 
@@ -271,6 +302,11 @@ bool WEnemies::HasReachedDestination()
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
 	if (position.x == 100 || position.x == 650 || position.x == 1872 || position.x == 4098 || position.x == 4355)
+	{
+		return true; // Cambia esto con tu lógica real
+	}
+	if (position.x == 435 || position.x == 858 || position.x == 1105 || position.x == 1587 || position.x == 1960 
+	    || position.x == 2641 || position.x == 3032 || position.x == 4434)
 	{
 		return true; // Cambia esto con tu lógica real
 	}
@@ -288,6 +324,11 @@ bool WEnemies::HasReachedOrigin()
 	position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
 
 	if (position.x == 250 || position.x == 765 || position.x == 2098 || position.x == 4306 || position.x == 4697)
+	{
+		return true; // Cambia esto con tu lógica real
+	}
+	if (position.x == 585 || position.x == 1026 || position.x == 1348 || position.x == 1762 || position.x == 2281
+		|| position.x == 2798 || position.x == 3201 || position.x == 4769)
 	{
 		return true; // Cambia esto con tu lógica real
 	}

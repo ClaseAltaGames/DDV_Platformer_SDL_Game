@@ -127,6 +127,114 @@
 			<frame x="21" y="63" w="14" h="17"/>
 		</animation>
 	</wenemy>
+	  
+	<wenemy id="6" x="585" y="1071" texturepath="Assets/Textures/enemy1.png">
+		<animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
+			<frame x="21" y="23" w="12" h="17"/>
+			<frame x="38" y="23" w="14" h="17"/>
+			<frame x="1" y="23" w="12" h="17"/>
+		</animation>
+
+		<animation name="enemy1WalkAnimL" loop="true" speed = "0.2f">
+			<frame x="3" y="63" w="14" h="17"/>
+			<frame x="38" y="63" w="14" h="17"/>
+			<frame x="21" y="63" w="14" h="17"/>
+		</animation>
+	</wenemy>
+
+	<wenemy id="7" x="1026" y="1055" texturepath="Assets/Textures/enemy1.png">
+		<animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
+			<frame x="21" y="23" w="12" h="17"/>
+			<frame x="38" y="23" w="14" h="17"/>
+			<frame x="1" y="23" w="12" h="17"/>
+		</animation>
+
+		<animation name="enemy1WalkAnimL" loop="true" speed = "0.2f">
+			<frame x="3" y="63" w="14" h="17"/>
+			<frame x="38" y="63" w="14" h="17"/>
+			<frame x="21" y="63" w="14" h="17"/>
+		</animation>
+	</wenemy>
+	<wenemy id="8" x="1348" y="1007" texturepath="Assets/Textures/enemy1.png">
+		<animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
+			<frame x="21" y="23" w="12" h="17"/>
+			<frame x="38" y="23" w="14" h="17"/>
+			<frame x="1" y="23" w="12" h="17"/>
+		</animation>
+
+		<animation name="enemy1WalkAnimL" loop="true" speed = "0.2f">
+			<frame x="3" y="63" w="14" h="17"/>
+			<frame x="38" y="63" w="14" h="17"/>
+			<frame x="21" y="63" w="14" h="17"/>
+		</animation>
+	</wenemy>
+	<wenemy id="9" x="1762" y="1007" texturepath="Assets/Textures/enemy1.png">
+		<animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
+			<frame x="21" y="23" w="12" h="17"/>
+			<frame x="38" y="23" w="14" h="17"/>
+			<frame x="1" y="23" w="12" h="17"/>
+		</animation>
+
+		<animation name="enemy1WalkAnimL" loop="true" speed = "0.2f">
+			<frame x="3" y="63" w="14" h="17"/>
+			<frame x="38" y="63" w="14" h="17"/>
+			<frame x="21" y="63" w="14" h="17"/>
+		</animation>
+	</wenemy>
+	<wenemy id="10" x="2281" y="1135" texturepath="Assets/Textures/enemy1.png">
+		<animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
+			<frame x="21" y="23" w="12" h="17"/>
+			<frame x="38" y="23" w="14" h="17"/>
+			<frame x="1" y="23" w="12" h="17"/>
+		</animation>
+
+		<animation name="enemy1WalkAnimL" loop="true" speed = "0.2f">
+			<frame x="3" y="63" w="14" h="17"/>
+			<frame x="38" y="63" w="14" h="17"/>
+			<frame x="21" y="63" w="14" h="17"/>
+		</animation>
+	</wenemy>
+	<wenemy id="11" x="2798" y="895" texturepath="Assets/Textures/enemy1.png">
+		<animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
+			<frame x="21" y="23" w="12" h="17"/>
+			<frame x="38" y="23" w="14" h="17"/>
+			<frame x="1" y="23" w="12" h="17"/>
+		</animation>
+
+		<animation name="enemy1WalkAnimL" loop="true" speed = "0.2f">
+			<frame x="3" y="63" w="14" h="17"/>
+			<frame x="38" y="63" w="14" h="17"/>
+			<frame x="21" y="63" w="14" h="17"/>
+		</animation>
+	</wenemy>
+	<wenemy id="12" x="3201" y="1103" texturepath="Assets/Textures/enemy1.png">
+		<animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
+			<frame x="21" y="23" w="12" h="17"/>
+			<frame x="38" y="23" w="14" h="17"/>
+			<frame x="1" y="23" w="12" h="17"/>
+		</animation>
+
+		<animation name="enemy1WalkAnimL" loop="true" speed = "0.2f">
+			<frame x="3" y="63" w="14" h="17"/>
+			<frame x="38" y="63" w="14" h="17"/>
+			<frame x="21" y="63" w="14" h="17"/>
+		</animation>
+	</wenemy>
+	
+	<wenemy id="14" x="4769" y="1087" texturepath="Assets/Textures/enemy1.png">
+		<animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
+			<frame x="21" y="23" w="12" h="17"/>
+			<frame x="38" y="23" w="14" h="17"/>
+			<frame x="1" y="23" w="12" h="17"/>
+		</animation>
+
+		<animation name="enemy1WalkAnimL" loop="true" speed = "0.2f">
+			<frame x="3" y="63" w="14" h="17"/>
+			<frame x="38" y="63" w="14" h="17"/>
+			<frame x="21" y="63" w="14" h="17"/>
+		</animation>
+	</wenemy>
+	  
 	
 
 	  <fenemy id ="1" x="500" y="100" texturepath="Assets/Textures/duck_spritesheet.png">

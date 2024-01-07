@@ -35,7 +35,6 @@ bool LevelCompletedScreen::Start()
     app->render->camera.y = 0;
 
     //app->audio->PlayMusic("Assets/Music/titleScreen.ogg", 1.0f);
-    completedSound = app->audio->LoadFx("Assets/Music/levelCompleted.wav");
 
     //unload the scene music
     app->scene->Disable();
@@ -52,8 +51,7 @@ bool LevelCompletedScreen::Start()
 
 // Called each loop iteration
 bool LevelCompletedScreen::Update(float dt)
-{   
-    
+{       
     if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
     {
         app->fadeToBlack->FadeToBlackTransition((Module*)app->levelCompletedScreen, (Module*)app->scene, 0);

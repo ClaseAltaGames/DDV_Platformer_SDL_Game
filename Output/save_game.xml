@@ -6,13 +6,13 @@
 	<audio />
 	<:anonymous />
 	<scene>
-		<player x="-7" y="878" />
-		<wenemy x="148" y="239" id="0" />
-		<wenemy x="658" y="127" id="1" />
-		<wenemy x="2013" y="239" id="2" />
-		<fenemy x="452" y="127" id="0" />
-		<fenemy x="1116" y="171" id="1" />
-		<fenemy x="2697" y="213" id="2" />
+		<player x="596" y="1071" />
+		<wenemy x="46" y="239" id="0" />
+		<wenemy x="723" y="127" id="1" />
+		<wenemy x="2040" y="239" id="2" />
+		<fenemy x="407" y="108" id="0" />
+		<fenemy x="1113" y="171" id="1" />
+		<fenemy x="2583" y="213" id="2" />
 	</scene>
 	<:anonymous />
 	<entitymanager />

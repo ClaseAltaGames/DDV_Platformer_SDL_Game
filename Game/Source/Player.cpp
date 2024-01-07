@@ -385,6 +385,7 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		jumpsAvaiable = 1;
 		app->scene->pause = false;
 		death = false;
+		app->levelCompletedScreen->completedFxAvailable = false;
 		break;
 	case ColliderType::DEATH:
 		LOG("Collision DEATH");
@@ -399,7 +400,8 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		app->levelCompletedScreen->Enable();
 
 		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
-		app->audio->PlayFx(app->levelCompletedScreen->completedSound);		
+
+		app->levelCompletedScreen->completedFxAvailable = true;
 		
 		break;
 	case ColliderType::WENEMIES:

@@ -81,6 +81,7 @@ private:
 
 	int playerDeathFx;
 	int pickShampooFx;
+
 };
 
 

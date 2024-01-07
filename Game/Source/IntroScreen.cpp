@@ -48,7 +48,8 @@ bool IntroScreen::Start()
 
 // Called each loop iteration
 bool IntroScreen::Update(float dt)
-{    
+{
+
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		app->audio->UnloadFx(introSound);

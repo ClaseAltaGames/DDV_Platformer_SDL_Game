@@ -74,6 +74,7 @@ public:
 	List<Animation*> animationList;
 
 	bool death = false;
+	bool respawn = false;
 
 	Player* player;
 
