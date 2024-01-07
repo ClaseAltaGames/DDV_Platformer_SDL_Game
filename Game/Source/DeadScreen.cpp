@@ -70,7 +70,7 @@ bool DeadScreen::Update(float dt)
 bool DeadScreen::PostUpdate()
 {
     app->render->DrawTexture(deadScreenTex, 0, 0);
-
+   
     return true;
 }
 

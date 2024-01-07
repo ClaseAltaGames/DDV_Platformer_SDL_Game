@@ -40,9 +40,7 @@ bool LevelCompletedScreen::Start()
     //unload the scene music
     app->scene->Disable();
     app->scene->active = false;
-    app->map->active = false;
     app->entityManager->active = false;
-    app->physics->active = false;
 
 
     app->levelCompletedScreen->active = true;
@@ -55,17 +53,15 @@ bool LevelCompletedScreen::Start()
 // Called each loop iteration
 bool LevelCompletedScreen::Update(float dt)
 {   
-    app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Click To Next Level", { posBtX, posBtY, wBt, hBt }, (Module*)app->levelCompletedScreen);
-
+    
     if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
     {
         app->fadeToBlack->FadeToBlackTransition((Module*)app->levelCompletedScreen, (Module*)app->scene, 0);
 
+        app->entityManager->active = true;
+
         app->scene->active = true;
         app->scene->Enable();
-        app->map->active = true;
-        app->entityManager->active = true;
-        app->physics->active = true;
 
         //plays the scene music
 

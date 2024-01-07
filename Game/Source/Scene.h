@@ -73,11 +73,19 @@ public:
 	{
 		app->physics->DestroyCircle(player->pbody);
 		player->pbody = app->physics->CreateCircle(39 + 16, 1119 + 16, 8, bodyType::DYNAMIC);
+
+		player->pbody->listener = player;
+		player->pbody->ctype = ColliderType::PLAYER;
+
 		return player->pbody;	
+	}
+	int CameraLevel1()
+	{
+		return app->render->camera.y = 0;
 	}
 	int CameraLevel2()
 	{
-		return app->render->camera.y = -1750;
+		return app->render->camera.y = -1725;
 	}
 private:
 	SDL_Texture* img;
@@ -97,6 +105,9 @@ public:
 	SDL_Texture* mouseTileTex = nullptr;
 	bool pause;
 	PhysBody* pbody;
+
+	bool level1;
+	bool level2;
 };
 
 #endif // __SCENE_H__

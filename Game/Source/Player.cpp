@@ -116,17 +116,30 @@ bool Player::Update(float dt)
 	if (godMode == false) {
 		if (death == false)
 		{
+			if (position.y < 1000)
+			{
+				app->scene->level1 = true;
+				app->scene->level2 = false;
+			}
+			if (position.y > 1000)
+			{
+				app->scene->level2 = true;
+				app->scene->level1 = false;
+			}
 			if (lives == 3)
 			{
 				app->render->DrawTexture(threeLive, position.x - 230, 20);
+				app->render->DrawTexture(threeLive, position.x - 230, 885);
 			}
 			if (lives == 2)
 			{
 				app->render->DrawTexture(twoLive, position.x - 230, 20);
+				app->render->DrawTexture(twoLive, position.x - 230, 885);
 			}
 			if (lives == 1)
 			{
 				app->render->DrawTexture(oneLive, position.x - 230, 20);
+				app->render->DrawTexture(oneLive, position.x - 230, 885);
 			}
 
 			app->scene->pause = false;
@@ -206,15 +219,24 @@ bool Player::Update(float dt)
 
 			app->audio->PlayFx(playerDeathFx);
 
-			app->render->DrawTexture(threeLive, position.x - 230, 20);
 			lives = 3;
+
 			currentAnimation = deathR;
 			currentAnimation->Update();
+
 			app->scene->pause = true;
+
 			app->physics->DestroyCircle(pbody);
-			pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
-
-
+			
+			if (position.y < 1000)
+			{
+				pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
+			}
+			if (position.y > 1000)
+			{
+				pbody = app->physics->CreateCircle(39 + 16, 1119 + 16, 8, bodyType::DYNAMIC);
+				app->scene->CameraLevel2();
+			}
 			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
 
 			app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
@@ -224,14 +246,55 @@ bool Player::Update(float dt)
 			pbody->ctype = ColliderType::PLAYER;
 			
 		}
+
 		if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 		{
 			app->scene->pause = true;
 
 			app->physics->DestroyCircle(pbody);
 
+			if (position.y < 1000)
+			{
+				pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
+				app->scene->CameraLevel1();
+			}
+			if (position.y > 1000)
+			{
+				pbody = app->physics->CreateCircle(39 + 16, 1119 + 16, 8, bodyType::DYNAMIC);
+				app->scene->CameraLevel2();
+			}
+			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
+			app->render->DrawTexture(texture, position.x, position.y, &currentAnimation->GetCurrentFrame());
+			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
+
+			pbody->listener = this;
+			pbody->ctype = ColliderType::PLAYER;
+		}
+		if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+		{
+			app->scene->pause = true;
+
+			app->physics->DestroyCircle(pbody);
+
+			pbody = app->physics->CreateCircle(39 + 16, 1119 + 16, 8, bodyType::DYNAMIC);
+			app->scene->CameraLevel2();
+			
+			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
+			app->render->DrawTexture(texture, position.x, position.y, &currentAnimation->GetCurrentFrame());
+			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
+
+			pbody->listener = this;
+			pbody->ctype = ColliderType::PLAYER;
+		}
+		if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+		{
+			app->scene->pause = true;
+
+			app->physics->DestroyCircle(pbody);
 			pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
 
+			app->scene->CameraLevel1();
+			
 			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
 			app->render->DrawTexture(texture, position.x, position.y, &currentAnimation->GetCurrentFrame());
 			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
@@ -331,9 +394,6 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 	case ColliderType::COMPLETED:
 		LOG("Collision COMPLETED");
 		app->audio->UnloadMusic();
-
-		app->guiManager->active = true;
-		app->guiManager->Enable();
 
 		app->levelCompletedScreen->active = true;
 		app->levelCompletedScreen->Enable();
