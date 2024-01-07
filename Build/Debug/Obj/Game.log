@@ -51,24 +51,6 @@ C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.
 C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(58,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
 C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(64,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
 C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(66,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-  Path.cpp
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(56,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(58,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(64,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(66,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-  Physics.cpp
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(56,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(58,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(64,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(66,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(99,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(100,25): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(136,25): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(137,26): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(212,21): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(404,13): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(405,13): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(411,27): warning C4244: 'return': conversión de 'float32' a 'int'; posible pérdida de datos
   Player.cpp
 C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(56,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
 C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(58,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos

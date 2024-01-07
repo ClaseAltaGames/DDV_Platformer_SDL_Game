@@ -7,6 +7,7 @@
 #include "WEnemies.h"
 #include "FEnemies.h"
 #include "Jabon.h"
+#include "Physics.h"
 
 struct SDL_Texture;
 
@@ -67,6 +68,16 @@ public:
 	int GetFEnemyDeathScore()
 	{
 		return player->score += 300;
+	}
+	PhysBody* GoToLevel2()
+	{
+		app->physics->DestroyCircle(player->pbody);
+		player->pbody = app->physics->CreateCircle(39 + 16, 1119 + 16, 8, bodyType::DYNAMIC);
+		return player->pbody;	
+	}
+	int CameraLevel2()
+	{
+		return app->render->camera.y = -1750;
 	}
 private:
 	SDL_Texture* img;

@@ -13,10 +13,10 @@
   <image source="MapMetadata2.png" width="65" height="32"/>
  </tileset>
  <tileset firstgid="402" name="goodly-2x" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
-  <image source="D:/Descargas/goodly-2x.png" width="512" height="512"/>
+  <image source="../Textures/goodly-2x.png" width="512" height="512"/>
  </tileset>
  <tileset firstgid="1426" name="generic_platformer_tiles" tilewidth="16" tileheight="16" tilecount="3072" columns="64">
-  <image source="D:/Descargas/generic_platformer_tiles.png" width="1024" height="768"/>
+  <image source="../Textures/generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
  <layer id="9" name="Mapa2" width="320" height="24">
   <properties>
@@ -254,84 +254,84 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="1920"/>
+   <tile gid="2015"/>
+   <tile gid="2016"/>
+   <tile gid="2017"/>
+   <tile gid="2018"/>
+   <tile gid="2019"/>
+   <tile gid="2020"/>
+   <tile gid="2021"/>
+   <tile gid="2022"/>
+   <tile gid="1927"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2050"/>
+   <tile gid="2051"/>
+   <tile gid="2052"/>
+   <tile gid="2053"/>
+   <tile gid="2054"/>
+   <tile gid="2055"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2557"/>
+   <tile gid="2562"/>
+   <tile gid="2562"/>
+   <tile gid="2562"/>
+   <tile gid="2562"/>
+   <tile gid="2562"/>
+   <tile gid="2563"/>
+   <tile gid="2564"/>
+   <tile gid="2565"/>
+   <tile gid="2566"/>
+   <tile gid="2567"/>
+   <tile gid="2568"/>
+   <tile gid="2569"/>
+   <tile gid="2570"/>
    <tile/>
    <tile/>
    <tile/>

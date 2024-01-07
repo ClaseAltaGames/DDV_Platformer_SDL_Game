@@ -38,7 +38,6 @@ public:
 	void OnCollision(PhysBody* physA, PhysBody* physB);
 
 
-
 public:
 	float speed = 0.12f;
 	const char* texturePath;

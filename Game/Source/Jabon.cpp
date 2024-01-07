@@ -55,7 +55,7 @@ bool Jabon::Update(float dt)
 	if (isPicked == true)
 	{
 		app->physics->DestroyCircle(jbody);
-		jbody = app->physics->CreateCircle(-100 + 16, 1000 + 16, 8, bodyType::DYNAMIC);
+		jbody = app->physics->CreateCircle(-1000 + 16, 1000 + 16, 8, bodyType::DYNAMIC);
 	}
 
 	return true;

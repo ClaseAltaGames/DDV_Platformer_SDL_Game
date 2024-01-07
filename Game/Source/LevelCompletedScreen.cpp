@@ -57,28 +57,24 @@ bool LevelCompletedScreen::Update(float dt)
 {   
     app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Click To Next Level", { posBtX, posBtY, wBt, hBt }, (Module*)app->levelCompletedScreen);
 
-    //if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-    //{
-    //    app->audio->UnloadFx(titleSound);
-    //    app->fadeToBlack->FadeToBlackTransition((Module*)app->titleScreen, (Module*)app->scene, 0);
+    if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+    {
+        app->fadeToBlack->FadeToBlackTransition((Module*)app->levelCompletedScreen, (Module*)app->scene, 0);
 
-    //    app->titleScreen->active = false;
-    //    app->titleScreen->Disable();
+        app->scene->active = true;
+        app->scene->Enable();
+        app->map->active = true;
+        app->entityManager->active = true;
+        app->physics->active = true;
 
-    //    app->scene->active = true;
-    //    app->scene->Enable();
-    //    app->map->active = true;
-    //    app->entityManager->active = true;
-    //    app->physics->active = true;
+        //plays the scene music
 
-    //    //plays the scene music
+        app->audio->PlayMusic("Assets/Music/Song1.ogg", 1.0f);
 
-    //    app->audio->PlayMusic("Assets/Music/Song1.ogg", 1.0f);
+        app->scene->GoToLevel2();
 
-    //}
-
-
-
+        app->scene->CameraLevel2();
+    }
 
     return true;
 }

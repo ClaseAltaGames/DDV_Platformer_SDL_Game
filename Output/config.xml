@@ -22,7 +22,7 @@
   </audio>
 
   <scene>
-    <map path="Assets/Maps/" name="MapDefinitivo.tmx"/>
+    <map path="Assets/Maps/" name="MapaDefinitivo.tmx"/>
 	
     <player x="3" y="215" texturepath="Assets/Textures/player.png">
 	  <animation name="playerR" loop="true" speed="0.2f">
@@ -241,7 +241,7 @@
 		</animation>
 	</fenemy>
 	  
-	<item x="256" y="215" texturepath="Assets/Textures/jabon.png"/>
+	<item x="280" y="215" texturepath="Assets/Textures/jabon.png"/>
 	<item x="835" y="63" texturepath="Assets/Textures/jabon.png"/>
 	<item x="1616" y="351" texturepath="Assets/Textures/jabon.png"/>
 	<item x="1653" y="351" texturepath="Assets/Textures/jabon.png"/>

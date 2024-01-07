@@ -154,7 +154,7 @@ public:
 private:
 	MapLayer* navigationLayer;
 	bool mapLoaded;
-	int blockedGid = 393;
+	int blockedGid = 1;
 };
 
 #endif // __MAP_H__

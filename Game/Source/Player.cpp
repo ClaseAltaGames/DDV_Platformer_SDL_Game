@@ -299,7 +299,6 @@ bool Player::Update(float dt)
 }
 
 
-
 bool Player::CleanUp()
 {
 
@@ -340,7 +339,8 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		app->levelCompletedScreen->Enable();
 
 		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
-		app->audio->PlayFx(app->levelCompletedScreen->completedSound);
+		app->audio->PlayFx(app->levelCompletedScreen->completedSound);		
+		
 		break;
 	case ColliderType::WENEMIES:
 		LOG("Collision WENEMIES");

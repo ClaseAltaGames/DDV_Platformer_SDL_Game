@@ -11,6 +11,7 @@
 #include "EntityManager.h"
 #include "Physics.h"
 #include "TitleScreen.h"
+#include "LevelCompletedScreen.h"
 
 #include "SDL/include/SDL.h"    
 
@@ -29,6 +30,9 @@ bool IntroScreen::Start()
 
 	app->titleScreen->active = false;
 	app->titleScreen->Disable();
+
+	app->levelCompletedScreen->active = false;
+	app->levelCompletedScreen->Disable();
 
 	app->titleScreen->titleSound = 0;
 
