@@ -79,6 +79,16 @@ public:
 
 		return player->pbody;	
 	}
+	PhysBody* GoToBoss()
+	{
+		app->physics->DestroyCircle(player->pbody);
+		player->pbody = app->physics->CreateCircle(196 + 16, 1964 + 16, 8, bodyType::DYNAMIC);
+
+		player->pbody->listener = player;
+		player->pbody->ctype = ColliderType::PLAYER;
+
+		return player->pbody;
+	}
 	int CameraLevel1()
 	{
 		return app->render->camera.y = 0;
@@ -86,6 +96,10 @@ public:
 	int CameraLevel2()
 	{
 		return app->render->camera.y = -1725;
+	}
+	int CameraBoss()
+	{
+		return app->render->camera.y = -3225;	
 	}
 private:
 	SDL_Texture* img;
@@ -108,6 +122,7 @@ public:
 
 	bool level1;
 	bool level2;
+	bool bossLevel;
 };
 
 #endif // __SCENE_H__

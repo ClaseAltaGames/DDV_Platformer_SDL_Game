@@ -65,9 +65,16 @@ bool LevelCompletedScreen::Update(float dt)
 
         app->audio->PlayMusic("Assets/Music/Song1.ogg", 1.0f);
 
-        app->scene->GoToLevel2();
-
-        app->scene->CameraLevel2();
+        if (app->scene->level1)
+        {
+           app->scene->GoToLevel2();
+           app->scene->CameraLevel2();
+        }
+        if (app->scene->level2)
+        {
+            app->scene->GoToBoss();
+            app->scene->CameraBoss();
+        }
     }
 
     return true;

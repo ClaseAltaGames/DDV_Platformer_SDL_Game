@@ -120,11 +120,19 @@ bool Player::Update(float dt)
 			{
 				app->scene->level1 = true;
 				app->scene->level2 = false;
+				app->scene->bossLevel = false;
 			}
-			if (position.y > 1000)
+			if (position.y > 1000 && position.y < 1500)
 			{
 				app->scene->level2 = true;
 				app->scene->level1 = false;
+				app->scene->bossLevel = false;
+			}
+			if (position.y > 1500)
+			{
+				app->scene->level2 = false;
+				app->scene->level1 = false;
+				app->scene->bossLevel = true;
 			}
 			if (lives == 3)
 			{
@@ -253,16 +261,22 @@ bool Player::Update(float dt)
 
 			app->physics->DestroyCircle(pbody);
 
-			if (position.y < 1000)
+			if (app->scene->level1)
 			{
 				pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
 				app->scene->CameraLevel1();
 			}
-			if (position.y > 1000)
+			if (app->scene->level2)
 			{
 				pbody = app->physics->CreateCircle(39 + 16, 1119 + 16, 8, bodyType::DYNAMIC);
 				app->scene->CameraLevel2();
 			}
+			if (app->scene->bossLevel)
+			{
+				pbody = app->physics->CreateCircle(196 + 16, 1964 + 16, 8, bodyType::DYNAMIC);
+				app->scene->CameraBoss();
+			}
+			
 			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
 			app->render->DrawTexture(texture, position.x, position.y, &currentAnimation->GetCurrentFrame());
 			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
@@ -274,9 +288,7 @@ bool Player::Update(float dt)
 		{
 			app->scene->pause = true;
 
-			app->physics->DestroyCircle(pbody);
-
-			pbody = app->physics->CreateCircle(39 + 16, 1119 + 16, 8, bodyType::DYNAMIC);
+			app->scene->GoToLevel2();
 			app->scene->CameraLevel2();
 			
 			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
@@ -301,6 +313,11 @@ bool Player::Update(float dt)
 
 			pbody->listener = this;
 			pbody->ctype = ColliderType::PLAYER;
+		}
+		if (app->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN)
+		{
+			app->scene->GoToBoss();
+			app->scene->CameraBoss();
 		}
 	}
 	if (godMode == true) {
