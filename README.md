@@ -12,7 +12,7 @@ https://github.com/ClaseAltaGames/DDV_Platformer_SDL_Game
 We are ClaseAltaGames, a pair of students from CITM, videogames fans and C++ developers.
 
 ## Game Description
-"Furious Bald" is an amazing game in which you play as a bald person, and your objective is to defeat your enemies who have long hair and purchase shampoo. Download the 0.5 version now FOR FREE.
+"Furious Bald" is an amazing game in which you play as a bald person, and your objective is to defeat your enemies who have long hair and purchase shampoo. Download the 0.5 version now FOR FREE. The final version will be available on steam (1€)
 
 ## Game requirements (minimum)
 - OS : Windows 10/11 32bit / 64bit
@@ -23,7 +23,7 @@ We are ClaseAltaGames, a pair of students from CITM, videogames fans and C++ dev
 - Extra features: 120 FPS / 144 FPS (VSync)
 
 ## Game requirements (recommended)
-- OS : Windows 10 64bit
+- OS : Windows 10 64bit (Windows 11 not due to instability issues in the operating system, Microsoft's fault)
 - RAM: 64GB
 - Storage: 1TB SSD
 - Processor: Intel Core i9 last gen / AMD Ryzen 9 last gen
@@ -31,6 +31,11 @@ We are ClaseAltaGames, a pair of students from CITM, videogames fans and C++ dev
 - Extra features: 120 FPS / 144 FPS (VSync)
 
   ### Note: PS5 is not supported due of a lack of performance
+
+## Save options
+- You can save your position
+- You can save your level completed
+- You can save picked items
 
 ## Controls
 - WASD for movement
