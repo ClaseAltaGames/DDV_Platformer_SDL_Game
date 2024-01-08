@@ -20,7 +20,13 @@ We are ClaseAltaGames, a pair of students from CITM, videogames fans and C++ dev
 - Storage: 1GB 
 - Processor: Intel Celeron / AMD Athlon
 - Graphics: Integrated graphics
-- Extra features: 120 FPS / 144 FPS (VSync)
+
+## Game requierements (recommended)
+- OS : Windows 10 64bit 
+- RAM: 64GB
+- Storage: 1TB SSD
+- Processor: Intel Core i9 last gen / AMD Ryzen 9 last gen
+- Graphics: Nvidia Geforce RTX 4090 TI
 
 ## Save/Load options
 - You can save your position
