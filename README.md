@@ -4,9 +4,9 @@
 ## Link to the Github project:
 https://github.com/ClaseAltaGames/DDV_Platformer_SDL_Game
 
-## Members
-- Pau Mena Torres
-- Edgar Mesa Domínguez
+## Developers
+- Pau Mena Torres      --> https://github.com/PauMenaTorres
+- Edgar Mesa Domínguez --> https://github.com/edgarmd1
 
 ## Description
 We are ClaseAltaGames, a pair of students from CITM, videogames fans and C++ developers.
