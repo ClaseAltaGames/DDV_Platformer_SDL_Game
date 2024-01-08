@@ -43,9 +43,15 @@ public:
 	bool DrawCircle(int x1, int y1, int redius, Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255, bool useCamera = true) const;
 	bool DrawText(const char* text, int posX, int posY, int w, int h);
 
+
 	// Set background color
 	void SetBackgroundColor(SDL_Color color);
 
+	//
+	bool LoadState(pugi::xml_node node);
+
+	//
+	bool SaveState(pugi::xml_node node);
 
 public:
 

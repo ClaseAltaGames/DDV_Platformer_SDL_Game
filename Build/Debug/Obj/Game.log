@@ -1,9 +1,9 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  Player.cpp
+  Scene.cpp
 C:\Users\paumt2\Documents\GitHub\Desenvolupament\Game\Source\Animation.h(56,19): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\paumt2\Documents\GitHub\Desenvolupament\Game\Source\Animation.h(58,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\paumt2\Documents\GitHub\Desenvolupament\Game\Source\Animation.h(64,19): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\paumt2\Documents\GitHub\Desenvolupament\Game\Source\Animation.h(66,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\paumt2\Documents\GitHub\Desenvolupament\Game\Source\Scene.h(110): warning C4715: 'Scene::HeartPicked': not all control paths return a value
+C:\Users\paumt2\Documents\GitHub\Desenvolupament\Game\Source\Scene.cpp(84): warning C4715: 'Scene::Awake': not all control paths return a value
   Game.vcxproj -> C:\Users\paumt2\Documents\GitHub\Desenvolupament\Build\Debug\Game.exe
           1 archivo(s) copiado(s).

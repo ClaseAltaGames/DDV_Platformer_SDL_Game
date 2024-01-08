@@ -7,6 +7,7 @@
 #include "WEnemies.h"
 #include "FEnemies.h"
 #include "Jabon.h"
+#include "Health.h"
 #include "Physics.h"
 
 struct SDL_Texture;
@@ -116,6 +117,8 @@ private:
 	Player* player;
 	WEnemies* wenemy;
 	FEnemies* fenemy;
+	Jabon* item;
+	Poti* poti;
 	List<WEnemies*> wenemyList;
 	List<FEnemies*> fenemyList;
 

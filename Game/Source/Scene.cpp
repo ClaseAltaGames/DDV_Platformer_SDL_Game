@@ -16,6 +16,7 @@
 #include "FadeToBlack.h"
 #include "GuiManager.h"
 #include "Health.h"
+#include "Jabon.h"
 
 
 #include "Defs.h"
@@ -239,8 +240,7 @@ bool Scene::LoadState(pugi::xml_node node) {
 
 		fenemyList.At(id)->data->ebody->body->SetTransform(posMetres, 0);
 	}
-
-
+		
 	return true;
 }
 
@@ -252,7 +252,7 @@ bool Scene::SaveState(pugi::xml_node node) {
 	
 
 	// save the position of the wenemy with the list in the xml file detecting the id of the wenemy
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 13; i++)
 	{
 		pugi::xml_node wenemyNode = node.append_child("wenemy");
 		wenemyNode.append_attribute("x").set_value(wenemyList.At(i)->data->position.x);
@@ -262,7 +262,7 @@ bool Scene::SaveState(pugi::xml_node node) {
 	}
 
 	// save the position of the fenemy with the list in the xml file 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 7; i++)
 	{
 		pugi::xml_node fenemyNode = node.append_child("fenemy");
 		fenemyNode.append_attribute("x").set_value(fenemyList.At(i)->data->position.x);
@@ -270,10 +270,6 @@ bool Scene::SaveState(pugi::xml_node node) {
 
 		fenemyNode.append_attribute("id").set_value(i);
 	}
-
-	
-
-	
 
 
 	return true;

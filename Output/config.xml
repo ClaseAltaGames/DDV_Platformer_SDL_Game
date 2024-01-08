@@ -221,7 +221,7 @@
 		</animation>
 	</wenemy>
 	
-	<wenemy id="14" x="4769" y="1087" texturepath="Assets/Textures/enemy1.png">
+	<wenemy id="13" x="4769" y="1087" texturepath="Assets/Textures/enemy1.png">
 		<animation name="enemy1WalkAnimR" loop="true" speed = "0.2f">
 			<frame x="21" y="23" w="12" h="17"/>
 			<frame x="38" y="23" w="14" h="17"/>
@@ -354,6 +354,12 @@
 	<item x="1616" y="351" texturepath="Assets/Textures/jabon.png"/>
 	<item x="1653" y="351" texturepath="Assets/Textures/jabon.png"/>
 	<item x="1682" y="351" texturepath="Assets/Textures/jabon.png"/>
+	<item x="729" y="1087" texturepath="Assets/Textures/jabon.png"/>
+	<item x="2246" y="1135" texturepath="Assets/Textures/jabon.png"/>
+	<item x="3330" y="1071" texturepath="Assets/Textures/jabon.png"/>
+	<item x="3492" y="1039" texturepath="Assets/Textures/jabon.png"/>
+	<item x="3663" y="1006" texturepath="Assets/Textures/jabon.png"/>
+	<item x="4198" y="1023" texturepath="Assets/Textures/jabon.png"/>
 	  
 	<poti x="2889" y="1135" texturepath="Assets/Textures/poti.png"/>
 	<poti x="107" y="1967" texturepath="Assets/Textures/poti.png"/>
