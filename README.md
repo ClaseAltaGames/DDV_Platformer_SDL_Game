@@ -31,6 +31,7 @@ We are ClaseAltaGames, a pair of students from CITM, videogames fans and C++ dev
 ## Save/Load options
 - You can save your position
 - You can save your level completed
+- You can save enemies positions
 
 ## Controls
 - WASD for movement
