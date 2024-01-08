@@ -3,6 +3,9 @@
 #include "Module.h"
 #include "SDL/include/SDL.h"
 #include "Window.h"
+#include "GuiControlButton.h"
+#include "GuiManager.h"
+#include "GuiControl.h"
 
 struct SDL_Texture;
 
@@ -33,6 +36,7 @@ public:
     int posBtX = SCREEN_WIDTH / 2 - wBt / 2;
     int posBtY = SCREEN_HEIGHT / 2 - hBt / 2;
 
+    GuiControlButton* completedButton;
 
     bool completedFxAvailable = false;
 

@@ -29,6 +29,7 @@ LevelCompletedScreen::~LevelCompletedScreen()
 // Called before render is available
 bool LevelCompletedScreen::Start()
 {
+
     completedScreenTex = app->tex->Load("Assets/Textures/levelCompleteScreen.png");
 
     app->render->camera.x = 0;
@@ -40,18 +41,20 @@ bool LevelCompletedScreen::Start()
     app->scene->Disable();
     app->scene->active = false;
     app->entityManager->active = false;
-
-
+    
+    app->guiManager->active = true;
+    app->guiManager->Enable();
     app->levelCompletedScreen->active = true;
     app->levelCompletedScreen->Enable();
 
+    //completedButton = (GuiControlButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 10, "Click Here To Next Level", {wBt, hBt, posBtX, posBtY}, this);
 
     return true;
 }
 
 // Called each loop iteration
 bool LevelCompletedScreen::Update(float dt)
-{       
+{
     if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
     {
         app->fadeToBlack->FadeToBlackTransition((Module*)app->levelCompletedScreen, (Module*)app->scene, 0);
@@ -77,12 +80,14 @@ bool LevelCompletedScreen::Update(float dt)
         }
     }
 
+    app->render->DrawTexture(completedScreenTex, 0, 0);
+
     return true;
 }
 
 bool LevelCompletedScreen::PostUpdate()
 {
-    app->render->DrawTexture(completedScreenTex, 0, 0);
+
 
     return true;
 }

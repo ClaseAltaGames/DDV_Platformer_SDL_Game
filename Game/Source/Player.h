@@ -52,6 +52,7 @@ public:
 	int lives = 3;
 
 	int score = 0;
+
 		
 private:
 	float jumpPower = 0.45f;
