@@ -3,6 +3,7 @@
 #include "WEnemies.h"
 #include "FEnemies.h"
 #include "Jabon.h"
+#include "Health.h"
 #include "App.h"
 #include "Textures.h"
 #include "Scene.h"
@@ -95,6 +96,9 @@ Entity* EntityManager::CreateEntity(EntityType type)
 		break;
 	case EntityType::FENEMIES:
 		entity = new FEnemies();
+		break;
+	case EntityType::HEALTH:
+		entity = new Poti();
 		break;
 	default:
 		break;

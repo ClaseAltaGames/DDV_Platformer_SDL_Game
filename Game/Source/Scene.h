@@ -101,6 +101,13 @@ public:
 	{
 		return app->render->camera.y = -3225;	
 	}
+	int HeartPicked()
+	{
+		if (player->lives < 3)
+		{
+			return player->lives++;
+		}
+	}
 private:
 	SDL_Texture* img;
 	float textPosX, textPosY = 0;

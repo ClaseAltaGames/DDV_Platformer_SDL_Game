@@ -354,6 +354,11 @@
 	<item x="1616" y="351" texturepath="Assets/Textures/jabon.png"/>
 	<item x="1653" y="351" texturepath="Assets/Textures/jabon.png"/>
 	<item x="1682" y="351" texturepath="Assets/Textures/jabon.png"/>
+	  
+	<poti x="2889" y="1135" texturepath="Assets/Textures/poti.png"/>
+	<poti x="107" y="1967" texturepath="Assets/Textures/poti.png"/>
+
+
 
 
   </scene>

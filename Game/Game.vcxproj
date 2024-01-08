@@ -101,6 +101,7 @@
     <ClCompile Include="Source\FEnemies.cpp" />
     <ClCompile Include="Source\GuiControlButton.cpp" />
     <ClCompile Include="Source\GuiManager.cpp" />
+    <ClCompile Include="Source\Health.cpp" />
     <ClCompile Include="Source\IntroScreen.cpp" />
     <ClCompile Include="Source\Jabon.cpp" />
     <ClCompile Include="Source\LevelCompletedScreen.cpp" />
@@ -130,6 +131,7 @@
     <ClInclude Include="Source\GuiControl.h" />
     <ClInclude Include="Source\GuiControlButton.h" />
     <ClInclude Include="Source\GuiManager.h" />
+    <ClInclude Include="Source\Health.h" />
     <ClInclude Include="Source\IntroScreen.h" />
     <ClInclude Include="Source\Jabon.h" />
     <ClInclude Include="Source\LevelCompletedScreen.h" />

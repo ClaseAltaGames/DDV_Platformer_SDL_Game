@@ -56,7 +56,9 @@ bool Jabon::Update(float dt)
 	{
 		app->physics->DestroyCircle(jbody);
 		jbody = app->physics->CreateCircle(-1000 + 16, 1000 + 16, 8, bodyType::DYNAMIC);
-	}
+
+		
+	}	
 
 	return true;
 }
@@ -77,6 +79,7 @@ void Jabon::OnCollision(PhysBody* physA, PhysBody* physB)
 	{
 	case ColliderType::PLAYER:
 		isPicked = true;
+
 		break;
 	}
 }

@@ -15,6 +15,7 @@
 #include "DeadScreen.h"
 #include "FadeToBlack.h"
 #include "GuiManager.h"
+#include "Health.h"
 
 
 #include "Defs.h"
@@ -66,7 +67,11 @@ bool Scene::Awake(pugi::xml_node& config)
 			Jabon* item = (Jabon*)app->entityManager->CreateEntity(EntityType::JABON);
 			item->parameters = itemNode;
 		}
-
+		for (pugi::xml_node potiNode = config.child("poti"); potiNode; potiNode = potiNode.next_sibling("poti"))
+		{
+			Poti* poti = (Poti*)app->entityManager->CreateEntity(EntityType::HEALTH);
+			poti->parameters = potiNode;
+		}
 		if (config.child("map")) {
 			//Get the map name from the config file and assigns the value in the module
 			app->map->name = config.child("map").attribute("name").as_string();

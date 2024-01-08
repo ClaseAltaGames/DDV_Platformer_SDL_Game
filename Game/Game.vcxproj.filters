@@ -33,6 +33,7 @@
     <ClCompile Include="Source\TitleScreen.cpp" />
     <ClCompile Include="Source\LevelCompletedScreen.cpp" />
     <ClCompile Include="Source\DeadScreen.cpp" />
+    <ClCompile Include="Source\Health.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -93,6 +94,7 @@
     <ClInclude Include="Source\TitleScreen.h" />
     <ClInclude Include="Source\LevelCompletedScreen.h" />
     <ClInclude Include="Source\DeadScreen.h" />
+    <ClInclude Include="Source\Health.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

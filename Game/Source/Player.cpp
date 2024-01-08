@@ -136,18 +136,21 @@ bool Player::Update(float dt)
 			}
 			if (lives == 3)
 			{
-				app->render->DrawTexture(threeLive, position.x - 230, 20);
+				app->render->DrawTexture(threeLive, position.x - 230, 22);
 				app->render->DrawTexture(threeLive, position.x - 230, 885);
+				app->render->DrawTexture(threeLive, position.x - 230, 1635);
 			}
 			if (lives == 2)
 			{
-				app->render->DrawTexture(twoLive, position.x - 230, 20);
+				app->render->DrawTexture(twoLive, position.x - 230, 22);
 				app->render->DrawTexture(twoLive, position.x - 230, 885);
+				app->render->DrawTexture(twoLive, position.x - 230, 1635);
 			}
 			if (lives == 1)
 			{
-				app->render->DrawTexture(oneLive, position.x - 230, 20);
+				app->render->DrawTexture(oneLive, position.x - 230, 22);
 				app->render->DrawTexture(oneLive, position.x - 230, 885);
+				app->render->DrawTexture(oneLive, position.x - 230, 1635);
 			}
 
 			app->scene->pause = false;
@@ -428,6 +431,10 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 	case ColliderType::FENEMIES:
 		LOG("Collision FENEMIES");
 		death = true;
+		break;
+	case ColliderType::HEALTH:
+		LOG("Collision HEALTH");
+		app->scene->HeartPicked();
 		break;
 	case ColliderType::UNKNOWN:
 		LOG("Collision UNKNOWN");
