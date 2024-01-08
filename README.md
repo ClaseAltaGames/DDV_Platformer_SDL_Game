@@ -30,6 +30,8 @@ We are ClaseAltaGames, a pair of students from CITM, videogames fans and C++ dev
 - Graphics: Nvidia Geforce RTX 4090 Super
 - Extra features: 120 FPS / 144 FPS (VSync)
 
+  ### Note: PS5 is not supported due of a lack of performance
+
 ## Controls
 - WASD for movement
     
