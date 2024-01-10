@@ -377,20 +377,22 @@ bool Player::Update(float dt)
 	}
 	if (app->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
 	{
-		if (app->scene->level1)
-		{
-			app->physics->DestroyCircle(pbody);
-			pbody = app->physics->CreateCircle(5041 + 16, 171 + 16, 8, bodyType::DYNAMIC);
-			pbody->listener = this;
-			pbody->ctype = ColliderType::PLAYER;
-		}
-		if (app->scene->level2)
-		{
-			app->physics->DestroyCircle(pbody);
-			pbody = app->physics->CreateCircle(5044 + 16, 1015 + 16, 8, bodyType::DYNAMIC);
-			pbody->listener = this;
-			pbody->ctype = ColliderType::PLAYER;
-		}
+		//activa levelcompletedscreen y desactiva scene
+
+		app->levelCompletedScreen->active = true;
+		app->levelCompletedScreen->Enable();
+
+		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
+
+		app->levelCompletedScreen->completedFxAvailable = true;
+
+		app->scene->Disable();
+		app->scene->active = false;
+		app->entityManager->active = false;
+
+		app->guiManager->active = true;
+		app->guiManager->Enable();
+	
 	}
 	app->render->DrawText(points.GetString(), 900, 30, 100, 50);
 
@@ -438,6 +440,13 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
 
 		app->levelCompletedScreen->completedFxAvailable = true;
+
+		app->scene->Disable();
+		app->scene->active = false;
+		app->entityManager->active = false;
+
+		app->guiManager->active = true;
+		app->guiManager->Enable();
 		
 		break;
 	case ColliderType::WENEMIES:

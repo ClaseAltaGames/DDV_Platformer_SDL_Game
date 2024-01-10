@@ -98,6 +98,7 @@ bool Scene::Start()
 	app->guiManager->Disable();
 
 
+
 	app->tex->UnLoad(app->titleScreen->titleScreenTex);
 
 	fondo = app->tex->Load("Assets/Textures/fondo.png");

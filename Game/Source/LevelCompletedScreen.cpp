@@ -29,7 +29,6 @@ LevelCompletedScreen::~LevelCompletedScreen()
 // Called before render is available
 bool LevelCompletedScreen::Start()
 {
-
     completedScreenTex = app->tex->Load("Assets/Textures/levelCompleteScreen.png");
 
     app->render->camera.x = 0;
@@ -37,24 +36,22 @@ bool LevelCompletedScreen::Start()
 
     //app->audio->PlayMusic("Assets/Music/titleScreen.ogg", 1.0f);
 
-    //unload the scene music
-    app->scene->Disable();
-    app->scene->active = false;
-    app->entityManager->active = false;
-    
-    app->guiManager->active = true;
-    app->guiManager->Enable();
-    app->levelCompletedScreen->active = true;
-    app->levelCompletedScreen->Enable();
 
-    //completedButton = (GuiControlButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 10, "Click Here To Next Level", {wBt, hBt, posBtX, posBtY}, this);
+    int wBt = 190;
+    int hBt = 60;
+    int posBtX = SCREEN_WIDTH / 2 - 95;
+    int posBtY = SCREEN_HEIGHT / 2 + 230;
+
+    //SDL_Rect btPos = { SCREEN_WIDTH / 2 - 80, SCREEN_HEIGHT / 2 + 240, 190,60 };
+
+    completedButton = (GuiControlButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 10, "Next level", {posBtX, posBtY, wBt, hBt}, this);
 
     return true;
 }
 
 // Called each loop iteration
 bool LevelCompletedScreen::Update(float dt)
-{
+{    
     if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
     {
         app->fadeToBlack->FadeToBlackTransition((Module*)app->levelCompletedScreen, (Module*)app->scene, 0);

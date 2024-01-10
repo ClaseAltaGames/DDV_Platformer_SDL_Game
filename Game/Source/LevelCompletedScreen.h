@@ -30,12 +30,6 @@ public:
     SDL_Texture* completedScreenTex;
     int completedSound;
 
-
-    int wBt = 100;
-    int hBt = 20;
-    int posBtX = SCREEN_WIDTH / 2 - wBt / 2;
-    int posBtY = SCREEN_HEIGHT / 2 - hBt / 2;
-
     GuiControlButton* completedButton;
 
     bool completedFxAvailable = false;

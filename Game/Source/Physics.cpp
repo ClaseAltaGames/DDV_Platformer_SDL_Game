@@ -345,11 +345,19 @@ void Physics::BeginContact(b2Contact* contact)
 	PhysBody* physA = (PhysBody*)contact->GetFixtureA()->GetBody()->GetUserData();
 	PhysBody* physB = (PhysBody*)contact->GetFixtureB()->GetBody()->GetUserData();
 
+	// if nullptr
+	if (physA == nullptr || physB == nullptr)
+	{
+		LOG("Error: PhysBody is nullptr");
+	}
+
 	if (physA && physA->listener != NULL)
 		physA->listener->OnCollision(physA, physB);
 
 	if (physB && physB->listener != NULL && physB != nullptr)
 		physB->listener->OnCollision(physB, physA);
+
+
 }
 
 //--------------- PhysBody

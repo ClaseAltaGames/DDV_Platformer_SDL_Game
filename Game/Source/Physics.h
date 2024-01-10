@@ -34,6 +34,7 @@ enum class ColliderType {
 	WENEMYDEATH,
 	FENEMYDEATH,
 	HEALTH,
+	CHECKPOINT,
 	DEATH
 	// ..
 };
