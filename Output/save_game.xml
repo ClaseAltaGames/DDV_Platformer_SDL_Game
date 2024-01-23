@@ -6,27 +6,27 @@
 	<audio />
 	<:anonymous />
 	<scene>
-		<player x="18" y="239" />
-		<wenemy x="27" y="239" id="0" />
-		<wenemy x="705" y="127" id="1" />
-		<wenemy x="2093" y="239" id="2" />
-		<wenemy x="4172" y="95" id="3" />
-		<wenemy x="4463" y="239" id="4" />
-		<wenemy x="576" y="1071" id="5" />
-		<wenemy x="972" y="1055" id="6" />
-		<wenemy x="1150" y="1007" id="7" />
-		<wenemy x="1700" y="1007" id="8" />
-		<wenemy x="1989" y="1135" id="9" />
-		<wenemy x="2775" y="895" id="10" />
-		<wenemy x="3148" y="1103" id="11" />
-		<wenemy x="4483" y="1087" id="12" />
-		<fenemy x="207" y="108" id="0" />
-		<fenemy x="1089" y="171" id="1" />
-		<fenemy x="2737" y="213" id="2" />
-		<fenemy x="2148" y="206" id="3" />
-		<fenemy x="3186" y="128" id="4" />
-		<fenemy x="3729" y="191" id="5" />
-		<fenemy x="3931" y="110" id="6" />
+		<player x="72" y="239" />
+		<wenemy x="139" y="239" id="0" />
+		<wenemy x="654" y="127" id="1" />
+		<wenemy x="1996" y="239" id="2" />
+		<wenemy x="4205" y="95" id="3" />
+		<wenemy x="4585" y="239" id="4" />
+		<wenemy x="474" y="1071" id="5" />
+		<wenemy x="924" y="1055" id="6" />
+		<wenemy x="1239" y="1007" id="7" />
+		<wenemy x="1654" y="1007" id="8" />
+		<wenemy x="2170" y="1135" id="9" />
+		<wenemy x="2687" y="895" id="10" />
+		<wenemy x="3096" y="1103" id="11" />
+		<wenemy x="4664" y="1087" id="12" />
+		<fenemy x="389" y="108" id="0" />
+		<fenemy x="1271" y="171" id="1" />
+		<fenemy x="2919" y="213" id="2" />
+		<fenemy x="2247" y="206" id="3" />
+		<fenemy x="3368" y="128" id="4" />
+		<fenemy x="3661" y="191" id="5" />
+		<fenemy x="3870" y="110" id="6" />
 	</scene>
 	<:anonymous />
 	<entitymanager />

@@ -13,7 +13,7 @@
 #include "GuiControl.h"
 #include "GuiControlButton.h"
 #include "GuiManager.h"
-
+#include "PauseScreen.h"
 
 
 #include "SDL/include/SDL.h"    
@@ -30,6 +30,9 @@ LevelCompletedScreen::~LevelCompletedScreen()
 bool LevelCompletedScreen::Start()
 {
     completedScreenTex = app->tex->Load("Assets/Textures/levelCompleteScreen.png");
+
+    app->guiManager->DestroyGuiControl(app->pauseScreen->sliderMusic);
+    app->guiManager->DestroyGuiControl(app->pauseScreen->sliderFx);
 
     app->render->camera.x = 0;
     app->render->camera.y = 0;
@@ -62,6 +65,8 @@ bool LevelCompletedScreen::Update(float dt)
         app->scene->active = true;
         app->scene->Enable();
 
+        app->guiManager->active = true;
+        app->guiManager->Enable();
         //plays the scene music
 
         app->audio->PlayMusic("Assets/Music/Song1.ogg", 1.0f);

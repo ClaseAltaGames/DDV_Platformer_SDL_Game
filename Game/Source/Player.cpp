@@ -17,6 +17,7 @@
 #include "GuiControl.h"
 #include "GuiControlButton.h"
 #include "DeadScreen.h"
+#include "PauseScreen.h"
 
 
 Player::Player() : Entity(EntityType::PLAYER)
@@ -404,18 +405,21 @@ bool Player::Update(float dt)
 
 		app->levelCompletedScreen->active = true;
 		app->levelCompletedScreen->Enable();
-
-		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
+		
+		app->guiManager->active = true;
+		app->guiManager->Enable();
 
 		app->levelCompletedScreen->completedFxAvailable = true;
 
 		app->scene->Disable();
 		app->scene->active = false;
+
 		app->entityManager->active = false;
 
-		app->guiManager->active = true;
-		app->guiManager->Enable();
-
+		app->pauseScreen->active = false;
+		app->pauseScreen->Disable();
+		
+		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
 	}
 	app->render->DrawText(points.GetString(), 900, 30, 100, 50);
 
@@ -460,6 +464,9 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 
 		app->levelCompletedScreen->active = true;
 		app->levelCompletedScreen->Enable();
+
+		app->pauseScreen->active = false;
+		app->pauseScreen->Disable();
 
 		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
 

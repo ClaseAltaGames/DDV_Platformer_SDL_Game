@@ -69,9 +69,7 @@ GuiControl* GuiManager::CreateGuiControl(GuiControlType type, int id, const char
 
 bool GuiManager::Update(float dt)
 {	
-
 	
-
 	return true;
 }
 
@@ -79,7 +77,7 @@ bool GuiManager::PostUpdate()
 {
 	ListItem<GuiControl*>* control = guiControlsList.start;
 
-	while (control != nullptr)
+	while (control != nullptr && control->data != nullptr)
 	{
 		control->data->PostUpdate();
 		control = control->next;
@@ -115,7 +113,7 @@ void GuiManager::DestroyGuiControl(GuiControl* toDestroy) {
 	ListItem<GuiControl*>* control;
 	for (control = guiControlsList.start; control != NULL; control = control->next)
 	{
-		if (control->data == toDestroy) {
+	if (control->data == toDestroy) {
 			guiControlsList.Del(control);
 			break;
 		}

@@ -206,6 +206,10 @@ bool Scene::PostUpdate()
 		app->SaveRequest();
 		app->pauseScreen->active = true;
 		app->pauseScreen->Enable();
+		app->levelCompletedScreen->active = false;
+		app->levelCompletedScreen->Disable();
+		app->guiManager->active = true;
+		app->guiManager->Enable();
 		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->pauseScreen, 0);
 	}
 

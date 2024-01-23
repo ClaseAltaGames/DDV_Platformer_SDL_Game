@@ -13,6 +13,7 @@
 #include "GuiControl.h"
 #include "GuiControlButton.h"
 #include "GuiManager.h"
+#include "LevelCompletedScreen.h"
 
 
 #include "SDL/include/SDL.h"    
@@ -30,19 +31,22 @@ bool PauseScreen::Start()
 {
     pauseScreenTex = app->tex->Load("Assets/Textures/pauseScreen.png");
 
-
     //app->audio->PlayMusic("Assets/Music/titleScreen.ogg", 1.0f);
-
-
+    app->guiManager->DestroyGuiControl(app->levelCompletedScreen->completedButton);
     int wBt = 190;
-    int hBt = 60;
+    int hBt = 40;
     int posBtX = SCREEN_WIDTH / 2 - 95;
     int posBtY = SCREEN_HEIGHT / 2 + 230;
 
     //add music and fx slider
-    sliderFx = app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 1021, "Fx", { posBtX, posBtY, wBt, hBt }, this);
+    sliderFx = (GuiControlSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 10, "Fx", { posBtX, posBtY, wBt, hBt }, this);
 
 
+    wBt = 190;
+    hBt = 40;
+    posBtX = SCREEN_WIDTH / 2 - 95;
+    posBtY = SCREEN_HEIGHT / 2 + 100;
+    sliderMusic = (GuiControlSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 10, "Music", { posBtX, posBtY, wBt, hBt }, this);
 
     return true;
 }
@@ -52,7 +56,6 @@ bool PauseScreen::Update(float dt)
 {
     if (app->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
     {
-       app->fadeToBlack->FadeToBlackTransition((Module*)app->pauseScreen, (Module*)app->scene, 0);
        app->scene->pause = false;
        app->scene->active = true;
        app->scene->Enable();
@@ -66,6 +69,8 @@ bool PauseScreen::Update(float dt)
 
        app->scene->GetPlayerPbody()->listener = app->scene->GetPlayer();
        app->scene->GetPlayerPbody()->ctype = ColliderType::PLAYER;
+       
+       app->fadeToBlack->FadeToBlackTransition((Module*)app->pauseScreen, (Module*)app->scene, 0);
     }
 
     app->scene->pause = true;

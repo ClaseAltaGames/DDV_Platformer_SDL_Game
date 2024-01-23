@@ -31,7 +31,7 @@ public:
 
     SDL_Texture* pauseScreenTex;
 
-    GuiControl* sliderFx;
+    GuiControlSlider* sliderFx;
     GuiControlSlider* sliderMusic;
 
     GuiControlCheckBox* checkBoxFullscreen;
@@ -40,6 +40,16 @@ public:
     bool completedFxAvailable = false;
 
 private:
+    List<GuiControl*> controlsScene;
+    List<GuiControl*> controlsSettings;
+    GuiControlButton* gcButtom;
+    GuiControl* gcCloseCredits;
+
+    bool showSettings = false;
+    bool _showSettings = false;
+
+    bool showCredits = false;
+    bool _showCredits = false;
 
 
 };
