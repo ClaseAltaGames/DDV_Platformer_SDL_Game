@@ -21,12 +21,16 @@ public:
 
 	 // Called each loop iteration
 	 bool Update(float dt);
+	 bool PostUpdate();
+	 bool PostLateUpdate();
 
 	// Called before quitting
 	bool CleanUp();
 
 	// Additional methods
 	GuiControl* CreateGuiControl(GuiControlType type, int id, const char* text, SDL_Rect bounds, Module* observer, SDL_Rect sliderBounds = { 0,0,0,0 });
+
+	void DestroyGuiControl(GuiControl* toDestroy);
 
 public:
 

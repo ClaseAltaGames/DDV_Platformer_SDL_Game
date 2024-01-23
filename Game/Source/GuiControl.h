@@ -21,7 +21,8 @@ enum class GuiControlType
 	DROPDOWNBOX,
 	INPUTBOX,
 	VALUEBOX,
-	SPINNER
+	SPINNER,
+	IMAGE
 };
 
 enum class GuiControlState
@@ -53,6 +54,11 @@ public:
 
 	// Called each loop iteration
 	virtual bool Update(float dt)
+	{
+		return true;
+	}
+	
+	virtual bool PostUpdate()
 	{
 		return true;
 	}

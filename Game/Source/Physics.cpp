@@ -22,7 +22,7 @@ Physics::Physics(bool startEnabled) : Module(startEnabled)
 {
 	// Initialise all the internal class variables, at least to NULL pointer
 	world = NULL;
-	debug = true;
+	debug = false;
 }
 
 // Destructor
@@ -55,6 +55,7 @@ bool Physics::PreUpdate()
 
 	// Because Box2D does not automatically broadcast collisions/contacts with sensors, 
 	// we have to manually search for collisions and "call" the equivalent to the ModulePhysics::BeginContact() ourselves...
+	
 	for (b2Contact* c = world->GetContactList(); c; c = c->GetNext())
 	{
 		// For each contact detected by Box2D, see if the first one colliding is a sensor

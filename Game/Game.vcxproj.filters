@@ -34,6 +34,9 @@
     <ClCompile Include="Source\LevelCompletedScreen.cpp" />
     <ClCompile Include="Source\DeadScreen.cpp" />
     <ClCompile Include="Source\Health.cpp" />
+    <ClCompile Include="Source\GuiControlCheckBox.cpp" />
+    <ClCompile Include="Source\GuiControlImage.cpp" />
+    <ClCompile Include="Source\GuiControlSlider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -95,6 +98,9 @@
     <ClInclude Include="Source\LevelCompletedScreen.h" />
     <ClInclude Include="Source\DeadScreen.h" />
     <ClInclude Include="Source\Health.h" />
+    <ClInclude Include="Source\GuiControlCheckBox.h" />
+    <ClInclude Include="Source\GuiControlImage.h" />
+    <ClInclude Include="Source\GuiControlSlider.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

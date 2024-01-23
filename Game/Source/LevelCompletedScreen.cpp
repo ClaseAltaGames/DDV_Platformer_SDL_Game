@@ -52,7 +52,7 @@ bool LevelCompletedScreen::Start()
 // Called each loop iteration
 bool LevelCompletedScreen::Update(float dt)
 {    
-    if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+    if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || completedButton->state == GuiControlState::PRESSED)
     {
         app->scene->CheckpointOFF();
         app->fadeToBlack->FadeToBlackTransition((Module*)app->levelCompletedScreen, (Module*)app->scene, 0);

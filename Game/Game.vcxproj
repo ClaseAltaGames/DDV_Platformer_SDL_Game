@@ -100,6 +100,9 @@
     <ClCompile Include="Source\FadeToBlack.cpp" />
     <ClCompile Include="Source\FEnemies.cpp" />
     <ClCompile Include="Source\GuiControlButton.cpp" />
+    <ClCompile Include="Source\GuiControlCheckBox.cpp" />
+    <ClCompile Include="Source\GuiControlImage.cpp" />
+    <ClCompile Include="Source\GuiControlSlider.cpp" />
     <ClCompile Include="Source\GuiManager.cpp" />
     <ClCompile Include="Source\Health.cpp" />
     <ClCompile Include="Source\IntroScreen.cpp" />
@@ -130,6 +133,9 @@
     <ClInclude Include="Source\FEnemies.h" />
     <ClInclude Include="Source\GuiControl.h" />
     <ClInclude Include="Source\GuiControlButton.h" />
+    <ClInclude Include="Source\GuiControlCheckBox.h" />
+    <ClInclude Include="Source\GuiControlImage.h" />
+    <ClInclude Include="Source\GuiControlSlider.h" />
     <ClInclude Include="Source\GuiManager.h" />
     <ClInclude Include="Source\Health.h" />
     <ClInclude Include="Source\IntroScreen.h" />
