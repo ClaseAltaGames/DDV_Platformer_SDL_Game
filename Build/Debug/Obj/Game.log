@@ -1,16 +1,8 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
-  Physics.cpp
+  PauseScreen.cpp
 C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(56,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
 C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(58,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
 C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(64,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
 C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(66,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(100,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(101,25): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(137,25): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(138,26): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(214,21): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(414,13): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(415,13): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Physics.cpp(421,27): warning C4244: 'return': conversión de 'float32' a 'int'; posible pérdida de datos
   Game.vcxproj -> C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Build\Debug\Game.exe
           1 archivo(s) copiado(s).

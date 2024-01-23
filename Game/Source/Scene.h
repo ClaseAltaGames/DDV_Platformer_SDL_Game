@@ -113,6 +113,16 @@ public:
 	{
 		return player->checkpoint = false;
 	}
+	PhysBody* GetPlayerPbody()
+	{
+		return player->pbody;
+	}
+	//return player module
+	Player* GetPlayer()
+	{
+		return player;
+	}
+
 	
 private:
 	SDL_Texture* img;

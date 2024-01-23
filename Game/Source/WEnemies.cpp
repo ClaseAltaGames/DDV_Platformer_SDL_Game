@@ -87,118 +87,120 @@ bool WEnemies::Start() {
 
 bool WEnemies::Update(float dt)
 {
-	if (death == false)
-	{
-		dt = 16;
-
-		b2Vec2 impulse = b2Vec2_zero;
-		b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
-
-		switch (currentState)
+	
+		if (death == false)
 		{
-		case EnemyState::MOVING_TO_DESTINATION:
-			MoveToDestination(dt);
-			impulse.x -= acceleration;
-			vel = b2Vec2(speed * dt, -GRAVITY_Y);
-			break;
-		case EnemyState::MOVING_TO_ORIGIN:
-			MoveToOrigin(dt);
-			impulse.x += acceleration;
-			vel = b2Vec2(-speed * dt, -GRAVITY_Y);
-			break;
-		case EnemyState::ATTACKING:
+			dt = 16;
 
-			//condicional para saber si va a la derecha o a la izquierda
-			if (app->scene->GetPlayerPosition().x < position.x)
+			b2Vec2 impulse = b2Vec2_zero;
+			b2Vec2 vel = b2Vec2(0, -GRAVITY_Y);
+
+			switch (currentState)
 			{
-				currentAnimation = enemy1WalkAnimL;
-				currentAnimation->Update();
+			case EnemyState::MOVING_TO_DESTINATION:
+				MoveToDestination(dt);
 				impulse.x -= acceleration;
 				vel = b2Vec2(speed * dt, -GRAVITY_Y);
-				//si el personaje esta fuera del path
-				if (app->map->WorldToMap(position.x, position.y).DistanceTo(app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y)) > 7)
+				break;
+			case EnemyState::MOVING_TO_ORIGIN:
+				MoveToOrigin(dt);
+				impulse.x += acceleration;
+				vel = b2Vec2(-speed * dt, -GRAVITY_Y);
+				break;
+			case EnemyState::ATTACKING:
+
+				//condicional para saber si va a la derecha o a la izquierda
+				if (app->scene->GetPlayerPosition().x < position.x)
 				{
-					currentState = EnemyState::MOVING_TO_DESTINATION;
-					app->map->pathfinding->CreatePath(app->map->WorldToMap(position.x, position.y),
-						app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y));
+					currentAnimation = enemy1WalkAnimL;
+					currentAnimation->Update();
+					impulse.x -= acceleration;
+					vel = b2Vec2(speed * dt, -GRAVITY_Y);
+					//si el personaje esta fuera del path
+					if (app->map->WorldToMap(position.x, position.y).DistanceTo(app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y)) > 7)
+					{
+						currentState = EnemyState::MOVING_TO_DESTINATION;
+						app->map->pathfinding->CreatePath(app->map->WorldToMap(position.x, position.y),
+							app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y));
+					}
+				}
+				else
+				{
+					currentAnimation = enemy1WalkAnimR;
+					currentAnimation->Update();
+					impulse.x += acceleration;
+					vel = b2Vec2(-speed * dt, -GRAVITY_Y);
+					//si el personaje esta fuera del path
+					if (app->map->WorldToMap(position.x, position.y).DistanceTo(app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y)) > 7)
+					{
+						currentState = EnemyState::MOVING_TO_ORIGIN;
+						app->map->pathfinding->CreatePath(app->map->WorldToMap(position.x, position.y),
+							app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y));
+					}
+				}
+				break;
+			}
+
+			//Set the velocity of the pbody of the player
+			ebody->body->ApplyLinearImpulse(impulse, ebody->body->GetPosition(), false);
+			ebody->body->SetLinearVelocity(b2Clamp(ebody->body->GetLinearVelocity(), -vel, vel));
+
+			// Update the character's position
+			b2Transform ebodyPos = ebody->body->GetTransform();
+			position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
+			position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
+
+			// Pathfinding
+
+			// pathfinding entre el enemigo y el player
+
+			//conditional to check if player is 5 tiles to the enemy
+
+			if (app->map->WorldToMap(position.x, position.y).DistanceTo(app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y)) < 7)
+			{
+				currentState = EnemyState::ATTACKING;
+				app->map->pathfinding->CreatePath(app->map->WorldToMap(position.x, position.y),
+					app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y));
+			}
+			// pathfinding next steps
+			const DynArray<iPoint>* path = app->map->pathfinding->GetLastPath();
+
+			//const DynArray<iPoint>* path = app->map->pathfinding->GetLastPath();
+			if (app->physics->debug == true)
+			{
+				for (uint i = 0; i < path->Count(); ++i)
+				{
+					iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+					app->render->DrawTexture(app->scene->mouseTileTex, pos.x, pos.y);
 				}
 			}
 			else
 			{
-				currentAnimation = enemy1WalkAnimR;
-				currentAnimation->Update();
-				impulse.x += acceleration;
-				vel = b2Vec2(-speed * dt, -GRAVITY_Y);
-				//si el personaje esta fuera del path
-				if (app->map->WorldToMap(position.x, position.y).DistanceTo(app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y)) > 7)
+				for (uint i = 0; i < path->Count(); ++i)
 				{
-					currentState = EnemyState::MOVING_TO_ORIGIN;
-					app->map->pathfinding->CreatePath(app->map->WorldToMap(position.x, position.y),
-						app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y));
+					iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
 				}
 			}
-			break;
+
+			app->render->DrawTexture(enemyTex1, position.x, position.y, &currentAnimation->GetCurrentFrame());
 		}
-
-		//Set the velocity of the pbody of the player
-		ebody->body->ApplyLinearImpulse(impulse, ebody->body->GetPosition(), false);
-		ebody->body->SetLinearVelocity(b2Clamp(ebody->body->GetLinearVelocity(), -vel, vel));
-
-		// Update the character's position
-		b2Transform ebodyPos = ebody->body->GetTransform();
-		position.x = METERS_TO_PIXELS(ebodyPos.p.x) - 16 / 2;
-		position.y = METERS_TO_PIXELS(ebodyPos.p.y) - 16 / 2;
-
-		// Pathfinding
-
-		// pathfinding entre el enemigo y el player
-
-		//conditional to check if player is 5 tiles to the enemy
-
-		if (app->map->WorldToMap(position.x, position.y).DistanceTo(app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y)) < 7)
+		if (death == true)
 		{
-			currentState = EnemyState::ATTACKING;
-			app->map->pathfinding->CreatePath(app->map->WorldToMap(position.x, position.y),
-				app->map->WorldToMap(app->scene->GetPlayerPosition().x, app->scene->GetPlayerPosition().y));
+			app->physics->DestroyCircle(ebody);
+			ebody = app->physics->CreateCircle(-1000 + 16, 3000 + 16, 8, bodyType::DYNAMIC);
 		}
-		// pathfinding next steps
-		const DynArray<iPoint>* path = app->map->pathfinding->GetLastPath();
-
-		//const DynArray<iPoint>* path = app->map->pathfinding->GetLastPath();
-		if (app->physics->debug == true)
+		if (respawn == true)
 		{
-			for (uint i = 0; i < path->Count(); ++i)
-			{
-				iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-				app->render->DrawTexture(app->scene->mouseTileTex, pos.x, pos.y);
-			}
+			respawn = false;
+			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
+			app->physics->DestroyCircle(ebody);
+			ebody = app->physics->CreateCircle(position.x + 16, position.y, 8, bodyType::DYNAMIC);
+			ebody->listener = this;
+			ebody->ctype = ColliderType::WENEMIES;
+			currentAnimation = enemy1WalkAnimL;
+			currentState = EnemyState::MOVING_TO_DESTINATION;
 		}
-		else
-		{
-			for (uint i = 0; i < path->Count(); ++i)
-			{
-				iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-			}
-		}
-
-		app->render->DrawTexture(enemyTex1, position.x, position.y, &currentAnimation->GetCurrentFrame());
-	}
-	if (death == true)
-	{
-		app->physics->DestroyCircle(ebody);
-		ebody = app->physics->CreateCircle(-1000 + 16, 3000 + 16, 8, bodyType::DYNAMIC);
-	}
-	if (respawn == true)
-	{
-		respawn = false;
-		position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
-		app->physics->DestroyCircle(ebody);
-		ebody = app->physics->CreateCircle(position.x + 16, position.y, 8, bodyType::DYNAMIC);
-		ebody->listener = this;
-		ebody->ctype = ColliderType::WENEMIES;
-		currentAnimation = enemy1WalkAnimL;
-		currentState = EnemyState::MOVING_TO_DESTINATION;
-	}
+	
 	return true;
 }
 

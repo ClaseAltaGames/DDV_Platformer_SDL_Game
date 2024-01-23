@@ -17,6 +17,7 @@
 #include "GuiManager.h"
 #include "Health.h"
 #include "Jabon.h"
+#include "PauseScreen.h"
 
 
 #include "Defs.h"
@@ -85,6 +86,8 @@ bool Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool Scene::Start()
 {
+	pause = false;
+
 	app->titleScreen->active = false;
 	app->titleScreen->Disable();
 
@@ -97,6 +100,8 @@ bool Scene::Start()
 	app->guiManager->active = false;
 	app->guiManager->Disable();
 
+	app->pauseScreen->active = false;
+	app->pauseScreen->Disable();
 
 
 	app->tex->UnLoad(app->titleScreen->titleScreenTex);
@@ -141,8 +146,6 @@ bool Scene::PreUpdate()
 bool Scene::Update(float dt)
 {
 	
-	app->levelCompletedScreen->active = false;
-	app->levelCompletedScreen->Disable();
 	app->render->DrawTexture(fondo, player->position.x - 340, 0);
 
 	float camSpeed = 1; 
@@ -197,8 +200,14 @@ bool Scene::PostUpdate()
 {
 	bool ret = true;
 
-	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;
+
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	{
+		app->SaveRequest();
+		app->pauseScreen->active = true;
+		app->pauseScreen->Enable();
+		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->pauseScreen, 0);
+	}
 
 	return ret;
 }

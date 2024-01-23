@@ -97,9 +97,9 @@ bool Player::Start() {
 
 bool Player::Update(float dt)
 {
+	
 	points.Create("POINTS: %d", score);
-
-	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN){
+	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN) {
 		godMode = !godMode;
 	}
 
@@ -107,11 +107,11 @@ bool Player::Update(float dt)
 		if (app->maxFrameDuration == 16) {
 			app->maxFrameDuration = 32;
 		}
-		else if(app->maxFrameDuration == 32) {
+		else if (app->maxFrameDuration == 32) {
 			app->maxFrameDuration = 16;
 		}
 	}
-	
+
 
 	if (godMode == false) {
 		if (death == false)
@@ -205,7 +205,7 @@ bool Player::Update(float dt)
 			pbody->body->SetLinearVelocity(b2Clamp(pbody->body->GetLinearVelocity(), -vel, vel));
 
 			//Update player position in pixels
-			b2Transform pbodyPos = pbody->body->GetTransform();	
+			b2Transform pbodyPos = pbody->body->GetTransform();
 			position.x = METERS_TO_PIXELS(pbodyPos.p.x) - 16 / 2;
 			position.y = METERS_TO_PIXELS(pbodyPos.p.y) - 16 / 2;
 			app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
@@ -259,7 +259,7 @@ bool Player::Update(float dt)
 
 				}
 			}
-			else 
+			else
 			{
 				position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
 				if (app->scene->level1)
@@ -279,13 +279,12 @@ bool Player::Update(float dt)
 					app->scene->CameraLevel2();
 				}
 			}
-						
+
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 		{
-			app->scene->pause = true;
-
+				
 			app->physics->DestroyCircle(pbody);
 
 			if (app->scene->level1)
@@ -303,7 +302,7 @@ bool Player::Update(float dt)
 				pbody = app->physics->CreateCircle(196 + 16, 1964 + 16, 8, bodyType::DYNAMIC);
 				app->scene->CameraBoss();
 			}
-			
+
 			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
 			app->render->DrawTexture(texture, position.x, position.y, &currentAnimation->GetCurrentFrame());
 			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
@@ -313,11 +312,11 @@ bool Player::Update(float dt)
 		}
 		if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 		{
-			app->scene->pause = true;
+				
 
 			app->scene->GoToLevel2();
 			app->scene->CameraLevel2();
-			
+
 			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
 			app->render->DrawTexture(texture, position.x, position.y, &currentAnimation->GetCurrentFrame());
 			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
@@ -327,13 +326,13 @@ bool Player::Update(float dt)
 		}
 		if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		{
-			app->scene->pause = true;
+				
 
 			app->physics->DestroyCircle(pbody);
 			pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
 
 			app->scene->CameraLevel1();
-			
+
 			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
 			app->render->DrawTexture(texture, position.x, position.y, &currentAnimation->GetCurrentFrame());
 			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
@@ -348,7 +347,7 @@ bool Player::Update(float dt)
 		}
 	}
 	if (godMode == true) {
-		app->scene->pause = false;
+			
 		speed = 0.35f;
 		b2Vec2 impulse = b2Vec2_zero;
 		b2Vec2 vel = b2Vec2(0, 0);
@@ -376,7 +375,7 @@ bool Player::Update(float dt)
 			impulse.y += acceleration;
 			vel = b2Vec2(vel.x, -speed * dt);
 		}
-		
+
 		pbody->body->SetGravityScale(0);
 		// Apply the impulse to the character's rigidbody
 		pbody->body->ApplyLinearImpulse(impulse, pbody->body->GetPosition(), false);
@@ -416,11 +415,11 @@ bool Player::Update(float dt)
 
 		app->guiManager->active = true;
 		app->guiManager->Enable();
-	
+
 	}
 	app->render->DrawText(points.GetString(), 900, 30, 100, 50);
 
-
+	
 	return true;
 }
 
