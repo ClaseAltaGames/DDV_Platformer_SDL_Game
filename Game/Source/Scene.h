@@ -109,6 +109,11 @@ public:
 			return player->lives++;
 		}
 	}
+	bool CheckpointOFF()
+	{
+		return player->checkpoint = false;
+	}
+	
 private:
 	SDL_Texture* img;
 	float textPosX, textPosY = 0;

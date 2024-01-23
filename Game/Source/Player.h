@@ -52,6 +52,8 @@ public:
 	int lives = 3;
 
 	int score = 0;
+	
+	bool checkpoint = false;
 
 		
 private:

@@ -230,7 +230,9 @@ bool Map::Load(SString mapFileName)
         mapLayerItem = mapLayerItem->next;
     }
 
+   
     mapLayerItem = mapData.maplayers.start;
+
 
     while (mapLayerItem != NULL) {
 
@@ -285,7 +287,33 @@ bool Map::Load(SString mapFileName)
         mapLayerItem = mapLayerItem->next;
 
     } 
-        
+
+    mapLayerItem = mapData.maplayers.start;
+
+    while (mapLayerItem != NULL) {
+
+        if (mapLayerItem->data->properties.GetProperty("Checkpoint") != NULL && mapLayerItem->data->properties.GetProperty("Checkpoint")->value) {
+
+            for (int x = 0; x < mapLayerItem->data->width; x++)
+            {
+                for (int y = 0; y < mapLayerItem->data->height; y++)
+                {
+                    int gid = mapLayerItem->data->Get(x, y);
+
+                    if (gid == 4495)
+                    {
+                        iPoint pos = MapToWorld(x, y);
+
+                        PhysBody* c1 = app->physics->CreateRectangle(pos.x + (mapData.tileWidth / 2), pos.y + (mapData.tileHeight / 2),
+                            mapData.tileWidth, mapData.tileHeight, STATIC);
+                        c1->ctype = ColliderType::CHECKPOINT;
+
+                    }
+                }
+            }
+        }
+        mapLayerItem = mapLayerItem->next;
+    }
 
     if(ret == true)
     {

@@ -153,6 +153,7 @@ PhysBody* Physics::DestroyCircle(PhysBody* pbody)
 
 		// Libera la memoria de la instancia de PhysBody
 		delete pbody;
+		pbody = nullptr; // Set pbody to nullptr after deletion
 	}
 	return pbody;
 }

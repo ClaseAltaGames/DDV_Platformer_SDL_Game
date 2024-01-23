@@ -54,6 +54,7 @@ bool LevelCompletedScreen::Update(float dt)
 {    
     if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
     {
+        app->scene->CheckpointOFF();
         app->fadeToBlack->FadeToBlackTransition((Module*)app->levelCompletedScreen, (Module*)app->scene, 0);
 
         app->entityManager->active = true;

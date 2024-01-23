@@ -194,8 +194,6 @@ bool Player::Update(float dt)
 
 				impulse.x += acceleration;
 				vel = b2Vec2(-speed * dt, -GRAVITY_Y);
-
-
 			}
 
 
@@ -215,7 +213,6 @@ bool Player::Update(float dt)
 			uint w, h;
 			app->win->GetWindowSize(w, h);
 			app->render->camera.x = (-position.x * app->win->GetScale()) + w / 2;
-
 		}
 
 		if (death == true && lives == 0)
@@ -232,30 +229,57 @@ bool Player::Update(float dt)
 
 			lives = 3;
 
-			currentAnimation = deathR;
-			currentAnimation->Update();
-
-			app->scene->pause = true;
-
-			app->physics->DestroyCircle(pbody);
-			
-			if (position.y < 1000)
-			{
-				pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
-			}
-			if (position.y > 1000)
-			{
-				pbody = app->physics->CreateCircle(39 + 16, 1119 + 16, 8, bodyType::DYNAMIC);
-				app->scene->CameraLevel2();
-			}
-			position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
+			score = 0;
 
 			app->render->DrawTexture(texture, position.x, position.y, &(currentAnimation->GetCurrentFrame()));
 			texture = app->tex->Load(parameters.attribute("texturepath").as_string());
+			if (checkpoint == true)
+			{
+				if (app->scene->level1)
+				{
+					app->physics->DestroyCircle(pbody);
 
-			pbody->listener = this;
-			pbody->ctype = ColliderType::PLAYER;
-			
+					pbody = app->physics->CreateCircle(2425 + 16, 239 + 16, 8, bodyType::DYNAMIC);
+
+					pbody->listener = this;
+					pbody->ctype = ColliderType::PLAYER;
+
+					app->scene->CameraLevel1();
+				}
+
+
+				if (app->scene->level2)
+				{
+					app->physics->DestroyCircle(pbody);
+					pbody = app->physics->CreateCircle(2151 + 16, 1135 + 16, 8, bodyType::DYNAMIC);
+
+					pbody->listener = this;
+					pbody->ctype = ColliderType::PLAYER;
+					app->scene->CameraLevel2();
+
+				}
+			}
+			else 
+			{
+				position = iPoint(parameters.attribute("x").as_int(), parameters.attribute("y").as_int());
+				if (app->scene->level1)
+				{
+					app->physics->DestroyCircle(pbody);
+					pbody = app->physics->CreateCircle(3 + 16, 180 + 16, 8, bodyType::DYNAMIC);
+					pbody->listener = this;
+					pbody->ctype = ColliderType::PLAYER;
+					app->scene->CameraLevel1();
+				}
+				if (app->scene->level2)
+				{
+					app->physics->DestroyCircle(pbody);
+					pbody = app->physics->CreateCircle(39 + 16, 1119 + 16, 8, bodyType::DYNAMIC);
+					pbody->listener = this;
+					pbody->ctype = ColliderType::PLAYER;
+					app->scene->CameraLevel2();
+				}
+			}
+						
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
@@ -396,6 +420,7 @@ bool Player::Update(float dt)
 	}
 	app->render->DrawText(points.GetString(), 900, 30, 100, 50);
 
+
 	return true;
 }
 
@@ -461,6 +486,12 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		LOG("Collision HEALTH");
 		app->scene->HeartPicked();
 		break;
+	case ColliderType::CHECKPOINT:
+		LOG("Collision CHECKPOINT");
+		checkpoint = true;
+		
+		break;
+
 	case ColliderType::UNKNOWN:
 		LOG("Collision UNKNOWN");
 		break;
