@@ -89,6 +89,7 @@ bool Player::Start() {
 	saltoFX = app->audio->LoadFx("Assets/Audio/Fx/saltoFX.wav");
 	playerDeathFx = app->audio->LoadFx("Assets/Music/wasted.wav");
 	pickShampooFx = app->audio->LoadFx("Assets/Music/pickShampoo.wav");
+	checkpointFx = app->audio->LoadFx("Assets/Music/checkpoint.wav");
 
 	PlayerStartAnims();
 	
@@ -495,6 +496,7 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 	case ColliderType::CHECKPOINT:
 		LOG("Collision CHECKPOINT");
 		checkpoint = true;
+		app->audio->PlayFx(checkpointFx);
 		
 		break;
 

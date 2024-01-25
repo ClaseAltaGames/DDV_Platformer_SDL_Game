@@ -50,7 +50,7 @@ public:
 	bool godMode = false;
 	int saltoFX;
 	int lives = 3;
-
+	int checkpointFx;
 	int score = 0;
 	
 	bool checkpoint = false;
