@@ -31,6 +31,8 @@ public:
 	// Retrive window size
 	void GetWindowSize(uint& width, uint& height) const;
 
+	void Fullscreen(bool fullscreen);
+
 	// Retrieve window scale
 	uint GetScale() const;
 
@@ -40,6 +42,8 @@ public:
 
 	// The surface contained by the window
 	SDL_Surface* screenSurface;
+
+	bool fullscreen = false;
 
 private:
 	SString title;

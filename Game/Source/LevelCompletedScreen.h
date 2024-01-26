@@ -29,6 +29,7 @@ public:
 
     SDL_Texture* completedScreenTex;
     int completedSound;
+    List<GuiControl*> completedButtons;
 
     GuiControlButton* completedButton;
 

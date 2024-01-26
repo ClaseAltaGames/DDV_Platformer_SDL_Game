@@ -25,6 +25,8 @@ public:
 
     bool PostUpdate();
 
+    void CreatePauseButtons();
+
     bool CleanUp();
 
 public:
@@ -38,10 +40,12 @@ public:
     GuiControlCheckBox* checkBoxVSync;
 
     bool completedFxAvailable = false;
+    float volume = 0;
+
+    bool showPause = false;
+    List<GuiControl*> pauseButtons;
 
 private:
-    List<GuiControl*> controlsScene;
-    List<GuiControl*> controlsSettings;
     GuiControlButton* gcButtom;
     GuiControl* gcCloseCredits;
 
@@ -50,6 +54,7 @@ private:
 
     bool showCredits = false;
     bool _showCredits = false;
+    
 
 
 };

@@ -38,6 +38,16 @@ public:
 	//Unload Music
 	bool UnloadMusic();
 
+	// Set volume for music
+	void SetMusicVolume(float volume);
+
+	// Set volume for FX
+	void SetFxVolume(float volume);
+
+public:
+	int musicVolume;
+	int fxVolume;
+
 private:
 
 	_Mix_Music* music;

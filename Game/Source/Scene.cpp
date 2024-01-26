@@ -103,6 +103,12 @@ bool Scene::Start()
 	app->pauseScreen->active = false;
 	app->pauseScreen->Disable();
 
+	ListItem<GuiControl*>* controlListItem = nullptr;
+	for (controlListItem = app->levelCompletedScreen->completedButtons.start; controlListItem != NULL; controlListItem = controlListItem->next)
+	{
+		app->guiManager->DestroyGuiControl(controlListItem->data);
+	}
+	app->levelCompletedScreen->completedButtons.Clear();
 
 	app->tex->UnLoad(app->titleScreen->titleScreenTex);
 
@@ -204,13 +210,16 @@ bool Scene::PostUpdate()
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	{
 		app->SaveRequest();
-		app->pauseScreen->active = true;
-		app->pauseScreen->Enable();
 		app->levelCompletedScreen->active = false;
 		app->levelCompletedScreen->Disable();
 		app->guiManager->active = true;
 		app->guiManager->Enable();
+		app->pauseScreen->active = true;
+		app->pauseScreen->Enable();
+		app->pauseScreen->CreatePauseButtons();
 		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->pauseScreen, 0);
+
+	
 	}
 
 	return ret;

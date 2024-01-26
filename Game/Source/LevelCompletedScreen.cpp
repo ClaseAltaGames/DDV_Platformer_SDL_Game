@@ -31,13 +31,11 @@ bool LevelCompletedScreen::Start()
 {
     completedScreenTex = app->tex->Load("Assets/Textures/levelCompleteScreen.png");
 
-    app->guiManager->DestroyGuiControl(app->pauseScreen->sliderMusic);
-    app->guiManager->DestroyGuiControl(app->pauseScreen->sliderFx);
-
     app->render->camera.x = 0;
     app->render->camera.y = 0;
 
-    //app->audio->PlayMusic("Assets/Music/titleScreen.ogg", 1.0f);
+    app->pauseScreen->Disable();
+    app->pauseScreen->active = false;
 
 
     int wBt = 190;
@@ -45,9 +43,16 @@ bool LevelCompletedScreen::Start()
     int posBtX = SCREEN_WIDTH / 2 - 95;
     int posBtY = SCREEN_HEIGHT / 2 + 230;
 
-    //SDL_Rect btPos = { SCREEN_WIDTH / 2 - 80, SCREEN_HEIGHT / 2 + 240, 190,60 };
+    ListItem<GuiControl*>* controlListItem = nullptr;
+    for (controlListItem = app->pauseScreen->pauseButtons.start; controlListItem != NULL; controlListItem = controlListItem->next)
+    {
+        app->guiManager->DestroyGuiControl(controlListItem->data);
+    }
+    app->pauseScreen->pauseButtons.Clear();
 
     completedButton = (GuiControlButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 10, "Next level", {posBtX, posBtY, wBt, hBt}, this);
+
+    completedButtons.Add(completedButton);
 
     return true;
 }

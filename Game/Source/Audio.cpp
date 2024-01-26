@@ -54,6 +54,9 @@ bool Audio::Awake(pugi::xml_node& config)
 		active = false;
 		ret = true;
 	}
+	
+	fxVolume = config.child("fx").attribute("volume").as_int();
+	musicVolume = config.child("music").attribute("volume").as_int();
 
 	return ret;
 }
@@ -134,6 +137,7 @@ bool Audio::PlayMusic(const char* path, float fadeTime)
 		}
 	}
 
+	Mix_VolumeMusic(musicVolume);
 	LOG("Successfully playing %s", path);
 	return ret;
 }
@@ -173,7 +177,7 @@ bool Audio::PlayFx(unsigned int id, int repeat)
 	{
 		Mix_PlayChannel(-1, fx[id - 1], repeat);
 	}
-
+	Mix_Volume(-1, fxVolume);
 	return ret;
 }
 
@@ -211,4 +215,21 @@ bool Audio::UnloadMusic()
 	}
 
 	return ret;
+}
+
+// Set volume for music
+void Audio::SetMusicVolume(float volume)
+{
+	if (music != NULL)
+	{
+		Mix_VolumeMusic((int)(128.0f * volume));
+	}
+}
+
+// Set volume for FX
+void Audio::SetFxVolume(float volume)
+{
+	ListItem<Mix_Chunk*>* item;
+	for (item = fx.start; item != NULL; item = item->next)
+		Mix_VolumeChunk(item->data, (int)(128.0f * volume));
 }

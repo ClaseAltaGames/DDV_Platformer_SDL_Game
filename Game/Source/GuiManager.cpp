@@ -77,7 +77,7 @@ bool GuiManager::PostUpdate()
 {
 	ListItem<GuiControl*>* control = guiControlsList.start;
 
-	while (control != nullptr && control->data != nullptr)
+	while (control != nullptr)
 	{
 		control->data->PostUpdate();
 		control = control->next;

@@ -82,11 +82,13 @@ public:
 		observer->OnGuiMouseClickEvent(this);
 	}
 
+
 public:
 
 	uint32 id;
 	GuiControlType type;
 	GuiControlState state;
+
 
 	SString text;           // Control text (if required)
 	SDL_Rect bounds;        // Position and size
