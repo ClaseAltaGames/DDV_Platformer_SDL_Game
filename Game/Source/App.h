@@ -17,6 +17,7 @@ class Textures;
 class Audio;
 class Scene;
 class EntityManager;
+class Particles;
 class Map;
 class Physics;
 class PauseScreen;
@@ -101,6 +102,7 @@ public:
 	Audio* audio;
 	Scene* scene;
 	EntityManager* entityManager;
+	Particles* moduleParticles;
 	Map* map;
 	Physics* physics;
 	PauseScreen* pauseScreen;

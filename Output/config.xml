@@ -21,6 +21,10 @@
     <fx volume="128"/>
   </audio>
 
+  <particles>
+	<particle texturepath="Assets/Textures/beams.png"/>
+  </particles>
+
   <scene>
     <map path="Assets/Maps/" name="MapaFinal.tmx"/>
 	
@@ -349,6 +353,22 @@
 		</animation>
 	</fenemy>
 	  
+	<boss id="1" x="500" y="1875" texturepath="Assets/Textures/boss.png">
+		<animation name="bossWalkL" loop="true" speed = "0.2f">
+			<frame x="9" y="161" w="33" h="49"/>
+			<frame x="54" y="163" w="33" h="47"/>
+			<frame x="99" y="163" w="33" h="48"/>
+			<frame x="144" y="211" w="33" h="50"/>
+		</animation>
+		<animation name="bossWalkR" loop="true" speed = "0.2f">
+			<frame x="3" y="52" w="33" h="50"/>
+			<frame x="48" y="4" w="33" h="47"/>
+			<frame x="93" y="4" w="33" h="47"/>
+			<frame x="138" y="2" w="33" h="49"/>
+		</animation>
+	</boss>
+		  
+		  
 	<item x="280" y="215" texturepath="Assets/Textures/jabon.png"/>
 	<item x="835" y="63" texturepath="Assets/Textures/jabon.png"/>
 	<item x="1616" y="351" texturepath="Assets/Textures/jabon.png"/>

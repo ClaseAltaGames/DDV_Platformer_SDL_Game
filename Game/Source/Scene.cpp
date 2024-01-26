@@ -18,6 +18,7 @@
 #include "Health.h"
 #include "Jabon.h"
 #include "PauseScreen.h"
+#include "Boss.h"
 
 
 #include "Defs.h"
@@ -73,6 +74,11 @@ bool Scene::Awake(pugi::xml_node& config)
 		{
 			Poti* poti = (Poti*)app->entityManager->CreateEntity(EntityType::HEALTH);
 			poti->parameters = potiNode;
+		}
+		for (pugi::xml_node bossNode = config.child("boss"); bossNode; bossNode = bossNode.next_sibling("boss"))
+		{
+			Boss* boss = (Boss*)app->entityManager->CreateEntity(EntityType::BOSS);
+			boss->parameters = bossNode;
 		}
 		if (config.child("map")) {
 			//Get the map name from the config file and assigns the value in the module

@@ -15,6 +15,7 @@ enum class EntityType
 	FENEMIES,
 	JABON,
 	HEALTH,
+	BOSS,
 	UNKNOWN
 };
 

@@ -18,6 +18,8 @@
 #include "GuiControlButton.h"
 #include "DeadScreen.h"
 #include "PauseScreen.h"
+#include "Particle.h"
+#include "ModuleParticles.h"
 
 
 Player::Player() : Entity(EntityType::PLAYER)
@@ -198,6 +200,17 @@ bool Player::Update(float dt)
 				vel = b2Vec2(-speed * dt, -GRAVITY_Y);
 			}
 
+			if (app->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
+			{
+				if (app->scene->bossLevel)
+				{
+					
+
+					app->moduleParticles->projectile.ctype = ColliderType::PLAYER_PROYECTILE;
+					//app->moduleParticles->projectile
+					app->moduleParticles->AddParticle(app->moduleParticles->projectile, position.x + 16, position.y);
+				}
+			}
 
 			// Hace que salte
 			impulse.y = b2Clamp(impulse.y, -vel.y, vel.y);
@@ -377,7 +390,7 @@ bool Player::Update(float dt)
 			impulse.y += acceleration;
 			vel = b2Vec2(vel.x, -speed * dt);
 		}
-
+		
 		pbody->body->SetGravityScale(0);
 		// Apply the impulse to the character's rigidbody
 		pbody->body->ApplyLinearImpulse(impulse, pbody->body->GetPosition(), false);
@@ -422,6 +435,27 @@ bool Player::Update(float dt)
 		
 		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
 	}
+	if (completed)
+	{
+		app->audio->UnloadMusic();
+
+		app->levelCompletedScreen->active = true;
+		app->levelCompletedScreen->Enable();
+
+		app->pauseScreen->active = false;
+		app->pauseScreen->Disable();
+
+		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
+
+		app->levelCompletedScreen->completedFxAvailable = true;
+
+		app->scene->Disable();
+		app->scene->active = false;
+		app->entityManager->active = false;
+
+		app->guiManager->active = true;
+		app->guiManager->Enable();
+	}
 	app->render->DrawText(points.GetString(), 900, 30, 100, 50);
 
 	
@@ -461,24 +495,25 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		break;
 	case ColliderType::COMPLETED:
 		LOG("Collision COMPLETED");
-		app->audio->UnloadMusic();
+		completed = true;
+		//app->audio->UnloadMusic();
 
-		app->levelCompletedScreen->active = true;
-		app->levelCompletedScreen->Enable();
+		//app->levelCompletedScreen->active = true;
+		//app->levelCompletedScreen->Enable();
 
-		app->pauseScreen->active = false;
-		app->pauseScreen->Disable();
+		//app->pauseScreen->active = false;
+		//app->pauseScreen->Disable();
 
-		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
+		//app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
 
-		app->levelCompletedScreen->completedFxAvailable = true;
+		//app->levelCompletedScreen->completedFxAvailable = true;
 
-		app->scene->Disable();
-		app->scene->active = false;
-		app->entityManager->active = false;
+		//app->scene->Disable();
+		//app->scene->active = false;
+		//app->entityManager->active = false;
 
-		app->guiManager->active = true;
-		app->guiManager->Enable();
+		//app->guiManager->active = true;
+		//app->guiManager->Enable();
 		
 		break;
 	case ColliderType::WENEMIES:

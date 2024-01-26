@@ -39,6 +39,9 @@
     <ClCompile Include="Source\GuiControlSlider.cpp" />
     <ClCompile Include="Source\PauseScreen.cpp" />
     <ClCompile Include="Source\Credits.cpp" />
+    <ClCompile Include="Source\Particle.cpp" />
+    <ClCompile Include="Source\ModuleParticles.cpp" />
+    <ClCompile Include="Source\Boss.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -105,6 +108,9 @@
     <ClInclude Include="Source\GuiControlSlider.h" />
     <ClInclude Include="Source\PauseScreen.h" />
     <ClInclude Include="Source\Credits.h" />
+    <ClInclude Include="Source\Particle.h" />
+    <ClInclude Include="Source\ModuleParticles.h" />
+    <ClInclude Include="Source\Boss.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

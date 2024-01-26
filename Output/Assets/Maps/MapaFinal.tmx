@@ -22409,13 +22409,13 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="564"/>
+   <tile gid="565"/>
+   <tile gid="566"/>
+   <tile gid="567"/>
+   <tile gid="575"/>
+   <tile gid="576"/>
+   <tile gid="577"/>
    <tile/>
    <tile/>
    <tile gid="1076"/>

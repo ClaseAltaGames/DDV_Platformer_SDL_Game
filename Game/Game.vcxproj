@@ -95,6 +95,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Boss.cpp" />
     <ClCompile Include="Source\Credits.cpp" />
     <ClCompile Include="Source\DeadScreen.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
@@ -114,6 +115,8 @@
     <ClCompile Include="Source\Audio.cpp" />
     <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Map.cpp" />
+    <ClCompile Include="Source\ModuleParticles.cpp" />
+    <ClCompile Include="Source\Particle.cpp" />
     <ClCompile Include="Source\Path.cpp" />
     <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\PauseScreen.cpp" />
@@ -128,6 +131,7 @@
     <ClCompile Include="Source\WEnemies.cpp" />
     <ClCompile Include="Source\Window.cpp" />
     <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\Boss.h" />
     <ClInclude Include="Source\Credits.h" />
     <ClInclude Include="Source\DeadScreen.h" />
     <ClInclude Include="Source\Entity.h" />
@@ -145,7 +149,9 @@
     <ClInclude Include="Source\Jabon.h" />
     <ClInclude Include="Source\LevelCompletedScreen.h" />
     <ClInclude Include="Source\Map.h" />
+    <ClInclude Include="Source\ModuleParticles.h" />
     <ClInclude Include="Source\p2Point.h" />
+    <ClInclude Include="Source\Particle.h" />
     <ClInclude Include="Source\Path.h" />
     <ClInclude Include="Source\Pathfinding.h" />
     <ClInclude Include="Source\PauseScreen.h" />

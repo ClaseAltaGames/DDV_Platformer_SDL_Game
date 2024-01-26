@@ -7,6 +7,7 @@
 #include "App.h"
 #include "Textures.h"
 #include "Scene.h"
+#include "Boss.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -99,6 +100,9 @@ Entity* EntityManager::CreateEntity(EntityType type)
 		break;
 	case EntityType::HEALTH:
 		entity = new Poti();
+		break;
+	case EntityType::BOSS:
+		entity = new Boss();
 		break;
 	default:
 		break;

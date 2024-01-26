@@ -53,6 +53,7 @@ public:
 	int checkpointFx;
 	int score = 0;
 	
+	bool completed = false;
 	bool checkpoint = false;
 
 		

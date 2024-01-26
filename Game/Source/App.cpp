@@ -17,6 +17,8 @@
 #include "PauseScreen.h"
 #include "EntityManager.h"
 #include "Credits.h"
+#include "Particle.h"
+#include "ModuleParticles.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -43,6 +45,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new Scene();
 	map = new Map();
 	entityManager = new EntityManager();
+	moduleParticles = new Particles();
 	pauseScreen = new PauseScreen();
 	deadScreen = new DeadScreen();
 	levelCompletedScreen = new LevelCompletedScreen();
@@ -63,6 +66,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(map);
 	AddModule(entityManager);
+	AddModule(moduleParticles);
 	AddModule(pauseScreen);
 	AddModule(deadScreen);
 	AddModule(levelCompletedScreen);
