@@ -1,4 +1,9 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
-  Window.cpp
+  Player.cpp
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(56,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(58,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(64,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(66,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Scene.h(111): warning C4715: 'Scene::HeartPicked': no todas las rutas de acceso de control devuelven un valor
   Game.vcxproj -> C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Build\Debug\Game.exe
           1 archivo(s) copiado(s).

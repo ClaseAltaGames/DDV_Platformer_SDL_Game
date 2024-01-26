@@ -31,9 +31,7 @@ PauseScreen::~PauseScreen()
 bool PauseScreen::Start()
 {
     pauseScreenTex = app->tex->Load("Assets/Textures/pauseScreen.png");
-    app->levelCompletedScreen->active = false;
-    app->levelCompletedScreen->Disable();
-
+  
     ListItem<GuiControl*>* controlListItem = nullptr;
     for (controlListItem = app->levelCompletedScreen->completedButtons.start; controlListItem != NULL; controlListItem = controlListItem->next)
     {

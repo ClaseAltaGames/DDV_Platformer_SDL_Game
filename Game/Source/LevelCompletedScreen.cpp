@@ -90,10 +90,7 @@ bool LevelCompletedScreen::Update(float dt)
         app->scene->Enable();
 
         app->guiManager->active = true;
-        app->guiManager->Enable();
-        //plays the scene music
-
-        app->audio->PlayMusic("Assets/Music/Song1.ogg", 1.0f);
+        app->guiManager->Enable();      
 
         if (app->scene->level1)
         {

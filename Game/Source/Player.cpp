@@ -432,27 +432,10 @@ bool Player::Update(float dt)
 		
 		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
 	}
-	if (completed)
+	/*if (completed)
 	{
-		app->audio->UnloadMusic();
-
-		app->levelCompletedScreen->active = true;
-		app->levelCompletedScreen->Enable();
-
-		app->pauseScreen->active = false;
-		app->pauseScreen->Disable();
-
-		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
-
-		app->levelCompletedScreen->completedFxAvailable = true;
-
-		app->scene->Disable();
-		app->scene->active = false;
-		app->entityManager->active = false;
-
-		app->guiManager->active = true;
-		app->guiManager->Enable();
-	}
+		
+	}*/
 	app->render->DrawText(points.GetString(), 900, 30, 100, 50);
 
 	
@@ -492,7 +475,23 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		break;
 	case ColliderType::COMPLETED:
 		LOG("Collision COMPLETED");
-		completed = true;
+		app->levelCompletedScreen->active = true;
+		app->levelCompletedScreen->Enable();
+
+		app->guiManager->active = true;
+		app->guiManager->Enable();
+
+		app->levelCompletedScreen->completedFxAvailable = true;
+
+		app->scene->Disable();
+		app->scene->active = false;
+
+		app->entityManager->active = false;
+
+		app->pauseScreen->active = false;
+		app->pauseScreen->Disable();
+
+		app->fadeToBlack->FadeToBlackTransition((Module*)app->scene, (Module*)app->levelCompletedScreen, 0);
 		//app->audio->UnloadMusic();
 
 		//app->levelCompletedScreen->active = true;
