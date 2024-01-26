@@ -12,6 +12,7 @@
 #include "Physics.h"
 #include "TitleScreen.h"
 #include "LevelCompletedScreen.h"
+#include "Credits.h"
 
 #include "SDL/include/SDL.h"    
 
@@ -26,6 +27,21 @@ IntroScreen::~IntroScreen()
 // Called before render is available
 bool IntroScreen::Start()
 {
+	ListItem<GuiControl*>* controlListTitle = nullptr;
+	for (controlListTitle = app->titleScreen->titleButtons.start; controlListTitle != NULL; controlListTitle = controlListTitle->next)
+	{
+		app->guiManager->DestroyGuiControl(controlListTitle->data);
+	}
+	app->titleScreen->titleButtons.Clear();
+
+	ListItem<GuiControl*>* controlListCredits = nullptr;
+	for (controlListCredits = app->credits->creditsButtons.start; controlListCredits != NULL; controlListCredits = controlListCredits->next)
+	{
+		app->guiManager->DestroyGuiControl(controlListCredits->data);
+	}
+	app->credits->creditsButtons.Clear();
+
+
     introScreenTex = app->tex->Load("Assets/Textures/introScreen1.png");
 
 	app->titleScreen->active = false;
@@ -33,6 +49,9 @@ bool IntroScreen::Start()
 
 	app->levelCompletedScreen->active = false;
 	app->levelCompletedScreen->Disable();
+
+	app->credits->active = false;
+	app->credits->Disable();
 
 	app->titleScreen->titleSound = 0;
 
@@ -49,7 +68,6 @@ bool IntroScreen::Start()
 // Called each loop iteration
 bool IntroScreen::Update(float dt)
 {
-
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		app->audio->UnloadFx(introSound);
@@ -58,6 +76,7 @@ bool IntroScreen::Update(float dt)
 		app->introScreen->active = false;
 		
 		//plays the title screen music
+
 		app->titleScreen->active = true;
 		app->titleScreen->Enable();
 		app->titleScreen->titleSound = app->audio->LoadFx("Assets/Music/onlymp3.to-Bully-Soundtrack-Main-Theme-7RU7CohvsMU-192k-1704300284.wav");

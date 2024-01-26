@@ -38,6 +38,7 @@
     <ClCompile Include="Source\GuiControlImage.cpp" />
     <ClCompile Include="Source\GuiControlSlider.cpp" />
     <ClCompile Include="Source\PauseScreen.cpp" />
+    <ClCompile Include="Source\Credits.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -103,6 +104,7 @@
     <ClInclude Include="Source\GuiControlImage.h" />
     <ClInclude Include="Source\GuiControlSlider.h" />
     <ClInclude Include="Source\PauseScreen.h" />
+    <ClInclude Include="Source\Credits.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

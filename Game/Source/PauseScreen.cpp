@@ -14,7 +14,8 @@
 #include "GuiControlButton.h"
 #include "GuiManager.h"
 #include "LevelCompletedScreen.h"
-
+#include "TitleScreen.h"
+#include "Credits.h"
 
 #include "SDL/include/SDL.h"    
 
@@ -40,31 +41,25 @@ bool PauseScreen::Start()
     }
     app->levelCompletedScreen->completedButtons.Clear();
 
+    ListItem<GuiControl*>* controlListTitle = nullptr;
+    for (controlListTitle = app->titleScreen->titleButtons.start; controlListTitle != NULL; controlListTitle = controlListTitle->next)
+    {
+        app->guiManager->DestroyGuiControl(controlListTitle->data);
+    }
+    app->titleScreen->titleButtons.Clear();
+
+    ListItem<GuiControl*>* controlListCredits = nullptr;
+    for (controlListCredits = app->credits->creditsButtons.start; controlListCredits != NULL; controlListCredits = controlListCredits->next)
+    {
+        app->guiManager->DestroyGuiControl(controlListCredits->data);
+    }
+    app->credits->creditsButtons.Clear();
     return true;
 }
 
 // Called each loop iteration
 bool PauseScreen::Update(float dt)
 {    
-    if (app->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
-    {
-        app->scene->pause = false;
-        app->scene->active = true;
-        app->scene->Enable();
-        app->entityManager->active = true;
-        app->entityManager->Enable();
-        app->pauseScreen->active = false;
-        app->pauseScreen->Disable();
-
-        app->physics->DestroyCircle(app->scene->GetPlayerPbody());
-        app->physics->CreateCircle(app->scene->GetPlayerPosition().x + 16, app->scene->GetPlayerPosition().y + 16, 8, bodyType::DYNAMIC);
-
-        app->scene->GetPlayerPbody()->listener = app->scene->GetPlayer();
-        app->scene->GetPlayerPbody()->ctype = ColliderType::PLAYER;
-
-        app->fadeToBlack->FadeToBlackTransition((Module*)app->pauseScreen, (Module*)app->scene, 0);
-    }
-
     app->scene->pause = true;
     //si pulsas esc en cualquier nivel aparece el menu de pausa
     if (app->scene->level1)
@@ -95,10 +90,8 @@ bool PauseScreen::Update(float dt)
 
         app->scene->GetPlayerPbody()->listener = app->scene->GetPlayer();
         app->scene->GetPlayerPbody()->ctype = ColliderType::PLAYER;
-
       
         app->fadeToBlack->FadeToBlackTransition((Module*)app->pauseScreen, (Module*)app->scene, 0);
-
 	}
 
     if (pauseButtons.At(3)->data->state == GuiControlState::PRESSED)

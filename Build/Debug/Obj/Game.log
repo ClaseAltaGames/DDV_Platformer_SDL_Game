@@ -1,5 +1,5 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
-  PauseScreen.cpp
+  Credits.cpp
 C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(56,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
 C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(58,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
 C:\Users\paumt\OneDrive\Documentos\GitHub\Desenvolupament\Game\Source\Animation.h(64,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos

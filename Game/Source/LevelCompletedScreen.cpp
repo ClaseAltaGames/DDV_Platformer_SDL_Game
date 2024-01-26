@@ -14,6 +14,8 @@
 #include "GuiControlButton.h"
 #include "GuiManager.h"
 #include "PauseScreen.h"
+#include "TitleScreen.h"
+#include "Credits.h"
 
 
 #include "SDL/include/SDL.h"    
@@ -37,12 +39,6 @@ bool LevelCompletedScreen::Start()
     app->pauseScreen->Disable();
     app->pauseScreen->active = false;
 
-
-    int wBt = 190;
-    int hBt = 60;
-    int posBtX = SCREEN_WIDTH / 2 - 95;
-    int posBtY = SCREEN_HEIGHT / 2 + 230;
-
     ListItem<GuiControl*>* controlListItem = nullptr;
     for (controlListItem = app->pauseScreen->pauseButtons.start; controlListItem != NULL; controlListItem = controlListItem->next)
     {
@@ -50,6 +46,29 @@ bool LevelCompletedScreen::Start()
     }
     app->pauseScreen->pauseButtons.Clear();
 
+    ListItem<GuiControl*>* controlListTitle = nullptr;
+    for (controlListTitle = app->titleScreen->titleButtons.start; controlListTitle != NULL; controlListTitle = controlListTitle->next)
+    {
+        app->guiManager->DestroyGuiControl(controlListTitle->data);
+    }
+    app->titleScreen->titleButtons.Clear();
+
+    ListItem<GuiControl*>* controlListCredits = nullptr;
+    for (controlListCredits = app->credits->creditsButtons.start; controlListCredits != NULL; controlListCredits = controlListCredits->next)
+    {
+        app->guiManager->DestroyGuiControl(controlListCredits->data);
+    }
+    app->credits->creditsButtons.Clear();
+
+
+
+
+    int wBt = 190;
+    int hBt = 60;
+    int posBtX = SCREEN_WIDTH / 2 - 95;
+    int posBtY = SCREEN_HEIGHT / 2 + 230;
+
+   
     completedButton = (GuiControlButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 10, "Next level", {posBtX, posBtY, wBt, hBt}, this);
 
     completedButtons.Add(completedButton);

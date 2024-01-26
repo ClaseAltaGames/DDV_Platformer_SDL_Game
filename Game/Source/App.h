@@ -22,6 +22,7 @@ class Physics;
 class PauseScreen;
 class DeadScreen;
 class LevelCompletedScreen;
+class Credits;
 class TitleScreen;
 class IntroScreen;
 class GuiManager;
@@ -105,6 +106,7 @@ public:
 	PauseScreen* pauseScreen;
 	DeadScreen* deadScreen;
 	LevelCompletedScreen* levelCompletedScreen;
+	Credits* credits;
 	TitleScreen* titleScreen;
 	IntroScreen* introScreen;
 	GuiManager* guiManager;
