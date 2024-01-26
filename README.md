@@ -14,7 +14,7 @@ We are ClaseAltaGames, a pair of students from CITM, videogames fans and C++ dev
 ## Game Description
 "Furious Bald" is an amazing game in which you play as a bald person, and your objective is to defeat your enemies who have long hair and purchase shampoo. Download the 0.5 version now FOR FREE. The final version will be available soon.
 
-## NEW VERSION
+## WE WANT TO CELEBRATE THE 40 YEARS OF THE APPLE MACINTOSH WITH THIS NEW VERSION
 Added things:
 - Second level
 - Final Boss
