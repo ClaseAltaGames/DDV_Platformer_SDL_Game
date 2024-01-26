@@ -1,4 +1,4 @@
-# Furious Bald 0.5
+# Furious Bald 1.0
 # DDV_Platformer_SDL_Game by Pau Mena Torres & Edgar Mesa Domínguez
 
 ## Link to the Github project:
@@ -14,15 +14,14 @@ We are ClaseAltaGames, a pair of students from CITM, videogames fans and C++ dev
 ## Game Description
 "Furious Bald" is an amazing game in which you play as a bald person, and your objective is to defeat your enemies who have long hair and purchase shampoo. Download the 0.5 version now FOR FREE. The final version will be available soon.
 
-## WE WANT TO CELEBRATE THE 40 YEARS OF THE APPLE MACINTOSH WITH THIS NEW VERSION
-Added things:
+## Added things:
 - Second level
 - Final Boss
 - Game UI
 - Credits
 - More music
 - Bug fixes
-- Colectable items
+- Collectable items
 - Health items
 - Checkpoints with auto - save
 - Map TP
@@ -52,6 +51,8 @@ Added things:
 
 ## Controls
 - WASD for movement
+
+- P to shoot in Boss Level
     
 - SPACE for jump
 
@@ -67,6 +68,8 @@ Added things:
 - F5 Save state of the game
 
 - F6 Load state of the game
+
+- F7 Go to Level Completed Screen
 
 - F9 View colliders and pathfinding 
 
