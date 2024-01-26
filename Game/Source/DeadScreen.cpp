@@ -51,9 +51,29 @@ bool DeadScreen::Update(float dt)
     if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
     {
         app->fadeToBlack->FadeToBlackTransition((Module*)app->deadScreen, (Module*)app->scene, 0);
-
-        app->physics->DestroyCircle(app->scene->GetPlayerPbody());
-        app->physics->CreateCircle(3 + 16, 215 + 16, 8, bodyType::DYNAMIC);
+        if (app->scene->level1)
+        {
+            app->physics->DestroyCircle(app->scene->GetPlayerPbody());
+            app->physics->CreateCircle(3 + 16, 215 + 16, 8, bodyType::DYNAMIC);
+            app->scene->CameraLevel1();
+        }
+        if (app->scene->level2)
+        {
+            app->physics->DestroyCircle(app->scene->GetPlayerPbody());
+            app->physics->CreateCircle(3 + 16, 215 + 16, 8, bodyType::DYNAMIC);
+            app->scene->CameraLevel2();
+        }
+        if (app->scene->bossLevel)
+        {
+            app->physics->DestroyCircle(app->scene->GetPlayerPbody());
+            app->physics->CreateCircle(3 + 16, 215 + 16, 8, bodyType::DYNAMIC);
+            app->scene->CameraBoss();            
+        }
+        if (app->scene->DetectCheckpoint())
+        {
+            app->physics->DestroyCircle(app->scene->GetPlayerPbody());
+            app->physics->CreateCircle(2425 + 16, 239 + 16, 8, bodyType::DYNAMIC);
+        }
 
         app->scene->GetPlayerPbody()->listener = app->scene->GetPlayer();
         app->scene->GetPlayerPbody()->ctype = ColliderType::PLAYER;

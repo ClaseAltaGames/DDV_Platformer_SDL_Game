@@ -126,6 +126,10 @@ public:
 	{
 		return player->score += 2000;
 	}
+	bool DetectCheckpoint()
+	{
+		return player->checkpoint;
+	}
 
 
 private:
