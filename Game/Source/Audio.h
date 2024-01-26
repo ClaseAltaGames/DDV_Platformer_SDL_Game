@@ -44,6 +44,9 @@ public:
 	// Set volume for FX
 	void SetFxVolume(float volume);
 
+	bool FxHasFinished(unsigned int fx);
+
+
 public:
 	int musicVolume;
 	int fxVolume;

@@ -14,6 +14,7 @@
 #include "Window.h"
 #include "Pathfinding.h"
 #include "Map.h"
+#include "FadeToBlack.h"
 
 
 Boss::Boss() : Entity(EntityType::BOSS)
@@ -64,11 +65,11 @@ bool Boss::Start() {
 
 	BossStartAnims();
 
-	bossDeathFx = app->audio->LoadFx("Assets/Audio/Fx/fenemyDeath.wav");
+	bossDeathFx = app->audio->LoadFx("Assets/Music/levelCompleted.wav");
 
 	enemyTex1 = app->tex->Load(parameters.attribute("texturepath").as_string());
 
-	bossbody = app->physics->CreateRectangle(position.x + 33, position.y + 50, 33, 50, bodyType::DYNAMIC);
+	bossbody = app->physics->CreateCircle(position.x + 33, position.y + 50, 24, bodyType::DYNAMIC);
 
 	currentAnimation = bossWalkL;
 
@@ -225,11 +226,20 @@ bool Boss::Update(float dt)
 
 			app->render->DrawTexture(enemyTex1, position.x, position.y, &currentAnimation->GetCurrentFrame());
 		}
-
-		if (death == true && lives == 0)
+		if (lives == 0)
 		{
 			app->physics->DestroyCircle(bossbody);
 			bossbody = app->physics->CreateCircle(-100 + 16, 1000 + 16, 8, bodyType::DYNAMIC);
+			app->scene->WinScore();
+			
+			//go to end screen
+			app->audio->PlayFx(bossDeathFx);
+		
+		}
+		if (position.y < 1820)
+		{
+			app->physics->DestroyCircle(bossbody);
+			bossbody = app->physics->CreateCircle(500 + 33, 1875 + 50, 24, bodyType::DYNAMIC);
 		}
 	}
 	return true;
@@ -264,21 +274,11 @@ void Boss::OnCollision(PhysBody* physA, PhysBody* physB)
 		break;
 
 	case ColliderType::PLAYER:
-		/*if (app->scene->GetPlayerPosition().y < position.y)
-		{
-			death = true;
-			app->scene->GetPlayerLivesAlive();
-			app->audio->PlayFx(bossDeathFx);
-			app->scene->GetFEnemyDeathScore();
-		}
-		else
-		{
-			app->scene->GetPlayerDeath();
-			death = false;
-		}*/
+		break;
+
 	case ColliderType::PLAYER_PROYECTILE:
-		lives--;
-		death = true;
+		lives = lives - 1;
+
 		break;
 	}
 }

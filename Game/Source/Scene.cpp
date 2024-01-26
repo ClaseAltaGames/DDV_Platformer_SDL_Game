@@ -157,7 +157,10 @@ bool Scene::PreUpdate()
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
-	
+	if (app->scene->bossLevel)
+	{
+		app->audio->UnloadMusic();
+	}
 	app->render->DrawTexture(fondo, player->position.x - 340, 0);
 
 	float camSpeed = 1; 

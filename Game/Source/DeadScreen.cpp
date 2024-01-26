@@ -52,6 +52,12 @@ bool DeadScreen::Update(float dt)
     {
         app->fadeToBlack->FadeToBlackTransition((Module*)app->deadScreen, (Module*)app->scene, 0);
 
+        app->physics->DestroyCircle(app->scene->GetPlayerPbody());
+        app->physics->CreateCircle(3 + 16, 215 + 16, 8, bodyType::DYNAMIC);
+
+        app->scene->GetPlayerPbody()->listener = app->scene->GetPlayer();
+        app->scene->GetPlayerPbody()->ctype = ColliderType::PLAYER;
+
         //play scene music
         app->audio->PlayMusic("Assets/Music/Song1.ogg", 1.0f);
 
@@ -63,6 +69,7 @@ bool DeadScreen::Update(float dt)
 
         app->deadScreen->active = false;
         app->deadScreen->Disable();
+        
     }
     return true;
 }

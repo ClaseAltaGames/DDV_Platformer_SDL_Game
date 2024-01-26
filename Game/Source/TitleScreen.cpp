@@ -53,7 +53,7 @@ bool TitleScreen::Start()
     }
     app->credits->creditsButtons.Clear();
 
-    
+
     
     titleScreenTex = app->tex->Load("Assets/Textures/titleScreen.png");
 

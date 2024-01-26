@@ -122,8 +122,12 @@ public:
 	{
 		return player;
 	}
+	int WinScore()
+	{
+		return player->score += 2000;
+	}
 
-	
+
 private:
 	SDL_Texture* img;
 	float textPosX, textPosY = 0;

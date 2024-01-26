@@ -204,11 +204,8 @@ bool Player::Update(float dt)
 			{
 				if (app->scene->bossLevel)
 				{
-					
-
 					app->moduleParticles->projectile.ctype = ColliderType::PLAYER_PROYECTILE;
-					//app->moduleParticles->projectile
-					app->moduleParticles->AddParticle(app->moduleParticles->projectile, position.x + 16, position.y);
+					app->moduleParticles->AddParticle(app->moduleParticles->projectile, position.x + 16, position.y);					
 				}
 			}
 
@@ -534,7 +531,11 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB)
 		app->audio->PlayFx(checkpointFx);
 		
 		break;
-
+	case ColliderType::BOSS:
+		LOG("Collision BOSS");
+		death = true;
+		lives = 0;
+		break;
 	case ColliderType::UNKNOWN:
 		LOG("Collision UNKNOWN");
 		break;
